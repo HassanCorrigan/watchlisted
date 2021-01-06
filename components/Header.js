@@ -1,6 +1,8 @@
+import styles from '../styles/header.module.css';
+
 const Header = () => {
   return (
-    <header>
+    <header className={styles.header}>
       <a href='/'>Logo</a>
       <nav>
         <a href='/'>Home</a>

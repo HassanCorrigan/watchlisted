@@ -1,33 +1,53 @@
 import Layout from '../components/Layout.js';
+import TVShowList from '../components/TVShowList.js';
+import MovieList from '../components/MovieList.js';
+import { tmdbFetch } from '../helpers/apiFetch.js';
 
-const Home = ({ data }) => {
-  const movies = data;
-
+const Home = ({
+  trendingShows,
+  trendingMovies,
+  popularShows,
+  popularMovies,
+}) => {
   return (
     <Layout>
-      <h1>Home</h1>
-      <ul>
-        {movies.map(movie => (
-          <li key={movie.movie.ids.trakt}>{movie.movie.title}</li>
-        ))}
-      </ul>
+      <section>
+        <h1>Welcome</h1>
+      </section>
+
+      <section>
+        <h1>Discover</h1>
+
+        <h2>Trending Shows</h2>
+        <TVShowList shows={trendingShows} />
+
+        <h2>Trending Movies</h2>
+        <MovieList movies={trendingMovies} />
+
+        <h2>Most Popular Shows</h2>
+        <TVShowList shows={popularShows} />
+
+        <h2>Most Popular Movies</h2>
+        <MovieList movies={popularMovies} />
+      </section>
     </Layout>
   );
 };
 
 export async function getServerSideProps() {
-  // Fetch data from external API
-  const res = await fetch(`https://api.trakt.tv/movies/trending`, {
-    headers: {
-      'Content-Type': 'application/json',
-      'trakt-api-version': '2',
-      'trakt-api-key': `${process.env.NEXT_PUBLIC_TRAKT_CLIENT_ID}`,
-    },
-  });
-  const data = await res.json();
+  const trendingShows = await tmdbFetch('trending/tv/day');
+  const trendingMovies = await tmdbFetch('trending/movies/day'); // Fix issue where shows and movies are returned and no titles for some results
+  const popularShows = await tmdbFetch('tv/popular');
+  const popularMovies = await tmdbFetch('movie/popular');
 
-  // Pass data to the page via props
-  return { props: { data } };
+  return {
+    props: {
+      trendingShows: trendingShows.results,
+      trendingMovies: trendingMovies.results,
+      popularShows: popularShows.results,
+      popularMovies: popularMovies.results,
+    },
+  };
 }
 
 export default Home;
