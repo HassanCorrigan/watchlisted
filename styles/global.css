@@ -1,6 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600;800&display=swap');
+
 :root {
   --main-color: #000000;
   --main-background-color: #ffffff;
+  --secondary-background-color: #ffffff;
+  --header-background-color: rgba(255, 255, 255, 0.9);
+  --navigation-background-color: rgba(255, 255, 255, 0.8);
+  --primary-color: #252525;
   --border-radius: 0.75em;
 }
 * {
@@ -10,12 +16,12 @@
 }
 
 body {
-  font-family: 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue', 'Helvetica',
-    'Arial', sans-serif;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 300;
   color: var(--main-color);
   background-color: var(--main-background-color);
 }
 
 main {
-  padding: 0.5em;
+  margin: 2.5em 0;
 }

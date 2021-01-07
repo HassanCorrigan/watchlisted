@@ -1,0 +1,21 @@
+.posterList {
+  display: flex;
+  flex: row;
+  overflow-x: scroll;
+}
+.poster {
+  width: 7.5em;
+  border-radius: var(--border-radius);
+  margin: 0 0.33em;
+}
+.posterTitle {
+  margin: 0 0.33em;
+}
+
+.posterList a {
+  text-decoration: none;
+  color: var(--main-color);
+}
+.posterList::-webkit-scrollbar {
+  display: none; /* Removes horizontal scrollbar */
+}

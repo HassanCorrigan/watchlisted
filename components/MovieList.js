@@ -1,17 +1,17 @@
-import styles from '../styles/movie-list.module.css';
+import styles from '../styles/horizontal-poster-list.module.css';
 
 const MovieList = ({ movies }) => {
   return (
-    <div className={styles.movielist}>
+    <div className={styles.posterList}>
       {movies.map(movie => (
-        <div key={movie.id}>
+        <a href={`/movies/${movie.id}`} key={movie.id}>
           <img
             src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} // Update URL with smaller image size
             alt={movie.title}
             className={styles.poster}
           />
-          <p>{movie.title}</p>
-        </div>
+          <p className={styles.posterTitle}>{movie.title}</p>
+        </a>
       ))}
     </div>
   );

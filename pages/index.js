@@ -1,7 +1,8 @@
 import Layout from '../components/Layout.js';
-import TVShowList from '../components/TVShowList.js';
+import ShowList from '../components/ShowList.js';
 import MovieList from '../components/MovieList.js';
 import { tmdbFetch } from '../helpers/apiFetch.js';
+import styles from '../styles/index.module.css';
 
 const Home = ({
   trendingShows,
@@ -18,17 +19,37 @@ const Home = ({
       <section>
         <h1>Discover</h1>
 
-        <h2>Trending Shows</h2>
-        <TVShowList shows={trendingShows} />
+        <div className={styles.horizontalList}>
+          <div className={styles.horizontalListHeader}>
+            <h2>Trending Shows</h2>
+            <a href='/shows/trending'>See More &#8250;</a>
+          </div>
+          <ShowList shows={trendingShows} />
+        </div>
 
-        <h2>Trending Movies</h2>
-        <MovieList movies={trendingMovies} />
+        <div className={styles.horizontalList}>
+          <div className={styles.horizontalListHeader}>
+            <h2>Trending Movies</h2>
+            <a href='/movies/trending'>See More &#8250;</a>
+          </div>
+          <MovieList movies={trendingMovies} />
+        </div>
 
-        <h2>Most Popular Shows</h2>
-        <TVShowList shows={popularShows} />
+        <div className={styles.horizontalList}>
+          <div className={styles.horizontalListHeader}>
+            <h2>Most Popular Shows</h2>
+            <a href='/shows/popular'>See More &#8250;</a>
+          </div>
+          <ShowList shows={popularShows} />
+        </div>
 
-        <h2>Most Popular Movies</h2>
-        <MovieList movies={popularMovies} />
+        <div className={styles.horizontalList}>
+          <div className={styles.horizontalListHeader}>
+            <h2>Most Popular Movies</h2>
+            <a href='/movies/popular'>See More &#8250;</a>
+          </div>
+          <MovieList movies={popularMovies} />
+        </div>
       </section>
     </Layout>
   );
@@ -36,7 +57,7 @@ const Home = ({
 
 export async function getServerSideProps() {
   const trendingShows = await tmdbFetch('trending/tv/day');
-  const trendingMovies = await tmdbFetch('trending/movies/day'); // Fix issue where shows and movies are returned and no titles for some results
+  const trendingMovies = await tmdbFetch('trending/movie/day');
   const popularShows = await tmdbFetch('tv/popular');
   const popularMovies = await tmdbFetch('movie/popular');
 
