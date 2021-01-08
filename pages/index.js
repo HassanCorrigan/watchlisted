@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Layout from '../components/Layout.js';
 import ShowList from '../components/ShowList.js';
 import MovieList from '../components/MovieList.js';
@@ -22,7 +23,7 @@ const Home = ({
         <div className={styles.horizontalList}>
           <div className={styles.horizontalListHeader}>
             <h2>Trending Shows</h2>
-            <a href='/shows/trending'>See More &#8250;</a>
+            <Link href='/shows/trending'>See More &#8250;</Link>
           </div>
           <ShowList shows={trendingShows} />
         </div>
@@ -30,7 +31,7 @@ const Home = ({
         <div className={styles.horizontalList}>
           <div className={styles.horizontalListHeader}>
             <h2>Trending Movies</h2>
-            <a href='/movies/trending'>See More &#8250;</a>
+            <Link href='/movies/trending'>See More &#8250;</Link>
           </div>
           <MovieList movies={trendingMovies} />
         </div>
@@ -38,7 +39,7 @@ const Home = ({
         <div className={styles.horizontalList}>
           <div className={styles.horizontalListHeader}>
             <h2>Most Popular Shows</h2>
-            <a href='/shows/popular'>See More &#8250;</a>
+            <Link href='/shows/popular'>See More &#8250;</Link>
           </div>
           <ShowList shows={popularShows} />
         </div>
@@ -46,7 +47,7 @@ const Home = ({
         <div className={styles.horizontalList}>
           <div className={styles.horizontalListHeader}>
             <h2>Most Popular Movies</h2>
-            <a href='/movies/popular'>See More &#8250;</a>
+            <Link href='/movies/popular'>See More &#8250;</Link>
           </div>
           <MovieList movies={popularMovies} />
         </div>
