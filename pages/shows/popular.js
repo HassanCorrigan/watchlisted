@@ -11,8 +11,7 @@ const PopularShows = ({ shows }) => {
           {shows.map(show => (
             <a href={`/shows/${show.id}`} key={show.id}>
               <img
-                src={`https://image.tmdb.org/t/p/w500/${show.poster_path}`} // Update URL with smaller image size
-                alt={show.name}
+                src={`https://image.tmdb.org/t/p/w200/${show.poster_path}`}
               />
               <p>{show.name}</p>
             </a>

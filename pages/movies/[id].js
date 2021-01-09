@@ -8,7 +8,7 @@ const Movie = ({ movie }) => {
       <section>
         <h2>{movie.title}</h2>
         <img
-          src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} // Update URL with smaller image size
+          src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
           alt={movie.title}
         />
         <p>Released: {movie.release_date}</p>

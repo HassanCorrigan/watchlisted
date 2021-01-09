@@ -6,7 +6,7 @@ const MovieList = ({ movies }) => {
       {movies.map(movie => (
         <a href={`/movies/${movie.id}`} key={movie.id}>
           <img
-            src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} // Update URL with smaller image size
+            src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
             alt={movie.title}
             className={styles.poster}
           />

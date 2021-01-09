@@ -4,7 +4,6 @@ import styles from '../styles/header.module.css';
 
 const Header = () => {
   const router = useRouter();
-  console.log(router.asPath);
 
   return (
     <header className={styles.header}>

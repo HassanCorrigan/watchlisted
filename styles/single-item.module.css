@@ -1,0 +1,23 @@
+.itemInfo {
+  padding: 1em 0.5em;
+  width: '100%';
+  height: 'auto';
+  background-repeat: no-repeat;
+  background-position: top;
+}
+
+.itemInfo p {
+  margin: 1em 0;
+}
+
+.title {
+  font-weight: 600;
+  color: var(--main-background-color);
+}
+
+.poster {
+  width: 8em;
+  height: auto;
+  border-radius: var(--border-radius);
+  margin: 1em 0;
+}
