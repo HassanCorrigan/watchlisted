@@ -1,4 +1,5 @@
 import { tmdbFetch } from '../../helpers/apiFetch.js';
+import { createPosterPath } from '../../helpers/createImagePath.js';
 import Layout from '../../components/Layout.js';
 
 const TrendingShows = ({ shows }) => {
@@ -10,10 +11,7 @@ const TrendingShows = ({ shows }) => {
         <div>
           {shows.map(show => (
             <a href={`/shows/${show.id}`} key={show.id}>
-              <img
-                src={`https://image.tmdb.org/t/p/w200/${show.poster_path}`}
-                alt={show.name}
-              />
+              <img src={createPosterPath(show.poster_path)} alt={show.name} />
               <p>{show.name}</p>
             </a>
           ))}

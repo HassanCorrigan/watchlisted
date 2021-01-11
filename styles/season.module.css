@@ -8,20 +8,11 @@
 
 .header .title {
   font-weight: 600;
-  color: var(--main-background-color);
 }
 
 .header .poster {
   width: 8em;
   height: auto;
   border-radius: var(--border-radius);
-  margin: 1em 0;
-}
-
-.content {
-  padding: 0.5em;
-}
-
-.content > * {
   margin: 1em 0;
 }

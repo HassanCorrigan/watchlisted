@@ -1,3 +1,4 @@
+import { createPosterPath } from '../helpers/createImagePath.js';
 import styles from '../styles/horizontal-poster-list.module.css';
 
 const ShowList = ({ shows }) => {
@@ -6,7 +7,7 @@ const ShowList = ({ shows }) => {
       {shows.map(show => (
         <a href={`/shows/${show.id}`} key={show.id}>
           <img
-            src={`https://image.tmdb.org/t/p/w500/${show.poster_path}`}
+            src={createPosterPath(show.poster_path)}
             alt={show.name}
             className={styles.poster}
           />

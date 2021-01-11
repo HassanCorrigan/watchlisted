@@ -1,4 +1,5 @@
 import { tmdbFetch } from '../../helpers/apiFetch.js';
+import { createPosterPath } from '../../helpers/createImagePath.js';
 import Layout from '../../components/Layout.js';
 
 const PopularMovies = ({ movies }) => {
@@ -11,7 +12,7 @@ const PopularMovies = ({ movies }) => {
           {movies.map(movie => (
             <a href={`/movies/${movie.id}`} key={movie.id}>
               <img
-                src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
+                src={createPosterPath(movie.poster_path)}
                 alt={movie.title}
               />
               <p>{movie.title}</p>

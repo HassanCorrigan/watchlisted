@@ -1,4 +1,5 @@
 import { tmdbFetch } from '../../helpers/apiFetch.js';
+import { createPosterPath } from '../../helpers/createImagePath.js';
 import Layout from '../../components/Layout.js';
 
 const Movie = ({ movie }) => {
@@ -7,10 +8,7 @@ const Movie = ({ movie }) => {
     <Layout>
       <section>
         <h2>{movie.title}</h2>
-        <img
-          src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
-          alt={movie.title}
-        />
+        <img src={createPosterPath(movie.poster_path)} alt={movie.title} />
         <p>Released: {movie.release_date}</p>
       </section>
     </Layout>
@@ -18,7 +16,7 @@ const Movie = ({ movie }) => {
 };
 
 export async function getServerSideProps({ params }) {
-  const movie = await tmdbFetch(`movie/${params.id}`);
+  const movie = await tmdbFetch(`movie/${params.movieID}`);
 
   return {
     props: {
