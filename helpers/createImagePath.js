@@ -5,18 +5,11 @@ const createPosterPath = poster_path => {
   return `${baseImagePath}/${posterPath}`;
 };
 
-const createBackdropPath = backdrop_path => {
+const createBannerPath = banner_path => {
   const baseImagePath = 'https://image.tmdb.org/t/p/w500';
-  const backdropPath = backdrop_path || 'images/banner-placeholder.jpg';
+  const bannerPath = banner_path || 'images/banner-placeholder.jpg';
 
-  return `${baseImagePath}/${backdropPath}`;
+  return `${baseImagePath}/${bannerPath}`;
 };
 
-const createStillPath = still_path => {
-  const baseImagePath = 'https://image.tmdb.org/t/p/w500';
-  const stillPath = still_path || 'images/banner-placeholder.jpg';
-
-  return `${baseImagePath}/${stillPath}`;
-};
-
-export { createPosterPath, createBackdropPath, createStillPath };
+export { createPosterPath, createBannerPath };

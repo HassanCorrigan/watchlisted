@@ -1,6 +1,6 @@
-import { tmdbFetch } from '../../helpers/apiFetch.js';
-import { createPosterPath } from '../../helpers/createImagePath.js';
-import Layout from '../../components/Layout.js';
+import { tmdbFetch } from 'helpers/apiFetch.js';
+import { createPosterPath } from 'helpers/createImagePath.js';
+import Layout from 'components/Layout.js';
 
 const TrendingMovies = ({ movies }) => {
   // console.log(movies);

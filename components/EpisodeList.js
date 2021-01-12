@@ -1,16 +1,18 @@
 import Link from 'next/link';
-import { createStillPath } from '../helpers/createImagePath.js';
-import styles from '../styles/episode.module.css';
+import { createBannerPath } from 'helpers/createImagePath.js';
+import styles from 'styles/episode-list.module.css';
 
-const EpisodeList = ({ episodes }) => {
-  console.log(episodes);
+const EpisodeList = ({ show, season, episodes }) => {
+  // console.log(episodes);
   return (
     <div className={styles.episodeList}>
       {episodes.map(episode => (
-        <Link key={episode.id} href={'/'}>
+        <Link
+          key={episode.id}
+          href={`/shows/${show.id}/season/${season.season_number}/episode/${episode.episode_number}`}>
           <a className={styles.stillContainer}>
             <img
-              src={createStillPath(episode.still_path)}
+              src={createBannerPath(episode.still_path)}
               alt={episode.name}
               className={styles.still}
             />

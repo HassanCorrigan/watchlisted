@@ -1,0 +1,53 @@
+.header {
+  padding: 1em 0.5em;
+  width: '100%';
+  height: 'auto';
+  background-repeat: no-repeat;
+  background-position: top;
+}
+
+.header .title {
+  font-weight: 600;
+  color: var(--main-background-color);
+}
+
+.header .poster {
+  width: 8em;
+  height: auto;
+  border-radius: var(--border-radius);
+  margin: 1em 0;
+}
+
+.info,
+.overview,
+.meta {
+  padding: 1em 0.5em;
+}
+
+.info {
+  background-color: var(--transparent-background-color);
+  backdrop-filter: brightness(0.25);
+  margin: 0.5em;
+  border-radius: var(--border-radius);
+}
+
+.info p {
+  margin-bottom: 0.5em;
+}
+
+.seasonOverview h3 {
+  padding: 0 0.5em;
+}
+
+.recentEpisode {
+  padding: 0.5em;
+}
+
+.recentEpisode h3 {
+  padding: 0.5em 0;
+}
+
+.still {
+  width: 100%;
+  border-radius: var(--border-radius);
+}

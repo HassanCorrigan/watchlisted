@@ -1,11 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600;800&display=swap');
 
 :root {
-  --main-color: #000000;
-  --main-background-color: #ffffff;
+  --main-color: #222222;
+  --main-background-color: #ececec;
   --secondary-background-color: #ffffff;
-  --header-background-color: rgba(255, 255, 255, 0.9);
-  --navigation-background-color: rgba(255, 255, 255, 0.8);
+  --transparent-background-color: rgba(255, 255, 255, 0.75);
   --primary-color: #252525;
   --border-radius: 0.75em;
 }
@@ -20,16 +19,32 @@ body {
   font-weight: 300;
   color: var(--main-color);
   background-color: var(--main-background-color);
+  width: 100%;
 }
 
 main {
-  margin: 3em 0;
+  margin: 52px 0;
 }
 
 .tag {
   display: inline-block;
-  border: 1px solid var(--main-color);
-  border-radius: 0.5em;
+  color: #d53a9d;
+  background: linear-gradient(to left, #743ad5, #d53a9d, #2c19d6);
+  border-radius: var(--border-radius);
+  border: 0.1em solid transparent;
+  box-shadow: inset 0 0 0 100px var(--main-background-color);
+  background-size: 110% 110%;
+  font-weight: 400;
   padding: 0.25em 0.33em;
-  margin: 0 0.25em;
+  margin-right: 0.5em;
 }
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --main-color: #cfcfcf;
+    --main-background-color: #222222;
+    --secondary-background-color: #000000;
+    --transparent-background-color: rgba(0, 0, 0, 0.75);
+    --primary-color: #ececec;
+  }
+} */

@@ -1,31 +1,11 @@
-.episodeList {
-  padding: 0.5em;
-}
-
-.stillContainer {
-  position: relative;
-}
-
 .still {
   width: 100%;
-  border-radius: var(--border-radius);
-  margin: 0.5em 0;
 }
 
-.episodeDetails {
-  display: flex;
-  align-items: center;
-  position: absolute;
-  bottom: 1.2em;
-  left: 0.3em;
-  right: 0.3em;
-  color: var(--main-color);
-  background-color: rgba(255, 255, 255, 0.75);
-  font-size: 0.8em;
-  padding: 0.5em;
-  border-radius: var(--border-radius);
+.info {
+  padding: 1em 0.5em;
 }
 
-.episodeDetails h2 {
-  margin: 0 0.5em;
+.overview {
+  padding: 1em 0;
 }

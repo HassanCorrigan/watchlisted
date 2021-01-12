@@ -1,9 +1,9 @@
 import Link from 'next/link';
-import Layout from '../components/Layout.js';
-import ShowList from '../components/ShowList.js';
-import MovieList from '../components/MovieList.js';
-import { tmdbFetch } from '../helpers/apiFetch.js';
-import styles from '../styles/index.module.css';
+import Layout from 'components/Layout.js';
+import ShowList from 'components/ShowList.js';
+import MovieList from 'components/MovieList.js';
+import { tmdbFetch } from 'helpers/apiFetch.js';
+import styles from 'styles/index.module.css';
 
 const Home = ({
   trendingShows,

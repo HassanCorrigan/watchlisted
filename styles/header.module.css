@@ -5,9 +5,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--header-background-color);
-  z-index: 2;
+  background-color: var(--transparent-background-color);
   overflow: visible;
+  z-index: 2;
 }
 
 .logo {
@@ -16,7 +16,6 @@
   color: var(--main-color);
   padding: 0.5em;
   font-size: 1.5em;
-  /* margin-top: 1.5em; */
 }
 
 .header nav {
@@ -25,9 +24,10 @@
   width: 100%;
   display: flex;
   justify-content: space-around;
-  background-color: var(--navigation-background-color);
-  backdrop-filter: blur(3px);
-  z-index: 2;
+  background-color: var(--transparent-background-color);
+  backdrop-filter: blur(4px);
+  z-index: inherit;
+  padding: 0.5em 0;
 }
 
 .header nav a {
