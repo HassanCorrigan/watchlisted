@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { createPosterPath } from 'helpers/createImagePath.js';
+import Poster from 'components/Poster.js';
 import styles from 'styles/horizontal-poster-list.module.css';
 
 const ShowList = ({ shows }) => {
@@ -8,11 +8,7 @@ const ShowList = ({ shows }) => {
       {shows.map(show => (
         <Link href={`/shows/${show.id}`} key={show.id}>
           <a>
-            <img
-              src={createPosterPath(show.poster_path)}
-              alt={show.name}
-              className={styles.poster}
-            />
+            <Poster media={show} />
             <p className={styles.posterTitle}>{show.name}</p>
           </a>
         </Link>

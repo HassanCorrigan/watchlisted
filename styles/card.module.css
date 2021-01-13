@@ -1,0 +1,26 @@
+.card {
+  display: flex;
+  padding: 0.5em;
+  margin: 1em 0;
+  background-color: var(--secondary-background-color);
+  border-radius: var(--border-radius);
+  box-shadow: 0.1em 0.1em 0.1em 0.1em var(--box-shadow-color);
+  width: 100%;
+  max-height: 12.25em;
+}
+
+.cardInfo {
+  color: var(--main-color);
+  padding: 0 0.5em;
+  font-size: 0.8em;
+}
+.overview {
+  max-height: 7.5em;
+  overflow: scroll;
+  padding: 0.5em 0;
+}
+.meta {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}

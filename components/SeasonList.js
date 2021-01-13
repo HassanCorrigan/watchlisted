@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { createPosterPath } from 'helpers/createImagePath.js';
+import Poster from 'components/Poster.js';
 import styles from 'styles/horizontal-poster-list.module.css';
 
 const SeasonList = ({ show }) => {
@@ -10,11 +10,7 @@ const SeasonList = ({ show }) => {
           href={`/shows/${show.id}/season/${season.season_number}`}
           key={season.id}>
           <a>
-            <img
-              src={createPosterPath(season.poster_path)}
-              alt={season.name}
-              className={styles.poster}
-            />
+            <Poster media={show} />
             <p className={styles.posterTitle}>{season.name}</p>
           </a>
         </Link>

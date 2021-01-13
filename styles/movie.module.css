@@ -27,20 +27,3 @@
 .info p {
   margin-bottom: 0.5em;
 }
-
-.seasonOverview h3 {
-  padding: 0 0.5em;
-}
-
-.recentEpisode {
-  padding: 0.5em;
-}
-
-.recentEpisode h3 {
-  padding: 0.5em 0;
-}
-
-.still {
-  width: 100%;
-  border-radius: var(--border-radius);
-}

@@ -1,22 +1,21 @@
+import Link from 'next/link';
 import { tmdbFetch } from 'helpers/apiFetch.js';
-import { createPosterPath } from 'helpers/createImagePath.js';
 import Layout from 'components/Layout.js';
+import Card from 'components/Card.js';
 
 const TrendingMovies = ({ movies }) => {
   // console.log(movies);
   return (
     <Layout>
-      <section>
+      <section className='page'>
         <h1>Trending Movies</h1>
         <div>
           {movies.map(movie => (
-            <a href={`/movies/${movie.id}`} key={movie.id}>
-              <img
-                src={createPosterPath(movie.poster_path)}
-                alt={movie.title}
-              />
-              <p>{movie.title}</p>
-            </a>
+            <Link href={`/movies/${movie.id}`} key={movie.id}>
+              <a>
+                <Card media={movie} />
+              </a>
+            </Link>
           ))}
         </div>
       </section>

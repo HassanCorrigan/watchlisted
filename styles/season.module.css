@@ -9,10 +9,3 @@
 .header .title {
   font-weight: 600;
 }
-
-.header .poster {
-  width: 8em;
-  height: auto;
-  border-radius: var(--border-radius);
-  margin: 1em 0;
-}

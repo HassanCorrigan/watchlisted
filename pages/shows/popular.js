@@ -1,19 +1,21 @@
+import Link from 'next/link';
 import { tmdbFetch } from 'helpers/apiFetch.js';
-import { createPosterPath } from 'helpers/createImagePath.js';
 import Layout from 'components/Layout.js';
+import Card from 'components/Card.js';
 
 const PopularShows = ({ shows }) => {
   // console.log(shows);
   return (
     <Layout>
-      <section>
+      <section className='page'>
         <h1>Popular Shows</h1>
         <div>
           {shows.map(show => (
-            <a href={`/shows/${show.id}`} key={show.id}>
-              <img src={createPosterPath(show.poster_path)} />
-              <p>{show.name}</p>
-            </a>
+            <Link href={`/shows/${show.id}`} key={show.id}>
+              <a>
+                <Card media={show} />
+              </a>
+            </Link>
           ))}
         </div>
       </section>

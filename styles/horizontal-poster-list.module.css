@@ -3,17 +3,11 @@
   flex: row;
   overflow-x: scroll;
 }
-.poster {
-  width: 7.5em;
-  border-radius: var(--border-radius);
-  margin: 0 0.25em;
-}
 .posterTitle {
   margin: 0 0.25em;
 }
 
 .posterList a {
-  text-decoration: none;
   color: var(--main-color);
   margin: 0.25em;
 }

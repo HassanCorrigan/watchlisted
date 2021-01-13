@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import { tmdbFetch } from 'helpers/apiFetch.js';
-import { createPosterPath, createBannerPath } from 'helpers/createImagePath.js';
+import { createBannerPath } from 'helpers/createImagePath.js';
 import Layout from 'components/Layout.js';
+import Poster from 'components/Poster.js';
 import SeasonList from 'components/SeasonList.js';
 import styles from 'styles/show.module.css';
 
@@ -16,11 +17,7 @@ const Show = ({ show }) => {
           }}
           className={styles.header}>
           <h2 className={styles.title}>{show.name}</h2>
-          <img
-            src={createPosterPath(show.poster_path)}
-            alt={show.name}
-            className={styles.poster}
-          />
+          <Poster media={show} />
         </header>
 
         <div className={styles.content}>
@@ -28,8 +25,8 @@ const Show = ({ show }) => {
             <p>Run Time: {show.episode_run_time[0]} mins</p>
             <p>First Aired: {show.first_air_date.slice(0, 4)}</p>
             <p>
-              Average Rating: <b>{show.vote_average}</b> ({show.vote_count}{' '}
-              votes)
+              Average Rating: &#11088; <b>{show.vote_average}</b> (
+              {show.vote_count} votes)
             </p>
 
             {show.next_episode_to_air !== null && (
