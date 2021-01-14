@@ -1,3 +1,12 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2em;
+  text-align: center;
+}
+
 .horizontalList {
   padding: 0.5em 0;
 }

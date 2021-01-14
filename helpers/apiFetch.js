@@ -15,7 +15,7 @@ const tmdbFetch = async params => {
 };
 
 const traktFetch = async params => {
-  const apiURL = 'https://api.trakt.tv';
+  const apiURL = 'https://api-staging.trakt.tv';
   const apiKey = process.env.NEXT_PUBLIC_TRAKT_CLIENT_ID;
 
   try {

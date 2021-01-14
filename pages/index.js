@@ -1,7 +1,10 @@
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import Layout from 'components/Layout.js';
+import LoginButton from 'components/LoginButton.js';
 import ShowList from 'components/ShowList.js';
 import MovieList from 'components/MovieList.js';
+import { isAuthenticated } from 'helpers/auth.js';
 import { tmdbFetch } from 'helpers/apiFetch.js';
 import styles from 'styles/index.module.css';
 
@@ -11,10 +14,16 @@ const Home = ({
   popularShows,
   popularMovies,
 }) => {
+  const [authenticated, setAuthenticated] = useState(false);
+  useEffect(() => setAuthenticated(isAuthenticated()), []);
+
   return (
     <Layout>
-      <section>
+      <section className={styles.welcome}>
         <h1>Welcome</h1>
+        <div className={styles.content}>
+          {!authenticated && <LoginButton />}
+        </div>
       </section>
 
       <section>
