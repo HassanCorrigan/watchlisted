@@ -17,11 +17,12 @@ const EpisodeList = ({ show, season, episodes }) => {
               className={styles.still}
             />
             <div className={styles.episodeDetails}>
-              <h2>{episode.name}</h2>
-              <span>
+              <h2 className={styles.title}>{episode.name}</h2>
+              <p className={styles.info}>
                 Season {episode.season_number} - Episode{' '}
                 {episode.episode_number}
-              </span>
+              </p>
+              <p className={styles.overview}>{episode.overview}</p>
             </div>
           </a>
         </Link>

@@ -1,24 +1,23 @@
 import Link from 'next/link';
 import { tmdbFetch } from 'helpers/apiFetch.js';
 import { createBannerPath } from 'helpers/createImagePath.js';
+import { isAuthenticated } from 'helpers/auth.js';
 import Layout from 'components/Layout.js';
-import Poster from 'components/Poster.js';
+import MediaHeader from 'components/MediaHeader.js';
+import TraktActions from 'components/TraktActions.js';
 import SeasonList from 'components/SeasonList.js';
-import styles from 'styles/show.module.css';
+import styles from 'styles/media-page.module.css';
 
 const Show = ({ show }) => {
   // console.log(show);
   return (
     <Layout>
       <section>
-        <header
-          style={{
-            backgroundImage: `url(${createBannerPath(show.backdrop_path)})`,
-          }}
-          className={styles.header}>
-          <h2 className={styles.title}>{show.name}</h2>
-          <Poster media={show} />
-        </header>
+        <MediaHeader
+          title={show.name}
+          banner={show.backdrop_path}
+          poster={show}
+        />
 
         <div className={styles.content}>
           <div className={styles.info}>
@@ -39,6 +38,8 @@ const Show = ({ show }) => {
               </span>
             ))}
           </div>
+
+          {isAuthenticated() && <TraktActions />}
 
           <p className={styles.overview}>{show.overview}</p>
 
@@ -79,7 +80,7 @@ const Show = ({ show }) => {
 };
 
 export async function getServerSideProps({ params }) {
-  const show = await tmdbFetch(`tv/${params.showID}`);
+  const show = await tmdbFetch(`tv/${params.show}`);
 
   return {
     props: {

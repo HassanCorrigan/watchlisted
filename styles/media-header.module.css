@@ -6,6 +6,8 @@
   background-position: top;
 }
 
-.header .title {
+.title {
   font-weight: 600;
+  color: var(--main-background-color);
+  padding: 0.25em 0;
 }

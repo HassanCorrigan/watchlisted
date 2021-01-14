@@ -1,5 +1,5 @@
 .episodeList {
-  padding: 0.5em;
+  padding: 1em;
 }
 
 .stillContainer {
@@ -14,13 +14,19 @@
 
 .episodeDetails {
   position: absolute;
-  bottom: 1.2em;
-  left: 0.3em;
-  right: 0.3em;
+  bottom: 1.5em;
+  left: 0.5em;
+  right: 0.5em;
   color: var(--main-color);
   background-color: var(--transparent-background-color);
   backdrop-filter: blur(4px);
   font-size: 0.8em;
   padding: 0.5em;
   border-radius: var(--border-radius);
+}
+
+.title,
+.info,
+.overview {
+  padding: 0.1em 0;
 }

@@ -2,6 +2,7 @@ import { createPosterPath } from 'helpers/createImagePath.js';
 import styles from 'styles/poster.module.css';
 
 const Poster = ({ media }) => {
+  // console.log(media);
   return (
     <img
       src={createPosterPath(media.poster_path)}
