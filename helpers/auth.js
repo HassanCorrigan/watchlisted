@@ -1,12 +1,17 @@
 import Cookies from 'universal-cookie';
 
-const isAuthenticated = () => {
+// Checks if token exists in cookies and returns an object containing
+// a value indicating if the user is authenticated and the token.
+
+const auth = () => {
   const cookies = new Cookies();
   const token = cookies.get('token');
 
-  const authenticated = token ? true : false;
+  const data = token
+    ? { authenticated: true, token }
+    : { authenticated: false, token: '' };
 
-  return authenticated;
+  return data;
 };
 
-export { isAuthenticated };
+export default auth;

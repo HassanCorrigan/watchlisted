@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { isAuthenticated } from 'helpers/auth.js';
+import { useAppContext } from 'context/state.js';
 import Layout from 'components/Layout.js';
 import LoginButton from 'components/LoginButton.js';
 
@@ -13,8 +13,9 @@ const Account = () => {
     },
   };
 
+  const context = useAppContext();
   const [authenticated, setAuthenticated] = useState(false);
-  useEffect(() => setAuthenticated(isAuthenticated()), []);
+  useEffect(() => setAuthenticated(context.authenticated), []);
 
   return (
     <Layout>

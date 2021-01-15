@@ -1,5 +1,12 @@
+import { AppWrapper } from 'context/state.js';
 import 'styles/global.css';
 
-export default function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />;
-}
+const Application = ({ Component, pageProps }) => {
+  return (
+    <AppWrapper>
+      <Component {...pageProps} />
+    </AppWrapper>
+  );
+};
+
+export default Application;
