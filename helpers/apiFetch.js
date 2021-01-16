@@ -14,17 +14,19 @@ const tmdbFetch = async params => {
   }
 };
 
-const traktFetch = async params => {
-  const apiURL = 'https://api-staging.trakt.tv';
-  const apiKey = process.env.NEXT_PUBLIC_TRAKT_CLIENT_ID;
+const traktFetch = async (params, token) => {
+  const apiURL = 'https://api.trakt.tv';
+  const clientID = process.env.NEXT_PUBLIC_TRAKT_CLIENT_ID;
 
   try {
     const res = await fetch(`${apiURL}/${params}`, {
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
         'trakt-api-version': '2',
-        'trakt-api-key': `${apiKey}`,
+        'trakt-api-key': `${clientID}`,
       },
+      mode: 'no-cors',
     });
     return await res.json();
   } catch (errors) {

@@ -6,10 +6,13 @@ export default async function handler(req, res) {
 
   res.setHeader(
     'Set-Cookie',
-    serialize('token', data.access_token, { path: '/' })
+    serialize('token', data.access_token, {
+      path: '/',
+      expires: new Date(Date.now() + data.expires_in * 1000),
+    })
   );
 
-  res.redirect('/');
+  res.redirect('/account');
 }
 
 const getAccessToken = async code => {
