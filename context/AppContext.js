@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react';
-import { auth } from 'helpers/auth.js';
+import { auth } from 'helpers/auth';
 
 const AppContext = createContext();
 

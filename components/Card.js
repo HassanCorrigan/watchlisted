@@ -1,6 +1,6 @@
-import { isAuthenticated } from 'helpers/auth.js';
-import Poster from './Poster.js';
-import TraktActions from './TraktActions.js';
+import { auth } from 'helpers/auth';
+import Poster from 'components/Poster';
+import TraktActions from 'components/TraktActions';
 import styles from 'styles/card.module.css';
 
 const Card = ({ media }) => {
@@ -17,7 +17,7 @@ const Card = ({ media }) => {
           </span>
           <span>Language: {media.original_language.toUpperCase()}</span>
         </div>
-        {isAuthenticated() && <TraktActions />}
+        {auth.isAuthenticated && <TraktActions />}
       </div>
     </div>
   );

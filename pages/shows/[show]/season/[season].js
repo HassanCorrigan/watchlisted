@@ -1,13 +1,18 @@
-import { tmdbFetch } from 'helpers/apiFetch.js';
-import { isAuthenticated } from 'helpers/auth.js';
-import Layout from 'components/Layout.js';
-import MediaHeader from 'components/MediaHeader.js';
-import TraktActions from 'components/TraktActions.js';
-import EpisodeList from 'components/EpisodeList.js';
+import { tmdbFetch } from 'helpers/apiFetch';
+import { useState } from 'react';
+import { useAppContext } from 'context/AppContext';
+import Layout from 'components/Layout';
+import MediaHeader from 'components/MediaHeader';
+import TraktActions from 'components/TraktActions';
+import EpisodeList from 'components/EpisodeList';
 import styles from 'styles/media-page.module.css';
 
 const Season = ({ show, season }) => {
   // console.log(season);
+
+  const context = useAppContext();
+  const [authenticated, setAuthenticated] = useState(context.isAuthenticated);
+
   return (
     <Layout>
       <section>
@@ -34,7 +39,7 @@ const Season = ({ show, season }) => {
             ))}
           </div>
 
-          {isAuthenticated() && <TraktActions />}
+          {authenticated && <TraktActions />}
 
           <p className={styles.overview}>{season.overview}</p>
 

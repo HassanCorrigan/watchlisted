@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
-import { useAppContext } from 'context/state.js';
-import Layout from 'components/Layout.js';
-import LoginButton from 'components/LoginButton.js';
+import { useState } from 'react';
+import { useAppContext } from 'context/AppContext';
+import { logOut } from 'helpers/auth';
+import Layout from 'components/Layout';
+import LoginButton from 'components/LoginButton';
 
 const Account = () => {
   const styles = {
@@ -14,8 +15,7 @@ const Account = () => {
   };
 
   const context = useAppContext();
-  const [authenticated, setAuthenticated] = useState(false);
-  useEffect(() => setAuthenticated(context.authenticated), []);
+  const [authenticated, setAuthenticated] = useState(context.isAuthenticated);
 
   return (
     <Layout>
@@ -27,6 +27,7 @@ const Account = () => {
           ) : (
             <div>
               <h2>Account Stats</h2>
+              <button onClick={() => logOut()}>Log Out</button>
               <p>
                 Here are a selection of Account statisics about your viewing
                 habits.

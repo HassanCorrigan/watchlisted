@@ -1,5 +1,5 @@
-import { createBannerPath } from 'helpers/createImagePath.js';
-import Poster from './Poster.js';
+import { createBannerPath } from 'helpers/createImagePath';
+import Poster from 'components/Poster';
 import styles from 'styles/media-header.module.css';
 
 const MediaHeader = ({ title, banner, poster }) => {

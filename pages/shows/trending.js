@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import { tmdbFetch } from 'helpers/apiFetch.js';
-import Layout from 'components/Layout.js';
-import Card from 'components/Card.js';
+import { tmdbFetch } from 'helpers/apiFetch';
+import Layout from 'components/Layout';
+import Card from 'components/Card';
 
 const TrendingShows = ({ shows }) => {
   // console.log(shows);

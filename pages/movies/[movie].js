@@ -1,12 +1,17 @@
-import { tmdbFetch } from 'helpers/apiFetch.js';
-import { isAuthenticated } from 'helpers/auth.js';
-import Layout from 'components/Layout.js';
-import MediaHeader from 'components/MediaHeader.js';
-import TraktActions from 'components/TraktActions.js';
+import { useState } from 'react';
+import { useAppContext } from 'context/AppContext';
+import { tmdbFetch } from 'helpers/apiFetch';
+import Layout from 'components/Layout';
+import MediaHeader from 'components/MediaHeader';
+import TraktActions from 'components/TraktActions';
 import styles from 'styles/media-page.module.css';
 
 const Movie = ({ movie }) => {
   // console.log(movie);
+
+  const context = useAppContext();
+  const [authenticated, setAuthenticated] = useState(context.isAuthenticated);
+
   return (
     <Layout>
       <section>
@@ -32,7 +37,7 @@ const Movie = ({ movie }) => {
             ))}
           </div>
 
-          {isAuthenticated() && <TraktActions />}
+          {authenticated && <TraktActions />}
 
           <p className={styles.overview}>{movie.overview}</p>
 

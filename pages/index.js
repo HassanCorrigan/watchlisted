@@ -1,11 +1,11 @@
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { useAppContext } from 'context/state.js';
-import Layout from 'components/Layout.js';
-import LoginButton from 'components/LoginButton.js';
-import ShowList from 'components/ShowList.js';
-import MovieList from 'components/MovieList.js';
-import { tmdbFetch } from 'helpers/apiFetch.js';
+import { useState } from 'react';
+import { useAppContext } from 'context/AppContext';
+import Layout from 'components/Layout';
+import LoginButton from 'components/LoginButton';
+import ShowList from 'components/ShowList';
+import MovieList from 'components/MovieList';
+import { tmdbFetch } from 'helpers/apiFetch';
 import styles from 'styles/index.module.css';
 
 const Home = ({
@@ -15,8 +15,7 @@ const Home = ({
   popularMovies,
 }) => {
   const context = useAppContext();
-  const [authenticated, setAuthenticated] = useState(false);
-  useEffect(() => setAuthenticated(context.authenticated), []);
+  const [authenticated, setAuthenticated] = useState(context.isAuthenticated);
 
   return (
     <Layout>

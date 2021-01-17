@@ -1,15 +1,20 @@
 import Link from 'next/link';
-import { tmdbFetch } from 'helpers/apiFetch.js';
-import { createBannerPath } from 'helpers/createImagePath.js';
-import { isAuthenticated } from 'helpers/auth.js';
-import Layout from 'components/Layout.js';
-import MediaHeader from 'components/MediaHeader.js';
-import TraktActions from 'components/TraktActions.js';
-import SeasonList from 'components/SeasonList.js';
+import { tmdbFetch } from 'helpers/apiFetch';
+import { createBannerPath } from 'helpers/createImagePath';
+import { useState } from 'react';
+import { useAppContext } from 'context/AppContext';
+import Layout from 'components/Layout';
+import MediaHeader from 'components/MediaHeader';
+import TraktActions from 'components/TraktActions';
+import SeasonList from 'components/SeasonList';
 import styles from 'styles/media-page.module.css';
 
 const Show = ({ show }) => {
   // console.log(show);
+
+  const context = useAppContext();
+  const [authenticated, setAuthenticated] = useState(context.isAuthenticated);
+
   return (
     <Layout>
       <section>
@@ -39,7 +44,7 @@ const Show = ({ show }) => {
             ))}
           </div>
 
-          {isAuthenticated() && <TraktActions />}
+          {authenticated && <TraktActions />}
 
           <p className={styles.overview}>{show.overview}</p>
 

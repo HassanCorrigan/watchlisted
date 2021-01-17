@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { createBannerPath } from 'helpers/createImagePath.js';
+import { createBannerPath } from 'helpers/createImagePath';
 import styles from 'styles/episode-list.module.css';
 
 const EpisodeList = ({ show, season, episodes }) => {

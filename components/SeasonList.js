@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Poster from 'components/Poster.js';
+import Poster from 'components/Poster';
 import styles from 'styles/horizontal-poster-list.module.css';
 
 const SeasonList = ({ show }) => {

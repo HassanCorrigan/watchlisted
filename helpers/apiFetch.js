@@ -26,7 +26,6 @@ const traktFetch = async (params, token) => {
         'trakt-api-version': '2',
         'trakt-api-key': `${clientID}`,
       },
-      mode: 'no-cors',
     });
     return await res.json();
   } catch (errors) {

@@ -1,4 +1,4 @@
-import { createPosterPath } from 'helpers/createImagePath.js';
+import { createPosterPath } from 'helpers/createImagePath';
 import styles from 'styles/poster.module.css';
 
 const Poster = ({ media }) => {

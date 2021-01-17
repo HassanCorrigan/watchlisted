@@ -1,15 +1,17 @@
 const createPosterPath = poster_path => {
-  const baseImagePath = 'https://image.tmdb.org/t/p/w200';
-  const posterPath = poster_path || 'images/poster-placeholder.png';
+  const baseAPIPath = 'https://image.tmdb.org/t/p/w200';
+  const posterPath = poster_path;
+  const placeholderPath = '/images/poster-placeholder.png';
 
-  return `${baseImagePath}/${posterPath}`;
+  return posterPath ? `${baseAPIPath}/${posterPath}` : placeholderPath;
 };
 
 const createBannerPath = banner_path => {
-  const baseImagePath = 'https://image.tmdb.org/t/p/w500';
-  const bannerPath = banner_path || 'images/banner-placeholder.png';
+  const baseAPIPath = 'https://image.tmdb.org/t/p/w500';
+  const bannerPath = banner_path;
+  const placeholderPath = '/images/banner-placeholder.png';
 
-  return `${baseImagePath}/${bannerPath}`;
+  return bannerPath ? `${baseAPIPath}/${bannerPath}` : placeholderPath;
 };
 
 export { createPosterPath, createBannerPath };
