@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAppContext } from 'context/AppContext';
 import Layout from 'components/Layout';
 import LoginButton from 'components/LoginButton';
@@ -15,7 +15,10 @@ const Home = ({
   popularMovies,
 }) => {
   const context = useAppContext();
-  const [authenticated, setAuthenticated] = useState(context.isAuthenticated);
+  const [authenticated, setAuthenticated] = useState(false);
+  useEffect(() => {
+    setAuthenticated(context.isAuthenticated);
+  }, []);
 
   return (
     <Layout>

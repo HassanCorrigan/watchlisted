@@ -1,0 +1,40 @@
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2em;
+}
+
+.statsOverview {
+  background-color: var(--secondary-background-color);
+  border-radius: var(--border-radius);
+  margin: 1em 0;
+}
+
+.category {
+  text-align: center;
+  padding: 1em 0;
+  margin: 0.5em;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+  padding: 0.5em 0;
+}
+
+.label {
+  font-size: 0.8em;
+}
+
+.value {
+  font-weight: 400;
+}
+
+.btn {
+  border: none;
+  padding: 0.2em 0.3em;
+  display: block;
+  margin: auto;
+  cursor: pointer;
+}
