@@ -1,16 +1,6 @@
 import { getToken, revokeToken } from 'helpers/token';
 import router from 'next/router';
 
-const auth = () => {
-  const token = getToken();
-
-  const data = token
-    ? { isAuthenticated: true, token }
-    : { isAuthenticated: false, token: '' };
-
-  return data;
-};
-
 const logOut = async () => {
   const token = getToken();
   const apiURL = 'https://api.trakt.tv';
@@ -30,6 +20,7 @@ const logOut = async () => {
       }),
     });
 
+    console.log(await res.status);
     (await res.status) === 200 && revokeToken();
     return router.reload();
   } catch (errors) {
@@ -37,4 +28,4 @@ const logOut = async () => {
   }
 };
 
-export { auth, logOut };
+export { logOut };

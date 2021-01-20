@@ -14,10 +14,13 @@ const Home = ({
   popularShows,
   popularMovies,
 }) => {
-  const context = useAppContext();
-  const [authenticated, setAuthenticated] = useState(false);
+  const { user } = useAppContext();
+  const [loading, setLoading] = useState(true);
+  const [authenticated, setAuthenticated] = useState();
+
   useEffect(() => {
-    setAuthenticated(context.isAuthenticated);
+    setAuthenticated(user.authenticated);
+    setLoading(false);
   }, []);
 
   return (
@@ -25,7 +28,11 @@ const Home = ({
       <section className={styles.welcome}>
         <h1>Welcome</h1>
         <div className={styles.content}>
-          {!authenticated && <LoginButton />}
+          {!authenticated ? (
+            <LoginButton />
+          ) : (
+            <div>{loading ? <div>Loading...</div> : ''}</div>
+          )}
         </div>
       </section>
 

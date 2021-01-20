@@ -1,10 +1,15 @@
 import { createContext, useContext } from 'react';
-import { auth } from 'helpers/auth';
+import { getToken } from 'helpers/token';
 
 const AppContext = createContext();
 
 const AppWrapper = ({ children }) => {
-  let state = auth();
+  const state = {
+    user: {
+      authenticated: getToken() !== null,
+      token: getToken(),
+    },
+  };
 
   return <AppContext.Provider value={state}>{children}</AppContext.Provider>;
 };
