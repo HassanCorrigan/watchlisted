@@ -8,8 +8,6 @@ import EpisodeList from 'components/EpisodeList';
 import styles from 'styles/media-page.module.css';
 
 const Season = ({ show, season }) => {
-  // console.log(season);
-
   const context = useAppContext();
   const [authenticated, setAuthenticated] = useState(context.isAuthenticated);
 

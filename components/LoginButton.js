@@ -1,19 +1,19 @@
 import Link from 'next/link';
 
-const styles = {
-  link: {
-    color: 'var(--main-color)',
-  },
-  h3: {
-    fontWeight: '600',
-  },
-  img: {
-    width: '10em',
-    height: 'auto',
-  },
-};
-
 const LoginButton = () => {
+  const styles = {
+    link: {
+      color: 'var(--main-color)',
+    },
+    h3: {
+      fontWeight: '600',
+    },
+    img: {
+      width: '10em',
+      height: 'auto',
+    },
+  };
+
   const client_id = process.env.NEXT_PUBLIC_TRAKT_CLIENT_ID;
   const redirect_uri = 'http://localhost:3000/api/auth/';
 

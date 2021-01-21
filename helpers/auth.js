@@ -20,7 +20,6 @@ const logOut = async () => {
       }),
     });
 
-    console.log(await res.status);
     (await res.status) === 200 && revokeToken();
     return router.reload();
   } catch (errors) {

@@ -4,8 +4,6 @@ import TraktActions from 'components/TraktActions';
 import styles from 'styles/card.module.css';
 
 const Card = ({ media }) => {
-  // console.log(media);
-
   const { user } = useAppContext();
 
   return (

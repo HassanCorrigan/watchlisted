@@ -6,12 +6,10 @@ import { useAppContext } from 'context/AppContext';
 import Layout from 'components/Layout';
 import MediaHeader from 'components/MediaHeader';
 import TraktActions from 'components/TraktActions';
-import SeasonList from 'components/SeasonList';
+import PosterList from 'components/PosterList';
 import styles from 'styles/media-page.module.css';
 
 const Show = ({ show }) => {
-  // console.log(show);
-
   const context = useAppContext();
   const [authenticated, setAuthenticated] = useState(context.isAuthenticated);
 
@@ -54,7 +52,7 @@ const Show = ({ show }) => {
             ) : (
               <h3>{show.number_of_seasons} Seasons</h3>
             )}
-            <SeasonList show={show} />
+            <PosterList items={show.seasons} slug={`shows/${show.id}/season`} />
           </div>
 
           {show.last_episode_to_air && (
@@ -62,11 +60,13 @@ const Show = ({ show }) => {
               <h3>Latest Episode</h3>
               <Link
                 href={`/shows/${show.id}/season/${show.last_episode_to_air.season_number}/episode/${show.last_episode_to_air.episode_number}`}>
-                <img
-                  src={createBannerPath(show.last_episode_to_air.still_path)}
-                  alt={show.last_episode_to_air.name}
-                  className={styles.still}
-                />
+                <a>
+                  <img
+                    src={createBannerPath(show.last_episode_to_air.still_path)}
+                    alt={show.last_episode_to_air.name}
+                    className={styles.still}
+                  />
+                </a>
               </Link>
             </div>
           )}

@@ -8,8 +8,6 @@ import TraktActions from 'components/TraktActions';
 import styles from 'styles/media-page.module.css';
 
 const Season = ({ show, episode }) => {
-  // console.log(show, episode);
-
   const context = useAppContext();
   const [authenticated, setAuthenticated] = useState(context.isAuthenticated);
 

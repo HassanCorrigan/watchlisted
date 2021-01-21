@@ -1,10 +1,7 @@
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
-import { useAppContext } from 'context/AppContext';
 import Layout from 'components/Layout';
-import LoginButton from 'components/LoginButton';
-import ShowList from 'components/ShowList';
-import MovieList from 'components/MovieList';
+import SpotlightItem from 'components/SpotlightItem';
+import PosterList from 'components/PosterList';
 import { tmdbFetch } from 'helpers/apiFetch';
 import styles from 'styles/index.module.css';
 
@@ -14,29 +11,20 @@ const Home = ({
   popularShows,
   popularMovies,
 }) => {
-  const { user } = useAppContext();
-  const [loading, setLoading] = useState(true);
-  const [authenticated, setAuthenticated] = useState();
-
-  useEffect(() => {
-    setAuthenticated(user.authenticated);
-    setLoading(false);
-  }, []);
+  const spotlightShow = trendingShows[0];
+  const spotlightMovie = trendingMovies[0];
 
   return (
     <Layout>
       <section className={styles.welcome}>
-        <h1>Welcome</h1>
+        <h1>Spotlight</h1>
         <div className={styles.content}>
-          {!authenticated ? (
-            <LoginButton />
-          ) : (
-            <div>{loading ? <div>Loading...</div> : ''}</div>
-          )}
+          <SpotlightItem item={spotlightShow} slug='shows' />
+          <SpotlightItem item={spotlightMovie} slug='movies' />
         </div>
       </section>
 
-      <section>
+      <section className={styles.discover}>
         <h1>Discover</h1>
 
         <div className={styles.horizontalList}>
@@ -44,7 +32,7 @@ const Home = ({
             <h2>Trending Shows</h2>
             <Link href='/shows/trending'>See More &#8250;</Link>
           </div>
-          <ShowList shows={trendingShows} />
+          <PosterList items={trendingShows} slug='shows' />
         </div>
 
         <div className={styles.horizontalList}>
@@ -52,7 +40,7 @@ const Home = ({
             <h2>Trending Movies</h2>
             <Link href='/movies/trending'>See More &#8250;</Link>
           </div>
-          <MovieList movies={trendingMovies} />
+          <PosterList items={trendingMovies} slug='movies' />
         </div>
 
         <div className={styles.horizontalList}>
@@ -60,7 +48,7 @@ const Home = ({
             <h2>Most Popular Shows</h2>
             <Link href='/shows/popular'>See More &#8250;</Link>
           </div>
-          <ShowList shows={popularShows} />
+          <PosterList items={popularShows} slug='shows' />
         </div>
 
         <div className={styles.horizontalList}>
@@ -68,7 +56,7 @@ const Home = ({
             <h2>Most Popular Movies</h2>
             <Link href='/movies/popular'>See More &#8250;</Link>
           </div>
-          <MovieList movies={popularMovies} />
+          <PosterList items={popularMovies} slug='movies' />
         </div>
       </section>
     </Layout>

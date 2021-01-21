@@ -3,7 +3,6 @@ import { createBannerPath } from 'helpers/createImagePath';
 import styles from 'styles/episode-list.module.css';
 
 const EpisodeList = ({ show, season, episodes }) => {
-  // console.log(episodes);
   return (
     <div className={styles.episodeList}>
       {episodes.map(episode => (

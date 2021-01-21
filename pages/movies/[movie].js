@@ -7,8 +7,6 @@ import TraktActions from 'components/TraktActions';
 import styles from 'styles/media-page.module.css';
 
 const Movie = ({ movie }) => {
-  // console.log(movie);
-
   const context = useAppContext();
   const [authenticated, setAuthenticated] = useState(context.isAuthenticated);
 

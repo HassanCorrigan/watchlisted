@@ -1,16 +1,27 @@
 import { createBannerPath } from 'helpers/createImagePath';
 import Poster from 'components/Poster';
-import styles from 'styles/media-header.module.css';
 
 const MediaHeader = ({ title, banner, poster }) => {
-  // console.log(title, banner, poster);
+  const styles = {
+    header: {
+      padding: '1em 0.5em',
+      width: '100%',
+      height: 'auto',
+      backgroundImage: `url(${createBannerPath(banner)})`,
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'top',
+      backgroundSize: 'cover',
+    },
+    title: {
+      fontWeight: '600',
+      color: 'var(--main-background-color)',
+      padding: '0.25em 0',
+    },
+  };
+
   return (
-    <header
-      style={{
-        backgroundImage: `url(${createBannerPath(banner)})`,
-      }}
-      className={styles.header}>
-      <h2 className={styles.title}>{title}</h2>
+    <header style={styles.header}>
+      <h2 style={styles.title}>{title}</h2>
       <Poster media={poster} />
     </header>
   );

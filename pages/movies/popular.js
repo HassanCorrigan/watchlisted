@@ -4,7 +4,6 @@ import Layout from 'components/Layout';
 import Card from 'components/Card';
 
 const PopularMovies = ({ movies }) => {
-  // console.log(movies);
   return (
     <Layout>
       <section className='page'>
