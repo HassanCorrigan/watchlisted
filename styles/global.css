@@ -48,8 +48,13 @@ h4 {
   font-size: 1.1em;
 }
 
+input {
+  font-family: 'Rubik', sans-serif;
+}
+
 .page {
   padding: 0.5em;
+  min-height: 75vh;
 }
 
 .tag {

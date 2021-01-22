@@ -1,13 +1,16 @@
-const tmdbFetch = async params => {
+const tmdbFetch = async (params, query) => {
   const apiURL = 'https://api.themoviedb.org/3';
   const apiKey = process.env.NEXT_PUBLIC_TMDB_API_KEY;
 
   try {
-    const res = await fetch(`${apiURL}/${params}?api_key=${apiKey}`, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+    const res = await fetch(
+      `${apiURL}/${params}?api_key=${apiKey}&query=${query}`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
     return await res.json();
   } catch (errors) {
     console.error(errors);
