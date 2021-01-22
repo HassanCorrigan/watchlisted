@@ -7,7 +7,7 @@ const Meta = () => {
         name='viewport'
         content='width=device-width, initial-scale=1.0, viewport-fit=cover'
       />
-      <meta name='title' content='Logo' />
+      <meta name='title' content='' />
       <meta name='description' content='' />
       <meta name='keywords' content='' />
 
@@ -16,13 +16,13 @@ const Meta = () => {
 
       <meta property='og:type' content='website' />
       <meta property='og:url' content='https://' />
-      <meta property='og:title' content='Logo' />
+      <meta property='og:title' content='' />
       <meta property='og:description' content='' />
       <meta property='og:image' content='/images/opengraph-twitter-card.jpg' />
 
       <meta property='twitter:card' content='summary_large_image' />
       <meta property='twitter:url' content='https://' />
-      <meta property='twitter:title' content='Logo' />
+      <meta property='twitter:title' content='' />
       <meta property='twitter:description' content='' />
       <meta
         property='twitter:image'

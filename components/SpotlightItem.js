@@ -4,12 +4,17 @@ import { createBannerPath } from 'helpers/createImagePath';
 const SpotlightItem = ({ item, slug }) => {
   const styles = {
     banner: {
-      height: '12em',
+      width: '90vw',
       margin: '0 0.25em',
       borderRadius: 'var(--border-radius)',
     },
     link: {
       margin: '0.25em',
+      position: 'relative',
+    },
+    title: {
+      color: 'var(--main-color)',
+      padding: '0 0.25em',
     },
   };
 
@@ -21,6 +26,7 @@ const SpotlightItem = ({ item, slug }) => {
           src={createBannerPath(item.backdrop_path)}
           alt={item.name}
         />
+        <h2 style={styles.title}>{item.title || item.name}</h2>
       </a>
     </Link>
   );

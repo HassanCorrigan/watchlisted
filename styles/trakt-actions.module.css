@@ -1,6 +1,6 @@
 .info {
   background-color: var(--secondary-background-color);
-  box-shadow: 0.1em 0.1em 0.1em 0.1em var(--box-shadow-color);
+  box-shadow: 0.1em 0.1em 0.8em var(--box-shadow-color);
   padding: 1em 0.5em;
   margin: 0.5em;
   border-radius: var(--border-radius);

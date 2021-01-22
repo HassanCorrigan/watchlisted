@@ -5,6 +5,11 @@ import styles from 'styles/episode-list.module.css';
 const EpisodeList = ({ show, season, episodes }) => {
   return (
     <div className={styles.episodeList}>
+      {episodes.length === 1 ? (
+        <h3>{episodes.length} Episode</h3>
+      ) : (
+        <h3>{episodes.length} Episodes</h3>
+      )}
       {episodes.map(episode => (
         <Link
           key={episode.id}
@@ -16,7 +21,7 @@ const EpisodeList = ({ show, season, episodes }) => {
               className={styles.still}
             />
             <div className={styles.episodeDetails}>
-              <h2 className={styles.title}>{episode.name}</h2>
+              <h4 className={styles.title}>{episode.name}</h4>
               <p className={styles.info}>
                 Season {episode.season_number} - Episode{' '}
                 {episode.episode_number}

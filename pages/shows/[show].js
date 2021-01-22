@@ -32,7 +32,7 @@ const Show = ({ show }) => {
             </p>
 
             {show.next_episode_to_air !== null && (
-              <div>{show.next_episode_to_air.air_date}</div>
+              <p>{show.next_episode_to_air.air_date}</p>
             )}
 
             {show.networks.map(network => (
@@ -47,7 +47,7 @@ const Show = ({ show }) => {
           <p className={styles.overview}>{show.overview}</p>
 
           <div className={styles.seasonOverview}>
-            {show.number_of_seasons <= 1 ? (
+            {show.number_of_seasons === 1 ? (
               <h3>{show.number_of_seasons} Season</h3>
             ) : (
               <h3>{show.number_of_seasons} Seasons</h3>

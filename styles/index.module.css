@@ -24,12 +24,8 @@
   align-items: center;
   padding: 0.25em 0.5em;
 }
-.horizontalListHeader h2 {
-  font-weight: 600;
-}
 .horizontalListHeader a {
   color: var(--main-color);
   text-transform: uppercase;
   font-size: 0.8em;
-  font-weight: 400;
 }

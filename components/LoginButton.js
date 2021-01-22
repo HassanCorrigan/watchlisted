@@ -6,7 +6,9 @@ const LoginButton = () => {
       color: 'var(--main-color)',
     },
     h3: {
-      fontWeight: '600',
+      fontWeight: '500',
+      textAlign: 'center',
+      textTransform: 'uppercase',
     },
     img: {
       width: '10em',
