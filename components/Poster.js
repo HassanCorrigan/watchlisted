@@ -4,7 +4,6 @@ const Poster = ({ media }) => {
   const styles = {
     poster: {
       height: '12em',
-      width: 'auto',
       borderRadius: 'var(--border-radius)',
       margin: '0 0.25em',
     },

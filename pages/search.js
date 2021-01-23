@@ -6,6 +6,7 @@ import Card from 'components/Card';
 const Search = () => {
   const styles = {
     searchbox: {
+      fontSize: '1em',
       width: '100%',
       border: 'none',
       boxShadow: '0.1em 0.1em 0.8em var(--box-shadow-color)',

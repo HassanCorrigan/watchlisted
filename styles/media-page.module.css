@@ -23,6 +23,10 @@
   padding: 0.5em;
 }
 
+.recentEpisode a {
+  position: relative;
+}
+
 .recentEpisode h3 {
   padding: 0.5em 0;
 }
@@ -30,4 +34,23 @@
 .still {
   width: 100%;
   border-radius: var(--border-radius);
+  margin: 0.5em 0;
+}
+
+.episodeDetails {
+  position: absolute;
+  bottom: 1.5em;
+  left: 0.5em;
+  right: 0.5em;
+  color: var(--main-color);
+  background-color: var(--transparent-background-color);
+  backdrop-filter: blur(4px);
+  font-size: 0.8em;
+  padding: 0.5em;
+  border-radius: var(--border-radius);
+}
+
+.episodeDetails h4,
+.episodeDetails p {
+  padding: 0.1em 0;
 }

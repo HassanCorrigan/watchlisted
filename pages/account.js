@@ -7,7 +7,6 @@ import styles from 'styles/account.module.css';
 
 const Account = () => {
   const { user } = useAppContext();
-
   const [authenticated, setAuthenticated] = useState();
 
   useEffect(() => {

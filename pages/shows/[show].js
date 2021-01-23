@@ -11,6 +11,7 @@ import styles from 'styles/media-page.module.css';
 
 const Show = ({ show }) => {
   const context = useAppContext();
+  const latestEpisode = show.last_episode_to_air;
   const [authenticated, setAuthenticated] = useState(context.isAuthenticated);
 
   return (
@@ -55,17 +56,25 @@ const Show = ({ show }) => {
             <PosterList items={show.seasons} slug={`shows/${show.id}/season`} />
           </div>
 
-          {show.last_episode_to_air && (
+          {latestEpisode && (
             <div className={styles.recentEpisode}>
               <h3>Latest Episode</h3>
               <Link
-                href={`/shows/${show.id}/season/${show.last_episode_to_air.season_number}/episode/${show.last_episode_to_air.episode_number}`}>
+                href={`/shows/${show.id}/season/${latestEpisode.season_number}/episode/${latestEpisode.episode_number}`}>
                 <a>
                   <img
-                    src={createBannerPath(show.last_episode_to_air.still_path)}
-                    alt={show.last_episode_to_air.name}
+                    src={createBannerPath(latestEpisode.still_path)}
+                    alt={latestEpisode.name}
                     className={styles.still}
                   />
+                  <div className={styles.episodeDetails}>
+                    <h4>{latestEpisode.name}</h4>
+                    <p>
+                      Season {latestEpisode.season_number} - Episode{' '}
+                      {latestEpisode.episode_number}
+                    </p>
+                    <p>{latestEpisode.overview}</p>
+                  </div>
                 </a>
               </Link>
             </div>
