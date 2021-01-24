@@ -12,30 +12,32 @@ const Watchlist = () => {
   const [authenticated, setAuthenticated] = useState();
   const [loading, setLoading] = useState(true);
   const [mediaType, setMediaType] = useState('show');
-  const [sortBy, setSortBy] = useState('rank');
   const [watchlist, setWatchlist] = useState([]);
 
-  useEffect(async () => {
+  useEffect(() => {
     setAuthenticated(user.authenticated);
-    setWatchlist(await createList());
-    setLoading(false);
-  }, [mediaType]);
+    user.authenticated && createWatchlist();
+  }, []);
 
-  const createList = async () => {
-    const traktList = await traktFetch(
-      `users/me/watchlist/${mediaType}s`,
-      user.token
-    );
-
+  const createWatchlist = async () => {
+    const traktList = await traktFetch(`users/me/watchlist`, user.token);
     const tmdbList = await Promise.all(
       traktList.map(async item => {
-        const media_type = item.show ? 'tv' : 'movie';
-        const param = item.show ? item.show.ids.tmdb : item.movie.ids.tmdb;
-        return await tmdbFetch(`${media_type}/${param}`);
+        const param = item.type === 'show' ? 'tv' : 'movie';
+        const id =
+          item.type === 'show' ? item.show.ids.tmdb : item.movie.ids.tmdb;
+
+        const media = await tmdbFetch(`${param}/${id}`);
+
+        return {
+          type: item.type,
+          media,
+        };
       })
     );
 
-    return tmdbList;
+    setWatchlist(await tmdbList);
+    setLoading(false);
   };
 
   const handleChange = e => {
@@ -47,44 +49,48 @@ const Watchlist = () => {
       <section className='page'>
         <h1>Watchlist</h1>
 
-        <div className={styles.mediaSelector}>
-          <div className={styles.option}>
-            <input
-              type='radio'
-              id='show'
-              name='show'
-              value='show'
-              checked={mediaType === 'show'}
-              onChange={handleChange}
-            />
-            <label htmlFor='show'>Shows</label>
-          </div>
-          <div className={styles.option}>
-            <input
-              type='radio'
-              id='movie'
-              name='movie'
-              value='movie'
-              checked={mediaType === 'movie'}
-              onChange={handleChange}
-            />
-            <label htmlFor='movie'>Movies</label>
-          </div>
-        </div>
         {!authenticated ? (
           <LoginButton />
         ) : (
-          <div className={styles.list}>
-            {loading && <p>Loading...</p>}
-            {watchlist.map(item => (
-              <Link href={`${mediaType}s/${item.id}`} key={item.id}>
-                <a>
-                  <Poster media={item} />
-                  <p>{item.name || item.title}</p>
-                </a>
-              </Link>
-            ))}
-          </div>
+          <>
+            <div className={styles.mediaSelector}>
+              <div className={styles.option}>
+                <input
+                  type='radio'
+                  id='show'
+                  name='show'
+                  value='show'
+                  checked={mediaType === 'show'}
+                  onChange={handleChange}
+                />
+                <label htmlFor='show'>Shows</label>
+              </div>
+              <div className={styles.option}>
+                <input
+                  type='radio'
+                  id='movie'
+                  name='movie'
+                  value='movie'
+                  checked={mediaType === 'movie'}
+                  onChange={handleChange}
+                />
+                <label htmlFor='movie'>Movies</label>
+              </div>
+            </div>
+            <div className={styles.list}>
+              {loading && <p>Loading...</p>}
+              {watchlist
+                .filter(item => item.type === mediaType)
+                .map(({ media: item }) => (
+                  <Link href={`${mediaType}s/${item.id}`} key={item.id}>
+                    <a>
+                      <Poster media={item} />
+                      <p>{item.name || item.title}</p>
+                    </a>
+                  </Link>
+                ))}
+            </div>
+          </>
         )}
       </section>
     </Layout>

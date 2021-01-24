@@ -1,8 +1,16 @@
-.content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.wrapper {
   padding: 2em;
+}
+
+.details {
+  text-align: center;
+  padding: 0.5em 0;
+}
+
+.avatar {
+  width: 5em;
+  box-shadow: 0.1em 0.1em 0.8em var(--box-shadow-color);
+  border-radius: 50%;
 }
 
 .statsOverview {

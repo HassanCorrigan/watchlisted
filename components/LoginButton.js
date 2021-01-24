@@ -2,8 +2,17 @@ import Link from 'next/link';
 
 const LoginButton = () => {
   const styles = {
+    wrapper: {
+      width: '100%',
+      minHeight: '70vh',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
     link: {
       color: 'var(--main-color)',
+      display: 'inline-block',
+      padding: '1em',
     },
     h3: {
       fontWeight: '500',
@@ -20,13 +29,19 @@ const LoginButton = () => {
   const redirect_uri = 'http://localhost:3000/api/auth/';
 
   return (
-    <Link
-      href={`https://trakt.tv/oauth/authorize?response_type=code&client_id=${client_id}&redirect_uri=${redirect_uri}`}>
-      <a style={styles.link}>
-        <h3 style={styles.h3}>Login with</h3>
-        <img src='/images/trakt-logo.png' alt='Trakt Logo' style={styles.img} />
-      </a>
-    </Link>
+    <div style={styles.wrapper}>
+      <Link
+        href={`https://trakt.tv/oauth/authorize?response_type=code&client_id=${client_id}&redirect_uri=${redirect_uri}`}>
+        <a style={styles.link}>
+          <h3 style={styles.h3}>Login with</h3>
+          <img
+            src='/images/trakt-logo.png'
+            alt='Trakt Logo'
+            style={styles.img}
+          />
+        </a>
+      </Link>
+    </div>
   );
 };
 

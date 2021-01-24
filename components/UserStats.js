@@ -10,20 +10,21 @@ const UserStats = () => {
   const [userStats, setUserStats] = useState();
 
   useEffect(() => {
-    const setStats = async () => {
-      const stats = await traktFetch('users/me/stats', user.token);
-      setUserStats(stats);
-      setLoading(false);
-    };
     setStats();
   }, []);
+
+  const setStats = async () => {
+    const stats = await traktFetch('users/me/stats', user.token);
+    setUserStats(stats);
+    setLoading(false);
+  };
 
   return (
     <>
       {loading ? (
         <div>Loading...</div>
       ) : (
-        <div>
+        <div className={styles.wrapper}>
           <h2>Account Stats</h2>
           <p>
             A selection of account statisics about you and your viewing habits.
