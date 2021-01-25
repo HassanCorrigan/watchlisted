@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { tmdbFetch } from 'helpers/apiFetch';
 import Layout from 'components/Layout';
+import Loader from 'components/Loader';
 import Card from 'components/Card';
 
 const Search = () => {
@@ -50,7 +51,7 @@ const Search = () => {
           />
         </form>
         <div>
-          {loading && <p>Loading...</p>}
+          {loading && <Loader />}
           {searchResults.map(item => (
             <Card key={item.id} media={item} />
           ))}

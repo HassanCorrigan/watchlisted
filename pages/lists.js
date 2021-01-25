@@ -5,7 +5,7 @@ import { getList } from 'helpers/list';
 import Layout from 'components/Layout';
 import LoginButton from 'components/LoginButton';
 import Loader from 'components/Loader';
-import Poster from 'components/Poster';
+import PosterList from 'components/PosterList';
 import styles from 'styles/lists.module.css';
 
 const Watchlist = () => {
@@ -14,13 +14,21 @@ const Watchlist = () => {
   const [loading, setLoading] = useState(true);
   const [mediaType, setMediaType] = useState('show');
   const [watchlist, setWatchlist] = useState([]);
+  const [collection, setCollection] = useState([]);
+  const [history, setHistory] = useState([]);
 
   useEffect(() => {
     setAuthenticated(user.authenticated);
     user.authenticated &&
       (async () => {
-        const list = await getList('watchlist', user.token);
-        setWatchlist(list);
+        const wlist = await getList('watchlist', user.token);
+        const collShows = await getList('collection/shows', user.token);
+        const collMovies = await getList('collection/movies', user.token);
+        const histMovies = await getList('history/movies', user.token);
+        const coll = collShows.concat(collMovies);
+        setWatchlist(wlist);
+        setCollection(coll);
+        setHistory(histMovies);
         setLoading(false);
       })();
   }, []);
@@ -33,7 +41,7 @@ const Watchlist = () => {
   return (
     <Layout>
       <section className='page'>
-        <h1>Watchlist</h1>
+        <h1>Lists</h1>
 
         {!authenticated ? (
           <LoginButton />
@@ -64,15 +72,35 @@ const Watchlist = () => {
               </div>
             </div>
             {loading && <Loader />}
-            <div className={styles.list}>
-              {filterItems(watchlist).map(item => (
-                <Link href={`${mediaType}s/${item.id}`} key={item.id}>
-                  <a>
-                    <Poster media={item} />
-                    <p>{item.name || item.title}</p>
-                  </a>
-                </Link>
-              ))}
+
+            <div className={styles.horizontalList}>
+              <div className={styles.horizontalListHeader}>
+                <h2>Watchlist</h2>
+                <Link href='/watchlist'>See More &#8250;</Link>
+              </div>
+              <PosterList
+                items={filterItems(watchlist)}
+                slug={`${mediaType}s`}
+              />
+            </div>
+
+            <div className={styles.horizontalList}>
+              <div className={styles.horizontalListHeader}>
+                <h2>Collection</h2>
+                <Link href='/collection'>See More &#8250;</Link>
+              </div>
+              <PosterList
+                items={filterItems(collection)}
+                slug={`${mediaType}s`}
+              />
+            </div>
+
+            <div className={styles.horizontalList}>
+              <div className={styles.horizontalListHeader}>
+                <h2>History</h2>
+                <Link href='/history'>See More &#8250;</Link>
+              </div>
+              <PosterList items={filterItems(history)} slug={`${mediaType}s`} />
             </div>
           </>
         )}

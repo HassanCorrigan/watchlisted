@@ -24,10 +24,10 @@ const Header = () => {
             <span>Discover</span>
           </a>
         </Link>
-        <Link href='/watchlist'>
+        <Link href='/lists'>
           <a>
-            <img src='/images/watchlist-icon.svg' />
-            <span>Watchlist</span>
+            <img src='/images/lists-icon.svg' />
+            <span>Lists</span>
           </a>
         </Link>
         <Link href='/search'>

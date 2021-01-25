@@ -1,19 +1,18 @@
-.list {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+.horizontalList {
+  padding: 0.5em 0;
 }
-
-.list a {
+.horizontalListHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.25em 0.5em;
+}
+.horizontalListHeader a {
   color: var(--main-color);
-  margin: 0.25em;
+  text-transform: uppercase;
+  font-size: 0.8em;
 }
 
-.list a img {
-  width: 100%;
-  height: auto !important;
-  margin: auto !important;
-}
 .mediaSelector {
   display: flex;
   width: fit-content;
@@ -33,8 +32,22 @@
   padding: 0.8em;
   cursor: pointer;
 }
-
 .option input:checked + label {
   color: var(--main-background-color);
   background-color: var(--main-color);
+}
+
+.list {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.list a {
+  color: var(--main-color);
+  margin: 0.25em;
+}
+.list a img {
+  width: 100%;
+  height: auto !important;
+  margin: auto !important;
 }

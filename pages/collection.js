@@ -8,19 +8,21 @@ import Loader from 'components/Loader';
 import Poster from 'components/Poster';
 import styles from 'styles/lists.module.css';
 
-const Watchlist = () => {
+const Collection = () => {
   const { user } = useAppContext();
   const [authenticated, setAuthenticated] = useState();
   const [loading, setLoading] = useState(true);
   const [mediaType, setMediaType] = useState('show');
-  const [watchlist, setWatchlist] = useState([]);
+  const [collection, setCollection] = useState([]);
 
   useEffect(() => {
     setAuthenticated(user.authenticated);
     user.authenticated &&
       (async () => {
-        const list = await getList('watchlist', user.token);
-        setWatchlist(list);
+        const showList = await getList('collection/shows', user.token);
+        const movieList = await getList('collection/movies', user.token);
+        const list = showList.concat(movieList);
+        setCollection(list);
         setLoading(false);
       })();
   }, []);
@@ -33,7 +35,7 @@ const Watchlist = () => {
   return (
     <Layout>
       <section className='page'>
-        <h1>Watchlist</h1>
+        <h1>Collection</h1>
 
         {!authenticated ? (
           <LoginButton />
@@ -65,7 +67,7 @@ const Watchlist = () => {
             </div>
             {loading && <Loader />}
             <div className={styles.list}>
-              {filterItems(watchlist).map(item => (
+              {filterItems(collection).map(item => (
                 <Link href={`${mediaType}s/${item.id}`} key={item.id}>
                   <a>
                     <Poster media={item} />
@@ -81,4 +83,4 @@ const Watchlist = () => {
   );
 };
 
-export default Watchlist;
+export default Collection;

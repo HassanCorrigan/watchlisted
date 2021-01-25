@@ -23,6 +23,7 @@
   text-align: center;
   padding: 1em 0;
   margin: 0.5em;
+  text-transform: capitalize;
 }
 
 .stats {

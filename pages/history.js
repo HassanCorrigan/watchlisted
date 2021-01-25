@@ -13,14 +13,16 @@ const Watchlist = () => {
   const [authenticated, setAuthenticated] = useState();
   const [loading, setLoading] = useState(true);
   const [mediaType, setMediaType] = useState('show');
-  const [watchlist, setWatchlist] = useState([]);
+  const [history, setHistory] = useState([]);
 
   useEffect(() => {
     setAuthenticated(user.authenticated);
     user.authenticated &&
       (async () => {
-        const list = await getList('watchlist', user.token);
-        setWatchlist(list);
+        const showList = [];
+        const movieList = await getList('history/movies', user.token);
+        const list = showList.concat(movieList);
+        setHistory(list);
         setLoading(false);
       })();
   }, []);
@@ -33,7 +35,7 @@ const Watchlist = () => {
   return (
     <Layout>
       <section className='page'>
-        <h1>Watchlist</h1>
+        <h1>History</h1>
 
         {!authenticated ? (
           <LoginButton />
@@ -65,8 +67,8 @@ const Watchlist = () => {
             </div>
             {loading && <Loader />}
             <div className={styles.list}>
-              {filterItems(watchlist).map(item => (
-                <Link href={`${mediaType}s/${item.id}`} key={item.id}>
+              {filterItems(history).map((item, index) => (
+                <Link href={`${mediaType}s/${item.id}`} key={index}>
                   <a>
                     <Poster media={item} />
                     <p>{item.name || item.title}</p>

@@ -71,6 +71,19 @@ input {
   margin: 0.2em;
 }
 
+/* Loader keyframes */
+@keyframes dots-load {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 /* @media (prefers-color-scheme: dark) {
   :root {
     --main-color: #cfcfcf;
