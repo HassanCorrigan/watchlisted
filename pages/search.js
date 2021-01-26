@@ -7,6 +7,8 @@ import Card from 'components/Card';
 const Search = () => {
   const styles = {
     searchbox: {
+      color: 'var(--main-color)',
+      backgroundColor: 'var(--secondary-background-color)',
       fontSize: '1em',
       width: '100%',
       border: 'none',
@@ -34,7 +36,10 @@ const Search = () => {
       return;
     }
     const { results } = await tmdbFetch('search/multi', searchText);
-    setSearchResults(results);
+    const filteredResults = results.filter(
+      item => item.media_type !== 'person'
+    );
+    setSearchResults(filteredResults);
     setLoading(false);
   };
 

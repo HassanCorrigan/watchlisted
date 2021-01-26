@@ -17,6 +17,8 @@ const Watchlist = () => {
 
   useEffect(() => {
     setAuthenticated(user.authenticated);
+    setMediaType(localStorage.getItem('media-type') || 'show');
+
     user.authenticated &&
       (async () => {
         const list = await getList('watchlist', user.token);
@@ -28,7 +30,10 @@ const Watchlist = () => {
   const filterItems = list =>
     list.filter(item => item.type === mediaType).map(({ media }) => media);
 
-  const handleChange = e => setMediaType(e.target.value);
+  const handleChange = e => {
+    setMediaType(e.target.value);
+    localStorage.setItem('media-type', e.target.value);
+  };
 
   return (
     <Layout>

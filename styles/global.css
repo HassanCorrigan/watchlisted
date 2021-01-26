@@ -5,7 +5,7 @@
   --main-background-color: #ececec;
   --secondary-background-color: #ffffff;
   --transparent-background-color: rgba(255, 255, 255, 0.75);
-  --primary-color: #252525;
+  --primary-color: #f030a9;
   --box-shadow-color: #dddddd;
   --border-radius: 0.75em;
 }
@@ -59,7 +59,7 @@ input {
 
 .tag {
   display: inline-block;
-  color: #d53a9d;
+  color: var(--primary-color);
   background: linear-gradient(to left, #743ad5, #d53a9d, #2c19d6);
   border-radius: var(--border-radius);
   border: 0.1em solid transparent;
@@ -84,13 +84,13 @@ input {
   }
 }
 
-/* @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
   :root {
     --main-color: #cfcfcf;
     --main-background-color: #000000;
     --secondary-background-color: #252525;
     --transparent-background-color: rgba(0, 0, 0, 0.75);
-    --primary-color: #ececec;
+    --primary-color: #f030a9;
     --box-shadow-color: #000000;
   }
-} */
+}

@@ -17,12 +17,14 @@ const Watchlist = () => {
 
   useEffect(() => {
     setAuthenticated(user.authenticated);
+    setMediaType(localStorage.getItem('media-type') || 'show');
+
     user.authenticated &&
       (async () => {
-        const showList = [];
-        const movieList = await getList('history/movies', user.token);
-        const list = showList.concat(movieList);
-        setHistory(list);
+        const showHistory = [];
+        const movieHistory = await getList('history/movies', user.token);
+        const fullHistory = showHistory.concat(movieHistory);
+        setHistory(fullHistory);
         setLoading(false);
       })();
   }, []);
@@ -30,7 +32,10 @@ const Watchlist = () => {
   const filterItems = list =>
     list.filter(item => item.type === mediaType).map(({ media }) => media);
 
-  const handleChange = e => setMediaType(e.target.value);
+  const handleChange = e => {
+    setMediaType(e.target.value);
+    localStorage.setItem('media-type', e.target.value);
+  };
 
   return (
     <Layout>

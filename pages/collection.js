@@ -17,12 +17,14 @@ const Collection = () => {
 
   useEffect(() => {
     setAuthenticated(user.authenticated);
+    setMediaType(localStorage.getItem('media-type') || 'show');
+
     user.authenticated &&
       (async () => {
-        const showList = await getList('collection/shows', user.token);
-        const movieList = await getList('collection/movies', user.token);
-        const list = showList.concat(movieList);
-        setCollection(list);
+        const showCollection = await getList('collection/shows', user.token);
+        const movieCollection = await getList('collection/movies', user.token);
+        const fullCollection = showCollection.concat(movieCollection);
+        setCollection(fullCollection);
         setLoading(false);
       })();
   }, []);
@@ -30,7 +32,10 @@ const Collection = () => {
   const filterItems = list =>
     list.filter(item => item.type === mediaType).map(({ media }) => media);
 
-  const handleChange = e => setMediaType(e.target.value);
+  const handleChange = e => {
+    setMediaType(e.target.value);
+    localStorage.setItem('media-type', e.target.value);
+  };
 
   return (
     <Layout>

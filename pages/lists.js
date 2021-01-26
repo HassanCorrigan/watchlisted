@@ -19,24 +19,33 @@ const Watchlist = () => {
 
   useEffect(() => {
     setAuthenticated(user.authenticated);
+    setMediaType(localStorage.getItem('media-type') || 'show');
+
     user.authenticated &&
       (async () => {
-        const wlist = await getList('watchlist', user.token);
-        const collShows = await getList('collection/shows', user.token);
-        const collMovies = await getList('collection/movies', user.token);
-        const histMovies = await getList('history/movies', user.token);
-        const coll = collShows.concat(collMovies);
-        setWatchlist(wlist);
-        setCollection(coll);
-        setHistory(histMovies);
+        const showCollection = await getList('collection/shows', user.token);
+        const movieCollection = await getList('collection/movies', user.token);
+        const fullCollection = showCollection.concat(movieCollection);
+        const showHistory = [];
+        const movieHistory = await getList('history/movies', user.token);
+        const fullHistory = showHistory.concat(movieHistory);
+        setWatchlist(await getList('watchlist', user.token));
+        setCollection(fullCollection);
+        setHistory(fullHistory);
         setLoading(false);
       })();
   }, []);
 
   const filterItems = list =>
-    list.filter(item => item.type === mediaType).map(({ media }) => media);
+    list
+      .filter(item => item.type === mediaType)
+      .slice(0, 10)
+      .map(({ media }) => media);
 
-  const handleChange = e => setMediaType(e.target.value);
+  const handleChange = e => {
+    setMediaType(e.target.value);
+    localStorage.setItem('media-type', e.target.value);
+  };
 
   return (
     <Layout>
