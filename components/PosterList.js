@@ -5,8 +5,8 @@ import styles from 'styles/poster-list.module.css';
 const PosterList = ({ items, slug }) => {
   return (
     <div className={styles.posterList}>
-      {items.map(item => (
-        <Link href={`/${slug}/${item.season_number || item.id}`} key={item.id}>
+      {items.map((item, index) => (
+        <Link href={`/${slug}/${item.season_number || item.id}`} key={index}>
           <a>
             <Poster media={item} />
             <p className={styles.posterTitle}>{item.name || item.title}</p>

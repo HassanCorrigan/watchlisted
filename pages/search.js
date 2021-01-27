@@ -57,8 +57,8 @@ const Search = () => {
         </form>
         <div>
           {loading && <Loader />}
-          {searchResults.map(item => (
-            <Card key={item.id} media={item} />
+          {searchResults.map((item, index) => (
+            <Card key={index} media={item} />
           ))}
         </div>
       </section>

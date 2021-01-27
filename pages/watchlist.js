@@ -21,8 +21,11 @@ const Watchlist = () => {
 
     user.authenticated &&
       (async () => {
-        const list = await getList('watchlist', user.token);
-        setWatchlist(list);
+        const showWatchlist = await getList('watchlist/shows', user.token);
+        const movieWatchlist = await getList('watchlist/movies', user.token);
+
+        const fullWatchlist = showWatchlist.concat(movieWatchlist);
+        setWatchlist(fullWatchlist);
         setLoading(false);
       })();
   }, []);
@@ -44,6 +47,7 @@ const Watchlist = () => {
           <LoginButton />
         ) : (
           <>
+            {loading && <Loader />}
             <div className={styles.mediaSelector}>
               <div className={styles.option}>
                 <input
@@ -68,10 +72,10 @@ const Watchlist = () => {
                 <label htmlFor='movie'>Movies</label>
               </div>
             </div>
-            {loading && <Loader />}
+
             <div className={styles.list}>
-              {filterItems(watchlist).map(item => (
-                <Link href={`${mediaType}s/${item.id}`} key={item.id}>
+              {filterItems(watchlist).map((item, index) => (
+                <Link href={`${mediaType}s/${item.id}`} key={index}>
                   <a>
                     <Poster media={item} />
                     <p>{item.name || item.title}</p>

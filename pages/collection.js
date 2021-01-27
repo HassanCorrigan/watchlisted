@@ -24,6 +24,7 @@ const Collection = () => {
         const showCollection = await getList('collection/shows', user.token);
         const movieCollection = await getList('collection/movies', user.token);
         const fullCollection = showCollection.concat(movieCollection);
+
         setCollection(fullCollection);
         setLoading(false);
       })();
@@ -46,6 +47,7 @@ const Collection = () => {
           <LoginButton />
         ) : (
           <>
+            {loading && <Loader />}
             <div className={styles.mediaSelector}>
               <div className={styles.option}>
                 <input
@@ -70,10 +72,10 @@ const Collection = () => {
                 <label htmlFor='movie'>Movies</label>
               </div>
             </div>
-            {loading && <Loader />}
+
             <div className={styles.list}>
-              {filterItems(collection).map(item => (
-                <Link href={`${mediaType}s/${item.id}`} key={item.id}>
+              {filterItems(collection).map((item, index) => (
+                <Link href={`${mediaType}s/${item.id}`} key={index}>
                   <a>
                     <Poster media={item} />
                     <p>{item.name || item.title}</p>

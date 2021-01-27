@@ -43,61 +43,56 @@ const Account = () => {
             <LoginButton />
           ) : (
             <>
-              {loading ? (
-                <Loader />
-              ) : (
-                <>
-                  <div className={styles.details}>
-                    <img
-                      className={styles.avatar}
-                      src={userDetails.images?.avatar.full}
-                      alt='User Profile Photo'
-                    />
-                    <p>
-                      {userDetails.name} - @{userDetails.username}
-                    </p>
-                  </div>
-                  <div className={styles.wrapper}>
-                    <h2>Account Stats</h2>
-                    <p>
-                      A selection of account statisics about you and your
-                      viewing habits.
-                    </p>
+              {loading && <Loader />}
+              <div className={styles.details}>
+                <img
+                  className={styles.avatar}
+                  src={userDetails.images?.avatar.full}
+                  alt='User Profile Photo'
+                />
+                <p>
+                  {userDetails.name} - @{userDetails.username}
+                </p>
+              </div>
+              <div className={styles.wrapper}>
+                <h2>Account Stats</h2>
+                <p>
+                  A selection of account statisics about you and your viewing
+                  habits.
+                </p>
 
-                    <div className={styles.statsOverview}>
-                      {Object.keys(userStats).map((key, index) => (
-                        <div key={index} className={styles.category}>
-                          <h3>{key}</h3>
-                          <div className={styles.stats}>
-                            <div>
-                              <p className={styles.value}>
-                                {userStats[key].watched}
-                              </p>
-                              <p className={styles.label}>Watched</p>
-                            </div>
-                            <div>
-                              <p className={styles.value}>
-                                {userStats[key].collected}
-                              </p>
-                              <p className={styles.label}>Collected</p>
-                            </div>
-                            <div>
-                              <p className={styles.value}>
-                                {userStats[key].ratings}
-                              </p>
-                              <p className={styles.label}>Rated</p>
-                            </div>
-                          </div>
+                <div className={styles.statsOverview}>
+                  {Object.keys(userStats).map((key, index) => (
+                    <div key={index} className={styles.category}>
+                      <h3>{key}</h3>
+                      <div className={styles.stats}>
+                        <div>
+                          <p className={styles.value}>
+                            {userStats[key].watched}
+                          </p>
+                          <p className={styles.label}>Watched</p>
                         </div>
-                      ))}
+                        <div>
+                          <p className={styles.value}>
+                            {userStats[key].collected}
+                          </p>
+                          <p className={styles.label}>Collected</p>
+                        </div>
+                        <div>
+                          <p className={styles.value}>
+                            {userStats[key].ratings}
+                          </p>
+                          <p className={styles.label}>Rated</p>
+                        </div>
+                      </div>
                     </div>
+                  ))}
+                </div>
 
-                    <button className={styles.btn} onClick={() => logOut()}>
-                      Log Out
-                    </button>
-                  </div>
-                </>
-              )}
+                <button className={styles.btn} onClick={() => logOut()}>
+                  Log Out
+                </button>
+              </div>
             </>
           )}
         </div>

@@ -6,7 +6,7 @@
   --secondary-background-color: #ffffff;
   --transparent-background-color: rgba(255, 255, 255, 0.75);
   --primary-color: #f030a9;
-  --box-shadow-color: #dddddd;
+  --box-shadow-color: #dddbdb;
   --border-radius: 0.75em;
 }
 * {
@@ -29,6 +29,9 @@ main {
 
 a {
   text-decoration: none;
+}
+a:hover {
+  filter: brightness(1.2);
 }
 
 h1 {
@@ -87,10 +90,10 @@ input {
 @media (prefers-color-scheme: dark) {
   :root {
     --main-color: #cfcfcf;
-    --main-background-color: #000000;
-    --secondary-background-color: #252525;
+    --main-background-color: #080808;
+    --secondary-background-color: #161616;
     --transparent-background-color: rgba(0, 0, 0, 0.75);
     --primary-color: #f030a9;
-    --box-shadow-color: #000000;
+    --box-shadow-color: #050505;
   }
 }

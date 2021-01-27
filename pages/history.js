@@ -21,9 +21,10 @@ const Watchlist = () => {
 
     user.authenticated &&
       (async () => {
-        const showHistory = [];
+        const showHistory = await getList('history/shows', user.token);
         const movieHistory = await getList('history/movies', user.token);
         const fullHistory = showHistory.concat(movieHistory);
+
         setHistory(fullHistory);
         setLoading(false);
       })();
@@ -46,6 +47,7 @@ const Watchlist = () => {
           <LoginButton />
         ) : (
           <>
+            {loading && <Loader />}
             <div className={styles.mediaSelector}>
               <div className={styles.option}>
                 <input
@@ -70,7 +72,7 @@ const Watchlist = () => {
                 <label htmlFor='movie'>Movies</label>
               </div>
             </div>
-            {loading && <Loader />}
+
             <div className={styles.list}>
               {filterItems(history).map((item, index) => (
                 <Link href={`${mediaType}s/${item.id}`} key={index}>

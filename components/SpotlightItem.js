@@ -24,7 +24,7 @@ const SpotlightItem = ({ item, slug }) => {
         <img
           style={styles.banner}
           src={createBannerPath(item.backdrop_path)}
-          alt={item.name}
+          alt={item.title || item.name}
         />
         <h2 style={styles.title}>{item.title || item.name}</h2>
       </a>

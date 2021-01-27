@@ -5,7 +5,7 @@ const getList = async (listType, token) => {
 
   return await Promise.all(
     traktList.map(async item => {
-      const type = item.show ? 'show' : 'movie';
+      const type = item.movie ? 'movie' : 'show';
       const param = item.show ? 'tv' : 'movie';
       const id = item.show ? item.show.ids.tmdb : item.movie.ids.tmdb;
 
