@@ -21,21 +21,31 @@ const Watchlist = () => {
 
     user.authenticated &&
       (async () => {
-        const showHistory = await getList('history/shows', user.token);
-        const movieHistory = await getList('history/movies', user.token);
-        const fullHistory = showHistory.concat(movieHistory);
-
-        setHistory(fullHistory);
+        const list =
+          JSON.parse(localStorage.getItem('history')) || (await fetchList());
+        setHistory(list);
         setLoading(false);
       })();
   }, []);
 
-  const filterItems = list =>
-    list.filter(item => item.type === mediaType).map(({ media }) => media);
+  const filterItems = list => list.filter(item => item.type === mediaType);
 
   const handleChange = e => {
     setMediaType(e.target.value);
     localStorage.setItem('media-type', e.target.value);
+  };
+
+  const handleRefresh = async () => {
+    setHistory(await fetchList());
+  };
+
+  const fetchList = async () => {
+    const showHistory = await getList('history/shows', user.token);
+    const movieHistory = await getList('history/movies', user.token);
+    const history = showHistory.concat(movieHistory);
+
+    localStorage.setItem('history', JSON.stringify(history));
+    return history;
   };
 
   return (
@@ -48,6 +58,7 @@ const Watchlist = () => {
         ) : (
           <>
             {loading && <Loader />}
+            <button onClick={handleRefresh}>Refresh</button>
             <div className={styles.mediaSelector}>
               <div className={styles.option}>
                 <input
@@ -75,10 +86,10 @@ const Watchlist = () => {
 
             <div className={styles.list}>
               {filterItems(history).map((item, index) => (
-                <Link href={`${mediaType}s/${item.id}`} key={index}>
+                <Link href={item.slug} key={index}>
                   <a>
-                    <Poster media={item} />
-                    <p>{item.name || item.title}</p>
+                    <Poster media={item.poster} />
+                    <p>{item.title}</p>
                   </a>
                 </Link>
               ))}

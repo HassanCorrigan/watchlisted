@@ -21,21 +21,31 @@ const Watchlist = () => {
 
     user.authenticated &&
       (async () => {
-        const showWatchlist = await getList('watchlist/shows', user.token);
-        const movieWatchlist = await getList('watchlist/movies', user.token);
-
-        const fullWatchlist = showWatchlist.concat(movieWatchlist);
-        setWatchlist(fullWatchlist);
+        const list =
+          JSON.parse(localStorage.getItem('watchlist')) || (await fetchList());
+        setWatchlist(list);
         setLoading(false);
       })();
   }, []);
 
-  const filterItems = list =>
-    list.filter(item => item.type === mediaType).map(({ media }) => media);
+  const filterItems = list => list.filter(item => item.type === mediaType);
 
   const handleChange = e => {
     setMediaType(e.target.value);
     localStorage.setItem('media-type', e.target.value);
+  };
+
+  const handleRefresh = async () => {
+    setWatchlist(await fetchList());
+  };
+
+  const fetchList = async () => {
+    const showWatchlist = await getList('watchlist/shows', user.token);
+    const movieWatchlist = await getList('watchlist/movies', user.token);
+    const watchlist = showWatchlist.concat(movieWatchlist);
+
+    localStorage.setItem('watchlist', JSON.stringify(watchlist));
+    return watchlist;
   };
 
   return (
@@ -48,6 +58,7 @@ const Watchlist = () => {
         ) : (
           <>
             {loading && <Loader />}
+            <button onClick={handleRefresh}>Refresh</button>
             <div className={styles.mediaSelector}>
               <div className={styles.option}>
                 <input
@@ -75,10 +86,10 @@ const Watchlist = () => {
 
             <div className={styles.list}>
               {filterItems(watchlist).map((item, index) => (
-                <Link href={`${mediaType}s/${item.id}`} key={index}>
+                <Link href={item.slug} key={index}>
                   <a>
-                    <Poster media={item} />
-                    <p>{item.name || item.title}</p>
+                    <Poster media={item.poster} />
+                    <p>{item.title}</p>
                   </a>
                 </Link>
               ))}

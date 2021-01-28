@@ -21,21 +21,31 @@ const Collection = () => {
 
     user.authenticated &&
       (async () => {
-        const showCollection = await getList('collection/shows', user.token);
-        const movieCollection = await getList('collection/movies', user.token);
-        const fullCollection = showCollection.concat(movieCollection);
-
-        setCollection(fullCollection);
+        const list =
+          JSON.parse(localStorage.getItem('collection')) || (await fetchList());
+        setCollection(list);
         setLoading(false);
       })();
   }, []);
 
-  const filterItems = list =>
-    list.filter(item => item.type === mediaType).map(({ media }) => media);
+  const filterItems = list => list.filter(item => item.type === mediaType);
 
   const handleChange = e => {
     setMediaType(e.target.value);
     localStorage.setItem('media-type', e.target.value);
+  };
+
+  const handleRefresh = async () => {
+    setCollection(await fetchList());
+  };
+
+  const fetchList = async () => {
+    const showCollection = await getList('collection/shows', user.token);
+    const movieCollection = await getList('collection/movies', user.token);
+    const collection = showCollection.concat(movieCollection);
+
+    localStorage.setItem('collection', JSON.stringify(collection));
+    return collection;
   };
 
   return (
@@ -48,6 +58,7 @@ const Collection = () => {
         ) : (
           <>
             {loading && <Loader />}
+            <button onClick={handleRefresh}>Refresh</button>
             <div className={styles.mediaSelector}>
               <div className={styles.option}>
                 <input
@@ -75,10 +86,10 @@ const Collection = () => {
 
             <div className={styles.list}>
               {filterItems(collection).map((item, index) => (
-                <Link href={`${mediaType}s/${item.id}`} key={index}>
+                <Link href={item.slug} key={index}>
                   <a>
-                    <Poster media={item} />
-                    <p>{item.name || item.title}</p>
+                    <Poster media={item.poster} />
+                    <p>{item.title}</p>
                   </a>
                 </Link>
               ))}
