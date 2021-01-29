@@ -8,9 +8,10 @@
 - Add Trakt actions support
 - Add sort options for lists
 - ~~Add titles and info for history lists~~
-- Add Up Next content
+- ~~Add Up Next content~~
 - Add In Progress section
 - Add relative titles for Meta component
 - Add responsive design support
 - Add site url for login requests and redirect uri
 - Fix flex issue for poster lists titles on list pages
+- Add search page filters
