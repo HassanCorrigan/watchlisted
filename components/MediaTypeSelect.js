@@ -1,6 +1,11 @@
 import styles from 'styles/media-select.module.css';
 
-const MediaTypeSelect = ({ mediaType, updateMedia }) => {
+const MediaTypeSelect = ({ mediaType, setMediaType }) => {
+  const handleChange = e => {
+    setMediaType(e.target.value);
+    localStorage.setItem('media-type', e.target.value);
+  };
+
   return (
     <div className={styles.mediaSelector}>
       <div className={styles.option}>
@@ -10,7 +15,7 @@ const MediaTypeSelect = ({ mediaType, updateMedia }) => {
           name='show'
           value='show'
           checked={mediaType === 'show'}
-          onChange={updateMedia}
+          onChange={handleChange}
         />
         <label htmlFor='show'>Shows</label>
       </div>
@@ -21,7 +26,7 @@ const MediaTypeSelect = ({ mediaType, updateMedia }) => {
           name='movie'
           value='movie'
           checked={mediaType === 'movie'}
-          onChange={updateMedia}
+          onChange={handleChange}
         />
         <label htmlFor='movie'>Movies</label>
       </div>

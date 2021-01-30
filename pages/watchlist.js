@@ -34,11 +34,6 @@ const Watchlist = () => {
 
   const handleRefresh = async () => setWatchlist(await fetchList());
 
-  const handleChange = e => {
-    setMediaType(e.target.value);
-    localStorage.setItem('media-type', e.target.value);
-  };
-
   const fetchList = async () => {
     const showWatchlist = await getList('watchlist/shows', user.token);
     const movieWatchlist = await getList('watchlist/movies', user.token);
@@ -58,12 +53,14 @@ const Watchlist = () => {
         ) : (
           <>
             {loading && <Loader />}
-
             <div className={styles.controls}>
               <RefreshButton updateList={handleRefresh} />
             </div>
 
-            <MediaTypeSelect mediaType={mediaType} updateMedia={handleChange} />
+            <MediaTypeSelect
+              mediaType={mediaType}
+              setMediaType={setMediaType}
+            />
 
             <div className={styles.list}>
               {filterItems(watchlist).map((item, index) => (

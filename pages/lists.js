@@ -44,11 +44,6 @@ const Watchlist = () => {
 
   const filterItems = list => list.filter(item => item.type === mediaType);
 
-  const handleChange = e => {
-    setMediaType(e.target.value);
-    localStorage.setItem('media-type', e.target.value);
-  };
-
   const handleRefresh = async () => {
     setWatchlist(await fetchList('watchlist'));
     setCollection(await fetchList('collection'));
@@ -78,7 +73,10 @@ const Watchlist = () => {
               <RefreshButton updateList={handleRefresh} />
             </div>
 
-            <MediaTypeSelect mediaType={mediaType} updateMedia={handleChange} />
+            <MediaTypeSelect
+              mediaType={mediaType}
+              setMediaType={setMediaType}
+            />
 
             <div className={styles.horizontalList}>
               <div className={styles.horizontalListHeader}>

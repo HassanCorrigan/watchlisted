@@ -15,3 +15,4 @@
 - Add site url for login requests and redirect uri
 - Fix flex issue for poster lists titles on list pages
 - Add search page filters
+- Add clear search history button to search page

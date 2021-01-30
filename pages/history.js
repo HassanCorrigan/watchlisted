@@ -32,11 +32,6 @@ const Watchlist = () => {
 
   const filterItems = list => list.filter(item => item.type === mediaType);
 
-  const handleChange = e => {
-    setMediaType(e.target.value);
-    localStorage.setItem('media-type', e.target.value);
-  };
-
   const handleRefresh = async () => {
     setHistory(await fetchList());
   };
@@ -64,7 +59,10 @@ const Watchlist = () => {
               <RefreshButton updateList={handleRefresh} />
             </div>
 
-            <MediaTypeSelect mediaType={mediaType} updateMedia={handleChange} />
+            <MediaTypeSelect
+              mediaType={mediaType}
+              setMediaType={setMediaType}
+            />
 
             <div className={styles.list}>
               {filterItems(history).map((item, index) => (
