@@ -1,0 +1,36 @@
+.refreshBtn {
+  border: none;
+  display: flex;
+  align-items: center;
+  color: var(--main-color);
+  background-color: var(--secondary-background-color);
+  padding: 0.6em;
+  border-radius: var(--border-radius);
+  font-weight: 00;
+  cursor: pointer;
+  outline: none;
+}
+.refreshBtn:hover {
+  filter: brightness(1.2);
+  box-shadow: 0.2em 0.2em 0.8em var(--box-shadow-color);
+}
+.refreshIcon {
+  width: 15px;
+  height: 15px;
+  margin-left: 0.5em;
+}
+.refreshIcon[active='true'] {
+  transform: rotate(0deg);
+  animation-name: rotate;
+  animation-duration: 2s;
+  animation: rotate 1s linear 0s infinite normal none;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

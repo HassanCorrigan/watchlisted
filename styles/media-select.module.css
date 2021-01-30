@@ -1,0 +1,23 @@
+.mediaSelector {
+  display: flex;
+  width: fit-content;
+  overflow: hidden;
+  border-radius: var(--border-radius);
+  margin: 1em auto;
+  padding: 0.5em 0;
+  box-shadow: 0.1em 0.1em 0.4em 0.1em var(--box-shadow-color);
+}
+.option input {
+  position: absolute !important;
+  clip: rect(0, 0, 0, 0);
+}
+.option label {
+  color: var(--main-color);
+  text-align: center;
+  padding: 0.8em;
+  cursor: pointer;
+}
+.option input:checked + label {
+  color: var(--main-background-color);
+  background-color: var(--main-color);
+}

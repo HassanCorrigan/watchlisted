@@ -51,7 +51,8 @@ h4 {
   font-size: 1.1em;
 }
 
-input {
+input,
+button {
   font-family: 'Rubik', sans-serif;
 }
 
@@ -72,19 +73,6 @@ input {
   font-weight: 400;
   padding: 0.25em 0.33em;
   margin: 0.2em;
-}
-
-/* Loader keyframes */
-@keyframes dots-load {
-  0% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
 }
 
 @media (prefers-color-scheme: dark) {

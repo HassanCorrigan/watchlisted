@@ -5,6 +5,8 @@ import { getList } from 'helpers/list';
 import Layout from 'components/Layout';
 import LoginButton from 'components/LoginButton';
 import Loader from 'components/Loader';
+import RefreshButton from 'components/RefreshButton';
+import MediaTypeSelect from 'components/MediaTypeSelect';
 import Poster from 'components/Poster';
 import styles from 'styles/lists.module.css';
 
@@ -72,31 +74,11 @@ const Watchlist = () => {
         ) : (
           <>
             {loading && <Loader />}
-            <button onClick={handleRefresh}>Refresh</button>
-            <div className={styles.mediaSelector}>
-              <div className={styles.option}>
-                <input
-                  type='radio'
-                  id='show'
-                  name='show'
-                  value='show'
-                  checked={mediaType === 'show'}
-                  onChange={handleChange}
-                />
-                <label htmlFor='show'>Shows</label>
-              </div>
-              <div className={styles.option}>
-                <input
-                  type='radio'
-                  id='movie'
-                  name='movie'
-                  value='movie'
-                  checked={mediaType === 'movie'}
-                  onChange={handleChange}
-                />
-                <label htmlFor='movie'>Movies</label>
-              </div>
+            <div className={styles.controls}>
+              <RefreshButton updateList={handleRefresh} />
             </div>
+
+            <MediaTypeSelect mediaType={mediaType} updateMedia={handleChange} />
 
             <div className={styles.horizontalList}>
               <div className={styles.horizontalListHeader}>
