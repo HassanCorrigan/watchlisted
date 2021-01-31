@@ -17,7 +17,6 @@ const Search = () => {
       localStorage.getItem('search-history')
     );
     setSearchHistory(localStorageHistory || []);
-    console.log(searchText);
   }, []);
 
   useEffect(() => {
