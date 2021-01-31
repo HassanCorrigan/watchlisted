@@ -10,7 +10,12 @@ const getList = async (listType, token) => {
   return await Promise.all(
     traktList.map(async item => {
       const type = item.movie ? 'movie' : 'show';
-      let title, slug, date;
+      let title, slug, released;
+      const added =
+        item.listed_at ||
+        item.last_collected_at ||
+        item.collected_at ||
+        item.watched_at;
 
       const params = item.show
         ? `tv/${item.show.ids.tmdb}`
@@ -21,15 +26,15 @@ const getList = async (listType, token) => {
       if (item.episode) {
         title = item.episode.title;
         slug = `shows/${item.show.ids.tmdb}/season/${item.episode.season}/episode/${item.episode.number}`;
-        date = item.episode.first_aired;
+        released = item.episode.first_aired;
       } else if (item.show) {
         title = media.name;
         slug = `shows/${item.show.ids.tmdb}`;
-        date = item.show.first_aired;
+        released = item.show.first_aired;
       } else {
         title = media.title;
         slug = `movies/${item.movie.ids.tmdb}`;
-        date = item.movie.released;
+        released = item.movie.released;
       }
 
       return {
@@ -37,7 +42,8 @@ const getList = async (listType, token) => {
         poster: media,
         slug,
         type,
-        date,
+        released,
+        added,
       };
     })
   );

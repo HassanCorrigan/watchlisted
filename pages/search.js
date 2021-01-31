@@ -3,38 +3,12 @@ import { tmdbFetch } from 'helpers/apiFetch';
 import Layout from 'components/Layout';
 import Loader from 'components/Loader';
 import Card from 'components/Card';
+import styles from 'styles/search.module.css';
 
 const Search = () => {
-  const styles = {
-    searchbox: {
-      color: 'var(--main-color)',
-      backgroundColor: 'var(--secondary-background-color)',
-      fontSize: '1em',
-      width: '100%',
-      border: 'none',
-      boxShadow: '0.1em 0.1em 0.8em var(--box-shadow-color)',
-      borderRadius: 'var(--border-radius)',
-      padding: '0.8em',
-      margin: '1em 0',
-      outline: 'none',
-    },
-    searchHistory: {
-      textAlign: 'center',
-      color: 'var(--main-color)',
-      filter: 'opacity(0.5)',
-      padding: '0.5em 0',
-    },
-    searchHistoryResults: {
-      padding: '1em 0',
-    },
-    searchHistoryItem: {
-      padding: '0.25em',
-      cursor: 'pointer',
-    },
-  };
-
   const [loading, setLoading] = useState(false);
-  const [searchText, setSearchText] = useState();
+  const [inputValue, setInputValue] = useState('');
+  const [searchText, setSearchText] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [searchHistory, setSearchHistory] = useState([]);
 
@@ -43,14 +17,29 @@ const Search = () => {
       localStorage.getItem('search-history')
     );
     setSearchHistory(localStorageHistory || []);
+    console.log(searchText);
   }, []);
 
-  const handleInput = async e => {
-    setSearchText(e.target.value);
+  useEffect(() => {
+    runSearch();
+  }, [searchText]);
+
+  const handleSearchSubmit = async e => {
+    e.preventDefault();
+    setSearchText(inputValue);
   };
 
-  const handleSubmit = async e => {
-    e.preventDefault();
+  const handleHistoryClick = e => {
+    setInputValue(e.target.innerText);
+    setSearchText(e.target.innerText);
+  };
+
+  const handleClearHistory = () => {
+    setSearchHistory([]);
+    localStorage.removeItem('search-history');
+  };
+
+  const runSearch = async () => {
     setLoading(true);
 
     if (!searchText) {
@@ -72,36 +61,42 @@ const Search = () => {
     setLoading(false);
   };
 
-  const handleClick = async e => {
-    setSearchText(e.target.innerText);
-  };
-
   return (
     <Layout>
       <section className='page'>
         <h1>Search TV Shows and Movies</h1>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSearchSubmit}>
           <input
-            onInput={handleInput}
-            style={styles.searchbox}
+            className={styles.searchbox}
             type='text'
+            value={inputValue}
+            onChange={e => {
+              setInputValue(e.target.value);
+            }}
             placeholder='Search...'
           />
         </form>
         <div>
           {loading && <Loader />}
+
           {searchResults.length === 0 && searchHistory.length !== 0 && (
-            <div style={styles.searchHistory} onClick={handleClick}>
+            <div className={styles.searchHistory}>
               <h2>Previous Searches</h2>
-              <div style={styles.searchHistoryResults}>
+              <div
+                className={styles.searchHistoryResults}
+                onClick={handleHistoryClick}>
                 {searchHistory.map((item, index) => (
-                  <p style={styles.searchHistoryItem} key={index}>
+                  <p className={styles.searchHistoryItem} key={index}>
                     {item}
                   </p>
                 ))}
               </div>
+              <button onClick={handleClearHistory} className={styles.clearBtn}>
+                Clear History
+              </button>
             </div>
           )}
+
           {searchResults.map((item, index) => (
             <Card key={index} media={item} />
           ))}

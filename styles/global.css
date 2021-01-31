@@ -31,7 +31,7 @@ a {
   text-decoration: none;
 }
 a:hover {
-  filter: brightness(1.2);
+  filter: brightness(0.8);
 }
 
 h1 {

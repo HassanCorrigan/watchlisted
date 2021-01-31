@@ -6,6 +6,7 @@ import Layout from 'components/Layout';
 import LoginButton from 'components/LoginButton';
 import Loader from 'components/Loader';
 import RefreshButton from 'components/RefreshButton';
+import MediaSortSelect from 'components/MediaSortSelect';
 import MediaTypeSelect from 'components/MediaTypeSelect';
 import Poster from 'components/Poster';
 import styles from 'styles/lists.module.css';
@@ -14,6 +15,7 @@ const Watchlist = () => {
   const { user } = useAppContext();
   const [authenticated, setAuthenticated] = useState();
   const [loading, setLoading] = useState(true);
+  const [sortOrder, setSortOrder] = useState('watched');
   const [mediaType, setMediaType] = useState('show');
   const [history, setHistory] = useState([]);
 
@@ -30,7 +32,27 @@ const Watchlist = () => {
       })();
   }, []);
 
-  const filterItems = list => list.filter(item => item.type === mediaType);
+  const filterList = list => list.filter(item => item.type === mediaType);
+
+  const sortList = (key, order = 'asc') => {
+    return (a, b) => {
+      if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
+        // property doesn't exist on either object
+        return 0;
+      }
+
+      const varA = typeof a[key] === 'string' ? a[key].toUpperCase() : a[key];
+      const varB = typeof b[key] === 'string' ? b[key].toUpperCase() : b[key];
+
+      let comparison = 0;
+      if (varA > varB) {
+        comparison = 1;
+      } else if (varA < varB) {
+        comparison = -1;
+      }
+      return order === 'desc' ? comparison * -1 : comparison;
+    };
+  };
 
   const handleRefresh = async () => {
     setHistory(await fetchList());
@@ -56,6 +78,11 @@ const Watchlist = () => {
           <>
             {loading && <Loader />}
             <div className={styles.controls}>
+              <MediaSortSelect
+                sortOrder={sortOrder}
+                setSortOrder={setSortOrder}
+                addedLabel='Watched'
+              />
               <RefreshButton updateList={handleRefresh} />
             </div>
 
@@ -65,14 +92,16 @@ const Watchlist = () => {
             />
 
             <div className={styles.list}>
-              {filterItems(history).map((item, index) => (
-                <Link href={item.slug} key={index}>
-                  <a>
-                    <Poster media={item.poster} />
-                    <p>{item.title}</p>
-                  </a>
-                </Link>
-              ))}
+              {filterList(history)
+                .sort(sortList(sortOrder))
+                .map((item, index) => (
+                  <Link href={item.slug} key={index}>
+                    <a>
+                      <Poster media={item.poster} />
+                      <p>{item.title}</p>
+                    </a>
+                  </Link>
+                ))}
             </div>
           </>
         )}

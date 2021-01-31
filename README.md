@@ -2,17 +2,17 @@
 
 ### TODO:
 
-- Lighthouse performance improvements - next/image,
-- Pagination for home page sections and list pages
-- ~~Add caching strategy for user lists - refresh button for fetching new lists~~
-- Add Trakt actions support
-- Add sort options for lists
-- ~~Add titles and info for history lists~~
-- ~~Add Up Next content~~
 - Add In Progress section
-- Add relative titles for Meta component
-- Add responsive design support
-- Add site url for login requests and redirect uri
+- Add Trakt actions support
+- Pagination for home page sections and list pages
 - Fix flex issue for poster lists titles on list pages
 - Add search page filters
-- Add clear search history button to search page
+- Add responsive design support
+- Add site url for login requests and redirect uri
+- Add relative titles for Meta component
+- Lighthouse performance improvements - next/image.
+- ~~Add caching strategy for user lists - refresh button for fetching new lists~~
+- ~~Add titles and info for history lists~~
+- ~~Add Up Next content~~
+- ~~Add clear search history button to search page~~
+- ~~Add sort options for lists~~

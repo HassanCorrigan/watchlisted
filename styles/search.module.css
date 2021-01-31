@@ -1,0 +1,41 @@
+.searchbox {
+  color: var(--main-color);
+  background-color: var(--secondary-background-color);
+  font-size: 1em;
+  width: 100%;
+  border: none;
+  box-shadow: 0.1em 0.1em 0.8em var(--box-shadow-color);
+  border-radius: var(--border-radius);
+  padding: 0.8em;
+  margin: 1em 0;
+  outline: none;
+}
+.searchHistory {
+  text-align: center;
+  color: var(--main-color);
+  filter: opacity(0.5);
+  padding: 0.5em 0;
+}
+.searchHistoryResults {
+  padding: 1em 0;
+}
+.searchHistoryItem {
+  padding: 0.25em;
+  cursor: pointer;
+}
+.searchHistoryItem:hover {
+  font-weight: 400;
+  filter: contrast(2);
+}
+.clearBtn {
+  border: none;
+  padding: 0.5em;
+  border-radius: var(--border-radius);
+  background-color: var(--secondary-background-color);
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0.2em 0.2em 0.2em 0.1em var(--box-shadow-color);
+}
+.clearBtn:hover {
+  filter: brightness(0.75);
+}
