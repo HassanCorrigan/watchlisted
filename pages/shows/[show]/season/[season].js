@@ -1,15 +1,20 @@
-import { tmdbFetch } from 'helpers/apiFetch';
-import { useState } from 'react';
+import Link from 'next/link';
+import { useState, useEffect } from 'react';
 import { useAppContext } from 'context/AppContext';
+import { tmdbFetch } from 'helpers/apiFetch';
+import { createBannerPath } from 'helpers/createImagePath';
 import Layout from 'components/Layout';
 import MediaHeader from 'components/MediaHeader';
 import TraktActions from 'components/TraktActions';
-import EpisodeList from 'components/EpisodeList';
 import styles from 'styles/media-page.module.css';
 
 const Season = ({ show, season }) => {
-  const context = useAppContext();
-  const [authenticated, setAuthenticated] = useState(context.isAuthenticated);
+  const { user } = useAppContext();
+  const [authenticated, setAuthenticated] = useState(false);
+
+  useEffect(() => {
+    setAuthenticated(user.authenticated);
+  }, []);
 
   return (
     <Layout>
@@ -41,7 +46,34 @@ const Season = ({ show, season }) => {
 
           <p className={styles.overview}>{season.overview}</p>
 
-          <EpisodeList show={show} season={season} episodes={season.episodes} />
+          <div className={styles.episodeList}>
+            {season.episodes.length === 1 ? (
+              <h3>{season.episodes.length} Episode</h3>
+            ) : (
+              <h3>{season.episodes.length} Episodes</h3>
+            )}
+            {season.episodes.map(episode => (
+              <Link
+                key={episode.id}
+                href={`/shows/${show.id}/season/${season.season_number}/episode/${episode.episode_number}`}>
+                <a className={styles.stillContainer}>
+                  <img
+                    src={createBannerPath(episode.still_path)}
+                    alt={episode.name}
+                    className={styles.still}
+                  />
+                  <div className={styles.episodeDetails}>
+                    <h4 className={styles.title}>{episode.name}</h4>
+                    <p>
+                      Season {episode.season_number} - Episode{' '}
+                      {episode.episode_number}
+                    </p>
+                    <p className={styles.overview}>{episode.overview}</p>
+                  </div>
+                </a>
+              </Link>
+            ))}
+          </div>
 
           <div className={styles.meta}>
             {show.genres.map(genre => (

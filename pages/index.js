@@ -1,8 +1,8 @@
 import Link from 'next/link';
+import { tmdbFetch } from 'helpers/apiFetch';
 import Layout from 'components/Layout';
 import SpotlightItem from 'components/SpotlightItem';
 import PosterList from 'components/PosterList';
-import { tmdbFetch } from 'helpers/apiFetch';
 import styles from 'styles/index.module.css';
 
 const Home = ({

@@ -18,12 +18,13 @@ export default async function handler(req, res) {
 const getAccessToken = async code => {
   const clientID = process.env.NEXT_PUBLIC_TRAKT_CLIENT_ID;
   const clientSecret = process.env.TRAKT_CLIENT_SECRET;
+  const siteURL = process.env.NEXT_PUBLIC_SITE_URL;
 
   const body = {
     code: code,
     client_id: clientID,
     client_secret: clientSecret,
-    redirect_uri: 'http://localhost:3000/api/auth/',
+    redirect_uri: `${siteURL}/api/auth/`,
     grant_type: 'authorization_code',
   };
 

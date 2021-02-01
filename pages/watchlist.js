@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useAppContext } from 'context/AppContext';
-import { getList } from 'helpers/list';
+import { createList, sortList, filterList } from 'helpers/list';
 import Layout from 'components/Layout';
 import LoginButton from 'components/LoginButton';
 import Loader from 'components/Loader';
@@ -13,7 +13,7 @@ import styles from 'styles/lists.module.css';
 
 const Watchlist = () => {
   const { user } = useAppContext();
-  const [authenticated, setAuthenticated] = useState();
+  const [authenticated, setAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
   const [sortOrder, setSortOrder] = useState('title');
   const [mediaType, setMediaType] = useState('show');
@@ -32,33 +32,11 @@ const Watchlist = () => {
       })();
   }, []);
 
-  const filterList = list => list.filter(item => item.type === mediaType);
-
-  const sortList = (key, order = 'asc') => {
-    return (a, b) => {
-      if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
-        // property doesn't exist on either object
-        return 0;
-      }
-
-      const varA = typeof a[key] === 'string' ? a[key].toUpperCase() : a[key];
-      const varB = typeof b[key] === 'string' ? b[key].toUpperCase() : b[key];
-
-      let comparison = 0;
-      if (varA > varB) {
-        comparison = 1;
-      } else if (varA < varB) {
-        comparison = -1;
-      }
-      return order === 'desc' ? comparison * -1 : comparison;
-    };
-  };
-
   const handleRefresh = async () => setWatchlist(await fetchList());
 
   const fetchList = async () => {
-    const showWatchlist = await getList('watchlist/shows', user.token);
-    const movieWatchlist = await getList('watchlist/movies', user.token);
+    const showWatchlist = await createList('watchlist/shows', user.token);
+    const movieWatchlist = await createList('watchlist/movies', user.token);
     const watchlist = showWatchlist.concat(movieWatchlist);
 
     localStorage.setItem('watchlist', JSON.stringify(watchlist));
@@ -89,7 +67,7 @@ const Watchlist = () => {
             />
 
             <div className={styles.list}>
-              {filterList(watchlist)
+              {filterList(watchlist, mediaType)
                 .sort(sortList(sortOrder))
                 .map((item, index) => (
                   <Link href={item.slug} key={index}>

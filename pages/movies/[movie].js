@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAppContext } from 'context/AppContext';
 import { tmdbFetch } from 'helpers/apiFetch';
 import Layout from 'components/Layout';
@@ -7,8 +7,12 @@ import TraktActions from 'components/TraktActions';
 import styles from 'styles/media-page.module.css';
 
 const Movie = ({ movie }) => {
-  const context = useAppContext();
-  const [authenticated, setAuthenticated] = useState(context.isAuthenticated);
+  const { user } = useAppContext();
+  const [authenticated, setAuthenticated] = useState(false);
+
+  useEffect(() => {
+    setAuthenticated(user.authenticated);
+  }, []);
 
   return (
     <Layout>

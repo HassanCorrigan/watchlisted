@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useAppContext } from 'context/AppContext';
-import { getList } from 'helpers/list';
+import { createList, filterList } from 'helpers/list';
 import Layout from 'components/Layout';
 import LoginButton from 'components/LoginButton';
 import Loader from 'components/Loader';
@@ -12,7 +12,7 @@ import styles from 'styles/lists.module.css';
 
 const Watchlist = () => {
   const { user } = useAppContext();
-  const [authenticated, setAuthenticated] = useState();
+  const [authenticated, setAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
   const [mediaType, setMediaType] = useState('show');
   const [watchlist, setWatchlist] = useState([]);
@@ -33,7 +33,7 @@ const Watchlist = () => {
           (await fetchList('collection'));
         const history =
           JSON.parse(localStorage.getItem('history')) ||
-          (await fetchList('watchlist'));
+          (await fetchList('history'));
 
         setWatchlist(watchlist);
         setCollection(collection);
@@ -42,8 +42,6 @@ const Watchlist = () => {
       })();
   }, []);
 
-  const filterItems = list => list.filter(item => item.type === mediaType);
-
   const handleRefresh = async () => {
     setWatchlist(await fetchList('watchlist'));
     setCollection(await fetchList('collection'));
@@ -51,8 +49,8 @@ const Watchlist = () => {
   };
 
   const fetchList = async listType => {
-    const showList = await getList(`${listType}/shows`, user.token);
-    const movieList = await getList(`${listType}/movies`, user.token);
+    const showList = await createList(`${listType}/shows`, user.token);
+    const movieList = await createList(`${listType}/movies`, user.token);
     const list = showList.concat(movieList);
 
     localStorage.setItem(`${listType}`, JSON.stringify(list));
@@ -84,7 +82,7 @@ const Watchlist = () => {
                 <Link href='/watchlist'>See More &#8250;</Link>
               </div>
               <div className={styles.posterList}>
-                {filterItems(watchlist).map((item, index) => (
+                {filterList(watchlist, mediaType).map((item, index) => (
                   <Link href={item.slug} key={index}>
                     <a>
                       <Poster media={item.poster} />
@@ -101,7 +99,7 @@ const Watchlist = () => {
                 <Link href='/collection'>See More &#8250;</Link>
               </div>
               <div className={styles.posterList}>
-                {filterItems(collection).map((item, index) => (
+                {filterList(collection, mediaType).map((item, index) => (
                   <Link href={item.slug} key={index}>
                     <a>
                       <Poster media={item.poster} />
@@ -118,7 +116,7 @@ const Watchlist = () => {
                 <Link href='/history'>See More &#8250;</Link>
               </div>
               <div className={styles.posterList}>
-                {filterItems(history).map((item, index) => (
+                {filterList(history, mediaType).map((item, index) => (
                   <Link href={item.slug} key={index}>
                     <a>
                       <Poster media={item.poster} />

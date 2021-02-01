@@ -1,8 +1,8 @@
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
+import { useAppContext } from 'context/AppContext';
 import { tmdbFetch } from 'helpers/apiFetch';
 import { createBannerPath } from 'helpers/createImagePath';
-import { useState } from 'react';
-import { useAppContext } from 'context/AppContext';
 import Layout from 'components/Layout';
 import MediaHeader from 'components/MediaHeader';
 import TraktActions from 'components/TraktActions';
@@ -10,9 +10,13 @@ import PosterList from 'components/PosterList';
 import styles from 'styles/media-page.module.css';
 
 const Show = ({ show }) => {
-  const context = useAppContext();
+  const { user } = useAppContext();
   const latestEpisode = show.last_episode_to_air;
-  const [authenticated, setAuthenticated] = useState(context.isAuthenticated);
+  const [authenticated, setAuthenticated] = useState(false);
+
+  useEffect(() => {
+    setAuthenticated(user.authenticated);
+  }, []);
 
   return (
     <Layout>

@@ -9,7 +9,7 @@ import styles from 'styles/account.module.css';
 
 const Account = () => {
   const { user } = useAppContext();
-  const [authenticated, setAuthenticated] = useState();
+  const [authenticated, setAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
   const [userDetails, setUserDetails] = useState({});
   const [userStats, setUserStats] = useState({});

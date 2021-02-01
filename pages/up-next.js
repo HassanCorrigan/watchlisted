@@ -9,7 +9,7 @@ import styles from 'styles/up-next.module.css';
 
 const UpNext = () => {
   const { user } = useAppContext();
-  const [authenticated, setAuthenticated] = useState();
+  const [authenticated, setAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
   const [calendar, setCalendar] = useState([]);
 

@@ -54,3 +54,11 @@
 .episodeDetails p {
   padding: 0.1em 0;
 }
+
+.episodeList {
+  padding: 1em;
+}
+
+.stillContainer {
+  position: relative;
+}

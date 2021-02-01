@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useAppContext } from 'context/AppContext';
-import { getList } from 'helpers/list';
+import { createList, sortList, filterList } from 'helpers/list';
 import Layout from 'components/Layout';
 import LoginButton from 'components/LoginButton';
 import Loader from 'components/Loader';
@@ -13,7 +13,7 @@ import styles from 'styles/lists.module.css';
 
 const Watchlist = () => {
   const { user } = useAppContext();
-  const [authenticated, setAuthenticated] = useState();
+  const [authenticated, setAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
   const [sortOrder, setSortOrder] = useState('watched');
   const [mediaType, setMediaType] = useState('show');
@@ -32,35 +32,13 @@ const Watchlist = () => {
       })();
   }, []);
 
-  const filterList = list => list.filter(item => item.type === mediaType);
-
-  const sortList = (key, order = 'asc') => {
-    return (a, b) => {
-      if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
-        // property doesn't exist on either object
-        return 0;
-      }
-
-      const varA = typeof a[key] === 'string' ? a[key].toUpperCase() : a[key];
-      const varB = typeof b[key] === 'string' ? b[key].toUpperCase() : b[key];
-
-      let comparison = 0;
-      if (varA > varB) {
-        comparison = 1;
-      } else if (varA < varB) {
-        comparison = -1;
-      }
-      return order === 'desc' ? comparison * -1 : comparison;
-    };
-  };
-
   const handleRefresh = async () => {
     setHistory(await fetchList());
   };
 
   const fetchList = async () => {
-    const showHistory = await getList('history/shows', user.token);
-    const movieHistory = await getList('history/movies', user.token);
+    const showHistory = await createList('history/shows', user.token);
+    const movieHistory = await createList('history/movies', user.token);
     const history = showHistory.concat(movieHistory);
 
     localStorage.setItem('history', JSON.stringify(history));
@@ -92,7 +70,7 @@ const Watchlist = () => {
             />
 
             <div className={styles.list}>
-              {filterList(history)
+              {filterList(history, mediaType)
                 .sort(sortList(sortOrder))
                 .map((item, index) => (
                   <Link href={item.slug} key={index}>

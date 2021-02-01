@@ -1,6 +1,6 @@
 import { traktFetch, tmdbFetch } from 'helpers/apiFetch';
 
-const getList = async (listType, token) => {
+const createList = async (listType, token) => {
   const traktList = await traktFetch(
     `users/me/${listType}`,
     token,
@@ -49,4 +49,23 @@ const getList = async (listType, token) => {
   );
 };
 
-export { getList };
+const sortList = (key, order = 'asc') => {
+  return (a, b) => {
+    if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
+      // property doesn't exist on either object
+      return 0;
+    }
+
+    const varA = typeof a[key] === 'string' ? a[key].toUpperCase() : a[key];
+    const varB = typeof b[key] === 'string' ? b[key].toUpperCase() : b[key];
+
+    const comparison = varA > varB ? 1 : varA < varB ? -1 : 0;
+
+    return order === 'desc' ? comparison * -1 : comparison;
+  };
+};
+
+const filterList = (list, mediaType) =>
+  list.filter(item => item.type === mediaType);
+
+export { createList, sortList, filterList };

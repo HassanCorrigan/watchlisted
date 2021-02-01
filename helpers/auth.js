@@ -1,5 +1,5 @@
-import { getToken, revokeToken } from 'helpers/token';
 import router from 'next/router';
+import { getToken, revokeToken } from 'helpers/token';
 
 const logOut = async () => {
   const token = getToken();

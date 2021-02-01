@@ -38,6 +38,7 @@
 }
 
 .posterList a {
+  max-width: min-content;
   color: var(--main-color);
   margin: 0.25em;
 }
