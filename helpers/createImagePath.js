@@ -3,7 +3,7 @@ const createPosterPath = poster_path => {
   const posterPath = poster_path;
   const placeholderPath = '/images/poster-placeholder.png';
 
-  return posterPath ? `${baseAPIPath}/${posterPath}` : placeholderPath;
+  return posterPath ? `${baseAPIPath}${posterPath}` : placeholderPath;
 };
 
 const createBannerPath = banner_path => {
@@ -11,7 +11,7 @@ const createBannerPath = banner_path => {
   const bannerPath = banner_path;
   const placeholderPath = '/images/banner-placeholder.png';
 
-  return bannerPath ? `${baseAPIPath}/${bannerPath}` : placeholderPath;
+  return bannerPath ? `${baseAPIPath}${bannerPath}` : placeholderPath;
 };
 
 export { createPosterPath, createBannerPath };

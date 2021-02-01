@@ -1,3 +1,29 @@
+.watchItem {
+  display: block;
+  margin: 1em 0.5em;
+}
+
+.banner {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: 0.2em 0.2em 0.4em var(--box-shadow-color);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+.banner div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  color: #cfcfcf;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  min-height: 7.5em;
+  padding: 0 1em;
+}
+
 .calendarItem {
   padding: 0.2em 0;
   margin: 1em 0;
