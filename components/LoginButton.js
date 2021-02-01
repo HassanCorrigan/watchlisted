@@ -26,7 +26,7 @@ const LoginButton = () => {
   };
 
   const client_id = process.env.NEXT_PUBLIC_TRAKT_CLIENT_ID;
-  const redirect_uri = 'http://localhost:3000/api/auth/';
+  const redirect_uri = `${process.env.NEXT_PUBLIC_SITE_URL}/api/auth/`;
 
   return (
     <div style={styles.wrapper}>
