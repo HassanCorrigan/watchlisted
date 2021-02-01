@@ -8,7 +8,7 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <Link href='/'>
-        <a className={styles.logo}>Logo</a>
+        <a className={styles.logo}>Watchlisted</a>
       </Link>
 
       {router.pathname !== '/' && (

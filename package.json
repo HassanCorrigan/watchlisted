@@ -1,6 +1,6 @@
 {
-  "name": "trakt-app",
-  "version": "1.0.0",
+  "name": "watchlisted",
+  "version": "0.7.0",
   "description": "A TV/Movie app with Trakt.tv integration",
   "main": "app.js",
   "scripts": {

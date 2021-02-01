@@ -35,11 +35,11 @@ const Meta = ({ title, description, keywords, url }) => {
 };
 
 Meta.defaultProps = {
-  title: 'Name - a Trakt.tv movie and tv app',
+  title: 'Watchlisted - a Trakt.tv movie and tv app',
   description:
-    'Name is a simple and minimal movie and tv tracker app with Trakt.tv support, keeping you up to date with the latest releases with an easy to manage tv and movie library.',
+    'Watchlisted is a simple and minimal movie and tv tracker app with Trakt.tv support, keeping you up to date with the latest releases with an easy to manage tv and movie library.',
   keywords: 'movie, tv, app, trakt.tv, tracker',
-  url: 'http://localhost:3000/',
+  url: 'https://watchlisted.app',
 };
 
 export default Meta;
