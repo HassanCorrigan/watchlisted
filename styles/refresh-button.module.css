@@ -6,13 +6,12 @@
   background-color: var(--secondary-background-color);
   padding: 0.6em;
   border-radius: var(--border-radius);
-  font-weight: 00;
+  font-size: 0.9em;
   cursor: pointer;
   outline: none;
 }
 .refreshBtn:hover {
-  filter: brightness(1.2);
-  box-shadow: 0.2em 0.2em 0.8em var(--box-shadow-color);
+  filter: brightness(0.9);
 }
 .refreshIcon {
   width: 15px;

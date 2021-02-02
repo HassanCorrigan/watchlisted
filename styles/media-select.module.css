@@ -13,6 +13,7 @@
 }
 .option label {
   color: var(--main-color);
+  background-color: var(--secondary-background-color);
   text-align: center;
   padding: 0.8em;
   cursor: pointer;

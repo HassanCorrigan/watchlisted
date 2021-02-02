@@ -5,6 +5,7 @@ import { tmdbFetch, traktFetch } from 'helpers/apiFetch';
 import { createBannerPath } from 'helpers/createImagePath';
 import Layout from 'components/Layout';
 import Loader from 'components/Loader';
+import RefreshButton from 'components/RefreshButton';
 import LoginButton from 'components/LoginButton';
 import styles from 'styles/up-next.module.css';
 
@@ -82,6 +83,8 @@ const UpNext = () => {
 
   const formatDate = date => new Date(date).toDateString();
 
+  const handleRefresh = async () => setWatching(await createWatching());
+
   return (
     <Layout>
       <section className='page'>
@@ -91,8 +94,11 @@ const UpNext = () => {
         ) : (
           <>
             {loading && <Loader />}
-            <section>
+            <section className={styles.section}>
               <h2>Watching</h2>
+              <div className={styles.controls}>
+                <RefreshButton updateList={handleRefresh} />
+              </div>
               <div className={styles.watching}>
                 {watching.map(({ show, showProgress, media }, index) => (
                   <Link href={`shows/${show.ids.tmdb}`} key={index}>
@@ -122,7 +128,7 @@ const UpNext = () => {
                 ))}
               </div>
             </section>
-            <section>
+            <section className={styles.section}>
               <h2>This Month</h2>
               <div className={styles.calendar}>
                 {calendar.map((item, index) => (

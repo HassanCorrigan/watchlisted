@@ -2,13 +2,22 @@ import { useEffect } from 'react';
 
 const styles = {
   select: {
-    outline: 'none',
     border: 'none',
+    outline: 'none',
+    appearance: 'none',
+    WebkitAppearance: 'none',
+    MozAppearance: 'none',
+    fontSize: '0.9em',
     borderRadius: 'var(--border-radius)',
-    textAlign: 'center',
     padding: '0 0.5em',
     color: 'var(--main-color)',
+    background: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='var(--main-color)'><polygon points='0,0 100,0 50,50'/></svg>") no-repeat`,
+    backgroundSize: '10px',
+    backgroundPosition: 'calc(100% - 10px) 1.1em',
+    backgroundRepeat: 'no-repeat',
     backgroundColor: 'var(--secondary-background-color)',
+    minWidth: '8.5em',
+    minHeight: '2.3em',
   },
 };
 

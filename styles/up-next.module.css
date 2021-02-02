@@ -1,3 +1,7 @@
+.section {
+  padding: 1.5em 0;
+}
+
 .watchItem {
   display: block;
   margin: 1em 0.5em;
@@ -17,8 +21,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  color: #cfcfcf;
-  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.3);
   width: 100%;
   min-height: 7.5em;
   padding: 0 1em;
