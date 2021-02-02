@@ -20,7 +20,7 @@
 }
 .list a {
   color: var(--main-color);
-  margin: 1.5em 0.5em;
+  margin: 1.5em 0.25em;
 }
 .list a img {
   width: 100%;

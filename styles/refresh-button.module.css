@@ -9,6 +9,7 @@
   font-size: 0.9em;
   cursor: pointer;
   outline: none;
+  margin-left: auto;
 }
 .refreshBtn:hover {
   filter: brightness(0.9);

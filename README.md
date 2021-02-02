@@ -1,8 +1,8 @@
-# TV and Movie app using the Trakt.tv API
+# TV and Movie app using the TMDB and Trakt.tv API
 
 ### TODO:
 
-- Add Trakt actions support
+- Add Trakt post actions support
 - Pagination for home page sections and list pages
 - Add search page filters
 - Add responsive design support

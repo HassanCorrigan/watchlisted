@@ -1,4 +1,37 @@
-.footer {
+.footer nav {
+  position: fixed;
+  bottom: 0;
   width: 100%;
-  display: none;
+  display: flex;
+  justify-content: space-around;
+  background-color: var(--transparent-background-color);
+  backdrop-filter: blur(4px);
+  z-index: inherit;
+  padding: 0.5em 0;
+}
+
+.footer nav a {
+  padding: 0.5em 0.3em;
+  text-transform: uppercase;
+  font-size: 0.6em;
+  color: var(--main-color);
+  fill: var(--main-color);
+}
+.footer nav a > * {
+  display: block;
+  text-align: center;
+  margin: 0.5em auto;
+}
+.footer nav a[active='true'] {
+  color: var(--primary-color);
+  fill: var(--primary-color);
+}
+
+@media (display-mode: standalone) {
+  /* Installed PWA */
+  .footer nav {
+    width: 98%;
+    margin-bottom: 1%;
+    border-radius: var(--border-radius);
+  }
 }

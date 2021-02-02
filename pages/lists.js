@@ -82,14 +82,16 @@ const Watchlist = () => {
                 <Link href='/watchlist'>See More &#8250;</Link>
               </div>
               <div className={styles.posterList}>
-                {filterList(watchlist, mediaType).map((item, index) => (
-                  <Link href={item.slug} key={index}>
-                    <a>
-                      <Poster media={item.poster} />
-                      <p className={styles.posterTitle}>{item.title}</p>
-                    </a>
-                  </Link>
-                ))}
+                {filterList(watchlist, mediaType)
+                  .slice(0, 10)
+                  .map((item, index) => (
+                    <Link href={item.slug} key={index}>
+                      <a>
+                        <Poster media={item.poster} />
+                        <p className={styles.posterTitle}>{item.title}</p>
+                      </a>
+                    </Link>
+                  ))}
               </div>
             </div>
 
@@ -99,14 +101,16 @@ const Watchlist = () => {
                 <Link href='/collection'>See More &#8250;</Link>
               </div>
               <div className={styles.posterList}>
-                {filterList(collection, mediaType).map((item, index) => (
-                  <Link href={item.slug} key={index}>
-                    <a>
-                      <Poster media={item.poster} />
-                      <p className={styles.posterTitle}>{item.title}</p>
-                    </a>
-                  </Link>
-                ))}
+                {filterList(collection, mediaType)
+                  .slice(0, 10)
+                  .map((item, index) => (
+                    <Link href={item.slug} key={index}>
+                      <a>
+                        <Poster media={item.poster} />
+                        <p className={styles.posterTitle}>{item.title}</p>
+                      </a>
+                    </Link>
+                  ))}
               </div>
             </div>
 
@@ -116,14 +120,16 @@ const Watchlist = () => {
                 <Link href='/history'>See More &#8250;</Link>
               </div>
               <div className={styles.posterList}>
-                {filterList(history, mediaType).map((item, index) => (
-                  <Link href={item.slug} key={index}>
-                    <a>
-                      <Poster media={item.poster} />
-                      <p className={styles.posterTitle}>{item.title}</p>
-                    </a>
-                  </Link>
-                ))}
+                {filterList(history, mediaType)
+                  .slice(0, 10)
+                  .map((item, index) => (
+                    <Link href={item.slug} key={index}>
+                      <a>
+                        <Poster media={item.poster} />
+                        <p className={styles.posterTitle}>{item.title}</p>
+                      </a>
+                    </Link>
+                  ))}
               </div>
             </div>
           </>
