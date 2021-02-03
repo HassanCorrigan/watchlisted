@@ -5,6 +5,7 @@ import { logOut } from 'helpers/auth';
 import Layout from 'components/Layout';
 import LoginButton from 'components/LoginButton';
 import Loader from 'components/Loader';
+import packageJSON from 'package.json';
 import styles from 'styles/account.module.css';
 
 const Account = () => {
@@ -87,6 +88,10 @@ const Account = () => {
                       </div>
                     </div>
                   ))}
+                </div>
+
+                <div className={styles.appInfo}>
+                  <p>Watchlisted - v{packageJSON.version}</p>
                 </div>
 
                 <button className={styles.btn} onClick={() => logOut()}>

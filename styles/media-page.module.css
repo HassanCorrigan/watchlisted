@@ -19,6 +19,24 @@
   padding: 0 0.5em;
 }
 
+.seasonList {
+  display: flex;
+  flex: row;
+  overflow-x: scroll;
+}
+.posterTitle {
+  margin: 0 0.25em;
+}
+
+.seasonList a {
+  max-width: min-content;
+  color: var(--main-color);
+  margin: 0.25em;
+}
+.seasonList::-webkit-scrollbar {
+  display: none; /* Removes horizontal scrollbar */
+}
+
 .recentEpisode {
   padding: 0.5em;
 }

@@ -72,6 +72,7 @@ const Search = () => {
             onChange={e => {
               setInputValue(e.target.value);
             }}
+            aria-label='Search'
             placeholder='Search...'
           />
         </form>

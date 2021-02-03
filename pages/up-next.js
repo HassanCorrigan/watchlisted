@@ -101,7 +101,9 @@ const UpNext = () => {
               </div>
               <div className={styles.watching}>
                 {watching.map(({ show, showProgress, media }, index) => (
-                  <Link href={`shows/${show.ids.tmdb}`} key={index}>
+                  <Link
+                    href={`shows/${show.ids.tmdb}/season/${showProgress.next_episode.season}/episode/${showProgress.next_episode.number}`}
+                    key={index}>
                     <a className={styles.watchItem}>
                       <div
                         className={styles.banner}
@@ -113,9 +115,7 @@ const UpNext = () => {
                         <div>
                           <h3>{show.title}</h3>
                           <p>
-                            {showProgress.next_episode.title} - Season{' '}
-                            {showProgress.next_episode.season} Episode{' '}
-                            {showProgress.next_episode.number}
+                            {`${showProgress.next_episode.title} - S${showProgress.next_episode.season}xE${showProgress.next_episode.number}`}
                           </p>
                           <p>
                             {showProgress.aired - showProgress.completed}{' '}
@@ -137,19 +137,20 @@ const UpNext = () => {
                     <div className={styles.info}>
                       <Link
                         href={
-                          item.episode
-                            ? `shows/${item.show.ids.tmdb}/season/${item.episode.season}/episode/${item.episode.number}`
+                          item.show
+                            ? `shows/${item.show.ids.tmdb}`
                             : `movies/${item.movie.ids.tmdb}`
                         }>
                         <a>
-                          <h4>{item.episode?.title || item.movie?.title}</h4>
+                          <h4>{item.show?.title || item.movie?.title}</h4>
                           {item.movie && <p>{item.movie.tagline}</p>}
                         </a>
                       </Link>
-                      {item.show && (
-                        <Link href={`shows/${item.show.ids.tmdb}`}>
+                      {item.episode && (
+                        <Link
+                          href={`shows/${item.show.ids.tmdb}/season/${item.episode.season}/episode/${item.episode.number}`}>
                           <a>
-                            <p>{item.show.title}</p>
+                            <p>{`S${item.episode.season}xE${item.episode.number} - ${item.episode?.title}`}</p>
                           </a>
                         </Link>
                       )}

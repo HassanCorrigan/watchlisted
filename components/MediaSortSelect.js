@@ -42,6 +42,7 @@ const MediaSortSelect = ({
     <select
       style={styles.select}
       name='sort'
+      aria-label='Sort Order of Items'
       value={sortOrder}
       onChange={handleChange}>
       <option value='title'>{nameLabel}</option>

@@ -32,6 +32,12 @@
   padding: 0.2em 0;
   margin: 1em 0;
 }
+.calendar a {
+  color: var(--main-color);
+}
+.calendar a:hover {
+  text-decoration: underline;
+}
 .date {
   filter: brightness(2);
 }
@@ -39,9 +45,11 @@
   padding: 0.1em 0.5em;
   display: inline-block;
 }
-.calendar a {
-  color: var(--main-color);
+.info p,
+.info h4 {
+  padding: 0.25em 0;
+  margin: 0.25em 0;
 }
-.calendar a:hover {
-  text-decoration: underline;
+.info h4 {
+  color: var(--primary-color);
 }

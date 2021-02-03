@@ -6,7 +6,7 @@ import { createBannerPath } from 'helpers/createImagePath';
 import Layout from 'components/Layout';
 import MediaHeader from 'components/MediaHeader';
 import TraktActions from 'components/TraktActions';
-import PosterList from 'components/PosterList';
+import Poster from 'components/Poster';
 import styles from 'styles/media-page.module.css';
 
 const Show = ({ show }) => {
@@ -57,7 +57,19 @@ const Show = ({ show }) => {
             ) : (
               <h3>{show.number_of_seasons} Seasons</h3>
             )}
-            <PosterList items={show.seasons} slug={`shows/${show.id}/season`} />
+
+            <div className={styles.seasonList}>
+              {show.seasons.map((season, index) => (
+                <Link
+                  href={`/shows/${show.id}/season/${season.season_number}`}
+                  key={index}>
+                  <a>
+                    <Poster media={show} />
+                    <p className={styles.posterTitle}>{season.name}</p>
+                  </a>
+                </Link>
+              ))}
+            </div>
           </div>
 
           {latestEpisode && (

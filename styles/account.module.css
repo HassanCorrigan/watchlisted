@@ -40,6 +40,11 @@
   font-weight: 400;
 }
 
+.appInfo {
+  text-align: center;
+  padding: 0.5em 0;
+}
+
 .btn {
   border: none;
   color: var(--main-color);
