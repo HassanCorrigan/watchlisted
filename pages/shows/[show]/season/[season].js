@@ -2,6 +2,8 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useAppContext } from 'context/AppContext';
 import { tmdbFetch } from 'helpers/apiFetch';
+import { formatDate } from 'helpers/date';
+import { truncateString } from 'helpers/string';
 import { createBannerPath } from 'helpers/createImagePath';
 import Layout from 'components/Layout';
 import MediaHeader from 'components/MediaHeader';
@@ -33,7 +35,7 @@ const Season = ({ show, season }) => {
               {season.vote_count} votes)
             </p>
 
-            {season.air_date !== null && <p>{season.air_date}</p>}
+            {season.air_date !== null && <p>{formatDate(season.air_date)}</p>}
 
             {show.networks.map(network => (
               <span className='tag' key={network.id}>
@@ -68,7 +70,9 @@ const Season = ({ show, season }) => {
                       Season {episode.season_number} - Episode{' '}
                       {episode.episode_number}
                     </p>
-                    <p className={styles.overview}>{episode.overview}</p>
+                    <p className={styles.overview}>
+                      {truncateString(episode.overview, 215)}
+                    </p>
                   </div>
                 </a>
               </Link>

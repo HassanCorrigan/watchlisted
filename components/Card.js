@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useAppContext } from 'context/AppContext';
+import { truncateString } from 'helpers/string';
 import Poster from 'components/Poster';
 import TraktActions from 'components/TraktActions';
 import styles from 'styles/card.module.css';
@@ -21,8 +22,16 @@ const Card = ({ media }) => {
         <Poster media={media} />
         <div className={styles.cardInfo}>
           <h2 className={styles.title}>{media.title || media.name}</h2>
-          <p className={styles.overview}>{media.overview}</p>
+          <p className={styles.overview}>
+            {truncateString(media.overview, 320)}
+          </p>
           <div className={styles.meta}>
+            <span>
+              (
+              {media.first_air_date?.slice(0, 4) ||
+                media.release_date?.slice(0, 4)}
+              )
+            </span>
             <span>
               &#11088; <b>{media.vote_average}</b> ({media.vote_count})
             </span>

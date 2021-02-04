@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useAppContext } from 'context/AppContext';
 import { tmdbFetch, traktFetch } from 'helpers/apiFetch';
+import { formatDate } from 'helpers/date';
 import { createBannerPath } from 'helpers/createImagePath';
 import Layout from 'components/Layout';
 import Loader from 'components/Loader';
@@ -80,8 +81,6 @@ const UpNext = () => {
       })
       .sort((a, b) => a.date.localeCompare(b.date));
   };
-
-  const formatDate = date => new Date(date).toDateString();
 
   const handleRefresh = async () => setWatching(await createWatching());
 

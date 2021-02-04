@@ -2,6 +2,8 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useAppContext } from 'context/AppContext';
 import { tmdbFetch } from 'helpers/apiFetch';
+import { formatDate } from 'helpers/date';
+import { truncateString } from 'helpers/string';
 import { createBannerPath } from 'helpers/createImagePath';
 import Layout from 'components/Layout';
 import MediaHeader from 'components/MediaHeader';
@@ -30,7 +32,7 @@ const Show = ({ show }) => {
         <div className={styles.content}>
           <div className={styles.info}>
             <p>Run Time: {show.episode_run_time[0]} mins</p>
-            <p>First Aired: {show.first_air_date.slice(0, 4)}</p>
+            <p>First Aired: {formatDate(show.first_air_date)}</p>
             <p>
               Average Rating: &#11088; <b>{show.vote_average}</b> (
               {show.vote_count} votes)
@@ -89,7 +91,7 @@ const Show = ({ show }) => {
                       Season {latestEpisode.season_number} - Episode{' '}
                       {latestEpisode.episode_number}
                     </p>
-                    <p>{latestEpisode.overview}</p>
+                    <p>{truncateString(latestEpisode.overview, 215)}</p>
                   </div>
                 </a>
               </Link>

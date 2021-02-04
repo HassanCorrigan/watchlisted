@@ -15,11 +15,11 @@
 }
 .overview {
   max-height: 7.5em;
-  overflow: scroll;
   padding: 0.5em 0;
 }
 .meta {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  margin: 1em 0;
 }
