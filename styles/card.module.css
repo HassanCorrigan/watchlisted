@@ -14,12 +14,12 @@
   font-size: 0.8em;
 }
 .overview {
-  max-height: 7.5em;
   padding: 0.5em 0;
 }
 .meta {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: center;
-  margin: 1em 0;
+  margin: 0.5em 0;
 }

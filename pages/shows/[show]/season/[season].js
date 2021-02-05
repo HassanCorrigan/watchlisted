@@ -71,7 +71,7 @@ const Season = ({ show, season }) => {
                       {episode.episode_number}
                     </p>
                     <p className={styles.overview}>
-                      {truncateString(episode.overview, 215)}
+                      {truncateString(episode.overview, 140)}
                     </p>
                   </div>
                 </a>

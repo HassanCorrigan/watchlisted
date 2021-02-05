@@ -23,7 +23,7 @@ const Card = ({ media }) => {
         <div className={styles.cardInfo}>
           <h2 className={styles.title}>{media.title || media.name}</h2>
           <p className={styles.overview}>
-            {truncateString(media.overview, 320)}
+            {truncateString(media.overview, 200)}
           </p>
           <div className={styles.meta}>
             <span>

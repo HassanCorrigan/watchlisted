@@ -11,9 +11,6 @@ const Meta = ({ title, description, keywords, url }) => {
       <meta name='description' content={description} />
       <meta name='keywords' content={keywords} />
 
-      <meta name='apple-mobile-web-app-cabable' content='yes' />
-      <meta name='apple-mobile-web-app-status-bar-style' content='default' />
-
       <meta property='og:type' content='website' />
       <meta property='og:url' content={url} />
       <meta property='og:title' content={title} />
@@ -28,6 +25,18 @@ const Meta = ({ title, description, keywords, url }) => {
         property='twitter:image'
         content='/images/opengraph-twitter-card.jpg'
       />
+
+      <meta name='apple-mobile-web-app-cabable' content='yes' />
+      <meta name='apple-mobile-web-app-status-bar-style' content='default' />
+      <meta name='theme-color' content='#ececec' />
+      <link rel='apple-touch-icon' href='/images/icons/icon-192x192.png' />
+      <link
+        rel='shortcut icon'
+        type='image/png'
+        href='/images/icons/favicon.png'
+      />
+
+      <link rel='manifest' href='manifest.json' />
 
       <title>{title}</title>
     </Head>

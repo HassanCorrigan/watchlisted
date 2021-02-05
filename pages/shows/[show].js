@@ -91,7 +91,7 @@ const Show = ({ show }) => {
                       Season {latestEpisode.season_number} - Episode{' '}
                       {latestEpisode.episode_number}
                     </p>
-                    <p>{truncateString(latestEpisode.overview, 215)}</p>
+                    <p>{truncateString(latestEpisode.overview, 140)}</p>
                   </div>
                 </a>
               </Link>
