@@ -25,8 +25,11 @@ const UpNext = () => {
         const watching =
           JSON.parse(localStorage.getItem('watching')) ||
           (await createWatching());
+        const calendar =
+          JSON.parse(localStorage.getItem('calendar')) ||
+          (await createCalendar());
         setWatching(watching);
-        setCalendar(await createCalendar());
+        setCalendar(calendar);
         setLoading(false);
       })();
   }, []);
@@ -51,7 +54,6 @@ const UpNext = () => {
     );
 
     localStorage.setItem('watching', JSON.stringify(watching));
-
     return watching;
   };
 
@@ -62,27 +64,39 @@ const UpNext = () => {
       `calendars/my/shows/${today}/28`,
       user.token
     );
-
     const movieCalendar = await traktFetch(
       `calendars/my/movies/${today}/28`,
       user.token,
       `extended=full`
     );
-    const calendar = showCalendar.concat(movieCalendar);
 
-    return sortList(calendar);
+    const combinedCalendars = showCalendar.concat(movieCalendar);
+    const calendar = groupAndSortList(combinedCalendars, 'date');
+
+    localStorage.setItem('calendar', JSON.stringify(calendar));
+    return calendar;
   };
 
-  const sortList = list => {
-    return list
+  const groupAndSortList = (array, key) => {
+    return array
       .map(item => {
-        const date = item.first_aired || item.released;
+        const fullDate = item.first_aired || item.released;
+        const date = new Date(fullDate).toISOString().slice(0, 10);
         return { ...item, date };
       })
+      .reduce((result, currentValue) => {
+        (result[currentValue[key]] = result[currentValue[key]] || []).push(
+          currentValue
+        );
+        return result;
+      }, [])
       .sort((a, b) => a.date.localeCompare(b.date));
   };
 
-  const handleRefresh = async () => setWatching(await createWatching());
+  const handleRefresh = async () => {
+    setWatching(await createWatching());
+    setCalendar(await createCalendar());
+  };
 
   return (
     <Layout>
@@ -127,32 +141,37 @@ const UpNext = () => {
                 ))}
               </div>
             </section>
+
             <section className={styles.section}>
               <h2>This Month</h2>
               <div className={styles.calendar}>
-                {calendar.map((item, index) => (
-                  <div className={styles.calendarItem} key={index}>
-                    <h3 className={styles.date}>{formatDate(item.date)}</h3>
-                    <div className={styles.info}>
-                      <Link
-                        href={
-                          item.show
-                            ? `shows/${item.show.ids.tmdb}`
-                            : `movies/${item.movie.ids.tmdb}`
-                        }>
-                        <a>
-                          <h4>{item.show?.title || item.movie?.title}</h4>
+                {Object.entries(calendar).map((entry, index) => (
+                  <div className={styles.calendarGroup} key={index}>
+                    <h3 className={styles.date}>{formatDate(entry[0])}</h3>
+                    <div className={styles.items}>
+                      {entry[1].map((item, index) => (
+                        <div className={styles.item} key={index}>
+                          <Link
+                            href={
+                              item.show
+                                ? `shows/${item.show.ids.tmdb}`
+                                : `movies/${item.movie.ids.tmdb}`
+                            }>
+                            <a>
+                              <h4>{item.show?.title || item.movie?.title}</h4>
+                            </a>
+                          </Link>
+                          {item.episode && (
+                            <Link
+                              href={`shows/${item.show.ids.tmdb}/season/${item.episode.season}/episode/${item.episode.number}`}>
+                              <a>
+                                <p>{`S${item.episode.season}xE${item.episode.number} - ${item.episode?.title}`}</p>
+                              </a>
+                            </Link>
+                          )}
                           {item.movie && <p>{item.movie.tagline}</p>}
-                        </a>
-                      </Link>
-                      {item.episode && (
-                        <Link
-                          href={`shows/${item.show.ids.tmdb}/season/${item.episode.season}/episode/${item.episode.number}`}>
-                          <a>
-                            <p>{`S${item.episode.season}xE${item.episode.number} - ${item.episode?.title}`}</p>
-                          </a>
-                        </Link>
-                      )}
+                        </div>
+                      ))}
                     </div>
                   </div>
                 ))}

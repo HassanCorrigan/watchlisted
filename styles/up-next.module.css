@@ -6,7 +6,6 @@
   display: block;
   margin: 1em 0.5em;
 }
-
 .banner {
   background-position: center;
   background-repeat: no-repeat;
@@ -15,7 +14,6 @@
   border-radius: var(--border-radius);
   overflow: hidden;
 }
-
 .banner div {
   display: flex;
   flex-direction: column;
@@ -28,28 +26,39 @@
   padding: 0 1em;
 }
 
-.calendarItem {
+.calendarGroup {
   padding: 0.2em 0;
   margin: 1em 0;
 }
-.calendar a {
-  color: var(--main-color);
-}
-.calendar a:hover {
-  text-decoration: underline;
-}
+
 .date {
   filter: brightness(2);
 }
-.info {
+.items {
   padding: 0.1em 0.5em;
-  display: inline-block;
 }
-.info p,
-.info h4 {
-  padding: 0.25em 0;
-  margin: 0.25em 0;
+
+.item {
+  background-color: var(--secondary-background-color);
+  border-radius: var(--border-radius);
+  padding: 0.25em 0.5em;
+  margin: 0.5em 0.25em;
 }
-.info h4 {
+.item a {
+  display: table;
+}
+.item h4 {
   color: var(--primary-color);
+}
+.item p {
+  color: var(--main-color);
+}
+.item h4,
+.item p {
+  margin: 0.25em 0;
+  padding: 0.2em 0;
+}
+.item h4:hover,
+.item p:hover {
+  text-decoration: underline;
 }

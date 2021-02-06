@@ -36,7 +36,7 @@ const Meta = ({ title, description, keywords, url }) => {
         href='/images/icons/favicon.png'
       />
 
-      <link rel='manifest' href='manifest.json' />
+      <link rel='manifest' href='/manifest.json' />
 
       <title>{title}</title>
     </Head>
