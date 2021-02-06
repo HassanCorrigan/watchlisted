@@ -15,7 +15,7 @@ const UpNext = () => {
   const [authenticated, setAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
   const [watching, setWatching] = useState([]);
-  const [calendar, setCalendar] = useState([]);
+  const [calendar, setCalendar] = useState({});
 
   useEffect(() => {
     setAuthenticated(user.authenticated);
@@ -25,9 +25,7 @@ const UpNext = () => {
         const watching =
           JSON.parse(localStorage.getItem('watching')) ||
           (await createWatching());
-        const calendar =
-          JSON.parse(localStorage.getItem('calendar')) ||
-          (await createCalendar());
+        const calendar = await createCalendar();
         setWatching(watching);
         setCalendar(calendar);
         setLoading(false);
@@ -73,7 +71,6 @@ const UpNext = () => {
     const combinedCalendars = showCalendar.concat(movieCalendar);
     const calendar = groupAndSortList(combinedCalendars, 'date');
 
-    localStorage.setItem('calendar', JSON.stringify(calendar));
     return calendar;
   };
 
