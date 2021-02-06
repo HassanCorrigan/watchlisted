@@ -30,8 +30,10 @@
 @media (display-mode: standalone) {
   /* Installed PWA */
   .footer nav {
-    width: 98%;
-    margin-bottom: 1%;
-    border-radius: var(--border-radius);
+    width: 96%;
+    bottom: 2%;
+    left: 2%;
+    right: 2%;
+    border-radius: 1.5em;
   }
 }

@@ -11,7 +11,7 @@ const styles = {
     borderRadius: 'var(--border-radius)',
     padding: '0 0.5em',
     color: 'var(--main-color)',
-    background: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='rgb(167, 12, 110)'><polygon points='0,0 100,0 50,50'/></svg>") no-repeat`,
+    background: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='rgb(189, 40, 135)'><polygon points='0,0 100,0 50,50'/></svg>") no-repeat`,
     backgroundSize: '10px',
     backgroundPosition: 'calc(100% - 10px) 1.1em',
     backgroundRepeat: 'no-repeat',

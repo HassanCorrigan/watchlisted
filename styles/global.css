@@ -80,7 +80,7 @@ button {
     --main-color: #cfcfcf;
     --main-background-color: #080808;
     --secondary-background-color: #202020;
-    --transparent-background-color: rgba(0, 0, 0, 0.75);
+    --transparent-background-color: rgba(32, 32, 32, 0.75);
     --primary-color: #f030a9;
     --box-shadow-color: #050505;
   }
