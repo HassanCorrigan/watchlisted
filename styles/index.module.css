@@ -10,13 +10,14 @@
   display: flex;
   flex: row;
   overflow-x: scroll;
+  padding: 0.5em 0;
 }
 .content::-webkit-scrollbar {
   display: none; /* Removes horizontal scrollbar */
 }
 
 .horizontalList {
-  padding: 0.5em 0 1.5em 0;
+  padding: 0.25em 0 1.5em 0;
 }
 .horizontalListHeader {
   display: flex;

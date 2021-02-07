@@ -13,7 +13,8 @@ const MediaHeader = ({ title, banner, poster }) => {
       backgroundSize: 'cover',
     },
     title: {
-      color: 'var(--main-background-color)',
+      color: 'var(--primary-color)',
+      fontWeight: '600',
       padding: '0.25em 0',
     },
   };

@@ -1,20 +1,13 @@
-.info,
+/* Main show and movie page */
 .overview,
 .meta {
   padding: 1em 0.5em;
 }
 
-.info {
-  background-color: var(--secondary-background-color);
-  box-shadow: 0.1em 0.1em 0.8em var(--box-shadow-color);
+/* Show page only */
+.nextEpisodeDate {
   margin: 0.5em;
-  border-radius: var(--border-radius);
 }
-
-.info p {
-  margin-bottom: 0.5em;
-}
-
 .seasonOverview h3 {
   padding: 0 0.5em;
 }
@@ -49,6 +42,15 @@
   padding: 0.5em 0;
 }
 
+/* Season page only */
+.episodeList {
+  padding: 1em;
+}
+
+.stillContainer {
+  position: relative;
+}
+
 .still {
   width: 100%;
   border-radius: var(--border-radius);
@@ -73,10 +75,12 @@
   padding: 0.1em 0;
 }
 
-.episodeList {
-  padding: 1em;
+/* Episode page only */
+.episodeOverview {
+  padding: 1em 0.5em;
+  margin: 0.5em;
 }
 
-.stillContainer {
-  position: relative;
+.episodeOverview p {
+  margin-bottom: 0.5em;
 }

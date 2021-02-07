@@ -45,8 +45,8 @@ const Watchlist = () => {
 
   return (
     <Layout>
-      <section className='page'>
-        <h1>Watchlist</h1>
+      <section>
+        <h1 className='page-title'>Watchlist</h1>
 
         {!authenticated ? (
           <LoginButton />

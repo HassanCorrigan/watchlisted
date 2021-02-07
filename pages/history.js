@@ -47,8 +47,8 @@ const Watchlist = () => {
 
   return (
     <Layout>
-      <section className='page'>
-        <h1>History</h1>
+      <section>
+        <h1 className='page-title'>History</h1>
 
         {!authenticated ? (
           <LoginButton />
@@ -71,7 +71,7 @@ const Watchlist = () => {
 
             <div className={styles.list}>
               {filterList(history, mediaType)
-                .sort(sortList(sortOrder))
+                .sort(sortList(sortOrder, 'desc'))
                 .map((item, index) => (
                   <Link href={item.slug} key={index}>
                     <a>

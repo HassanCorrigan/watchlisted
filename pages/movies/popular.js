@@ -5,9 +5,9 @@ import Card from 'components/Card';
 const PopularMovies = ({ movies }) => {
   return (
     <Layout>
-      <section className='page'>
-        <h1>Popular Movies</h1>
-        <div>
+      <section>
+        <h1 className='page-title'>Popular Movies</h1>
+        <div className='page-container'>
           {movies.map(movie => (
             <Card key={movie.id} media={movie} />
           ))}

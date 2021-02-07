@@ -97,16 +97,16 @@ const UpNext = () => {
 
   return (
     <Layout>
-      <section className='page'>
-        <h1>Up Next</h1>
+      <section>
+        <h1 className='page-title'>Up Next</h1>
         {!authenticated ? (
           <LoginButton />
         ) : (
           <>
             {loading && <Loader />}
             <section className={styles.section}>
-              <h2>Watching</h2>
               <div className={styles.controls}>
+                <h2>Watching</h2>
                 <RefreshButton updateList={handleRefresh} />
               </div>
               <div className={styles.watching}>
@@ -147,7 +147,7 @@ const UpNext = () => {
                     <h3 className={styles.date}>{formatDate(entry[0])}</h3>
                     <div className={styles.items}>
                       {entry[1].map((item, index) => (
-                        <div className={styles.item} key={index}>
+                        <div className={`card ${styles.item}`} key={index}>
                           <Link
                             href={
                               item.show
@@ -155,14 +155,19 @@ const UpNext = () => {
                                 : `movies/${item.movie.ids.tmdb}`
                             }>
                             <a>
-                              <h4>{item.show?.title || item.movie?.title}</h4>
+                              <h4 className={styles.title}>
+                                {item.show?.title || item.movie?.title}
+                              </h4>
                             </a>
                           </Link>
                           {item.episode && (
                             <Link
                               href={`shows/${item.show.ids.tmdb}/season/${item.episode.season}/episode/${item.episode.number}`}>
                               <a>
-                                <p>{`S${item.episode.season}xE${item.episode.number} - ${item.episode?.title}`}</p>
+                                <p
+                                  className={
+                                    styles.episode
+                                  }>{`S${item.episode.season}xE${item.episode.number} - ${item.episode?.title}`}</p>
                               </a>
                             </Link>
                           )}

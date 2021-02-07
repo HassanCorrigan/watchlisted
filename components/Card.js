@@ -18,7 +18,7 @@ const Card = ({ media }) => {
 
   return (
     <Link href={`/${slug}/${media.id}`}>
-      <a className={styles.card}>
+      <a className={`card ${styles.card}`}>
         <Poster media={media} />
         <div className={styles.cardInfo}>
           <h2 className={styles.title}>{media.title || media.name}</h2>

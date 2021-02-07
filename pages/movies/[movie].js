@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useAppContext } from 'context/AppContext';
 import { tmdbFetch } from 'helpers/apiFetch';
-import { formatDate } from 'helpers/date';
 import Layout from 'components/Layout';
 import MediaHeader from 'components/MediaHeader';
+import MediaInfoCard from 'components/MediaInfoCard';
 import TraktActions from 'components/TraktActions';
 import styles from 'styles/media-page.module.css';
 
@@ -24,33 +24,24 @@ const Movie = ({ movie }) => {
           poster={movie}
         />
 
-        <div className={styles.content}>
-          <div className={styles.info}>
-            <p>Run Time: {movie.runtime} mins</p>
-            <p>Release: {formatDate(movie.release_date)}</p>
-            <p>
-              Average Rating: &#11088; <b>{movie.vote_average}</b> (
-              {movie.vote_count} votes)
-            </p>
+        <MediaInfoCard
+          runTime={movie.runtime}
+          date={movie.release_date}
+          voteAverage={movie.vote_average}
+          voteCount={movie.vote_count}
+          networks={movie.production_companies}
+        />
 
-            {movie.production_companies.map(company => (
-              <span className='tag' key={company.id}>
-                {company.name}
-              </span>
-            ))}
-          </div>
+        {authenticated && <TraktActions />}
 
-          {authenticated && <TraktActions />}
+        <p className={styles.overview}>{movie.overview}</p>
 
-          <p className={styles.overview}>{movie.overview}</p>
-
-          <div className={styles.meta}>
-            {movie.genres.map(genre => (
-              <span className='tag' key={genre.id}>
-                {genre.name}
-              </span>
-            ))}
-          </div>
+        <div className={styles.meta}>
+          {movie.genres.map(genre => (
+            <span className='tag' key={genre.id}>
+              {genre.name}
+            </span>
+          ))}
         </div>
       </section>
     </Layout>

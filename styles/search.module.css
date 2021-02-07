@@ -1,3 +1,6 @@
+.container {
+  padding: 0.5em;
+}
 .searchbox {
   color: var(--main-color);
   background-color: var(--secondary-background-color);

@@ -1,5 +1,11 @@
 .section {
-  padding: 1.5em 0;
+  padding: 1.5em 0.5em;
+}
+
+/* Watching */
+.controls {
+  display: flex;
+  justify-content: space-between;
 }
 
 .watchItem {
@@ -26,6 +32,7 @@
   padding: 0 1em;
 }
 
+/* Calendar */
 .calendarGroup {
   padding: 0.2em 0;
   margin: 1em 0;
@@ -38,27 +45,21 @@
   padding: 0.1em 0.5em;
 }
 
-.item {
-  background-color: var(--secondary-background-color);
-  border-radius: var(--border-radius);
-  padding: 0.25em 0.5em;
-  margin: 0.5em 0.25em;
-}
 .item a {
   display: table;
 }
-.item h4 {
+.title {
   color: var(--primary-color);
 }
 .item p {
   color: var(--main-color);
 }
-.item h4,
+.title,
 .item p {
   margin: 0.25em 0;
   padding: 0.2em 0;
 }
-.item h4:hover,
-.item p:hover {
+.title:hover,
+.episode:hover {
   text-decoration: underline;
 }

@@ -4,6 +4,7 @@ import { tmdbFetch } from 'helpers/apiFetch';
 import { createBannerPath } from 'helpers/createImagePath';
 import Layout from 'components/Layout';
 import MediaHeader from 'components/MediaHeader';
+import MediaInfoCard from 'components/MediaInfoCard';
 import TraktActions from 'components/TraktActions';
 import styles from 'styles/media-page.module.css';
 
@@ -23,9 +24,18 @@ const Season = ({ show, episode }) => {
           banner={show.backdrop_path}
           poster={show}
         />
-        <div className={styles.info}>
+
+        <MediaInfoCard
+          runTime={show.episode_run_time[0]}
+          date={episode.air_date}
+          voteAverage={episode.vote_average}
+          voteCount={episode.vote_count}
+          networks={show.networks}
+        />
+
+        <div className={`card ${styles.episodeOverview}`}>
           <p>
-            Season {episode.season_number} - Episode {episode.episode_number}
+            {`Season ${episode.season_number} - Episode ${episode.episode_number}`}
           </p>
           <img
             className={styles.still}

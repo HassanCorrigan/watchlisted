@@ -13,12 +13,6 @@
   border-radius: 50%;
 }
 
-.statsOverview {
-  background-color: var(--secondary-background-color);
-  border-radius: var(--border-radius);
-  margin: 1em 0;
-}
-
 .category {
   text-align: center;
   padding: 1em 0;

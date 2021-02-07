@@ -1,11 +1,6 @@
 .card {
   display: flex;
   padding: 0.5em 0.25em;
-  margin: 1em 0;
-  background-color: var(--secondary-background-color);
-  border-radius: var(--border-radius);
-  box-shadow: 0.1em 0.1em 0.8em var(--box-shadow-color);
-  width: 100%;
 }
 
 .cardInfo {

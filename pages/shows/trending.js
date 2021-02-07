@@ -5,9 +5,9 @@ import Card from 'components/Card';
 const TrendingShows = ({ shows }) => {
   return (
     <Layout>
-      <section className='page'>
-        <h1>Trending Shows</h1>
-        <div>
+      <section>
+        <h1 className='page-title'>Trending Shows</h1>
+        <div className='page-container'>
           {shows.map(show => (
             <Card key={show.id} media={show} />
           ))}

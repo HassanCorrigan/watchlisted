@@ -37,9 +37,9 @@ const Account = () => {
 
   return (
     <Layout>
-      <section className='page'>
-        <h1>Account</h1>
-        <div className={styles.content}>
+      <section>
+        <h1 className='page-title'>Account</h1>
+        <div>
           {!authenticated ? (
             <LoginButton />
           ) : (
@@ -62,7 +62,7 @@ const Account = () => {
                   habits.
                 </p>
 
-                <div className={styles.statsOverview}>
+                <div className='card'>
                   {Object.keys(userStats).map((key, index) => (
                     <div key={index} className={styles.category}>
                       <h3>{key}</h3>

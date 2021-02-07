@@ -62,21 +62,21 @@ const Search = () => {
 
   return (
     <Layout>
-      <section className='page'>
-        <h1>Search TV Shows and Movies</h1>
-        <form onSubmit={handleSearchSubmit}>
-          <input
-            className={styles.searchbox}
-            type='text'
-            value={inputValue}
-            onChange={e => {
-              setInputValue(e.target.value);
-            }}
-            aria-label='Search'
-            placeholder='Search...'
-          />
-        </form>
-        <div>
+      <section>
+        <h1 className='page-title'>Search Movies and Shows</h1>
+        <div className={styles.container}>
+          <form onSubmit={handleSearchSubmit}>
+            <input
+              className={styles.searchbox}
+              type='text'
+              value={inputValue}
+              onChange={e => {
+                setInputValue(e.target.value);
+              }}
+              aria-label='Search'
+              placeholder='Search...'
+            />
+          </form>
           {loading && <Loader />}
 
           {searchResults.length === 0 && searchHistory.length !== 0 && (

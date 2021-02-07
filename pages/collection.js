@@ -47,8 +47,8 @@ const Collection = () => {
 
   return (
     <Layout>
-      <section className='page'>
-        <h1>Collection</h1>
+      <section>
+        <h1 className='page-title'>Collection</h1>
 
         {!authenticated ? (
           <LoginButton />

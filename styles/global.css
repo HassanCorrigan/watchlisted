@@ -56,9 +56,20 @@ button {
   font-family: 'Rubik', sans-serif;
 }
 
-.page {
+.page-title {
+  padding: 0.25em;
+}
+.page-container {
   padding: 0.5em;
-  min-height: 75vh;
+}
+
+.card {
+  color: var(--main-color);
+  background-color: var(--secondary-background-color);
+  padding: 0.75em;
+  margin: 0.75em 0;
+  border-radius: var(--border-radius);
+  box-shadow: 0.1em 0.1em 0.8em var(--box-shadow-color);
 }
 
 .tag {

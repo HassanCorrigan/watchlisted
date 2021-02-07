@@ -13,21 +13,6 @@
   font-size: 0.8em;
 }
 
-.list {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-}
-.list a {
-  color: var(--main-color);
-  margin: 1.5em 0.25em;
-}
-.list a img {
-  width: 100%;
-  height: auto !important;
-  margin: auto !important;
-}
-
 .posterList {
   display: flex;
   flex: row;
@@ -46,8 +31,25 @@
   display: none; /* Removes horizontal scrollbar */
 }
 
+/* Grid lists */
+.list {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 0.25em;
+}
+.list a {
+  color: var(--main-color);
+  margin: 1.5em 0.25em;
+}
+.list a img {
+  width: 100%;
+  height: auto !important;
+  margin: auto !important;
+}
+
 .controls {
   display: flex;
   justify-content: space-between;
-  margin: 1em 0;
+  margin: 1em 0.5em;
 }
