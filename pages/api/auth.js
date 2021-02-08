@@ -9,6 +9,7 @@ export default async function handler(req, res) {
     serialize('token', data.access_token, {
       path: '/',
       expires: new Date(Date.now() + data.expires_in * 1000),
+      sameSite: true,
     })
   );
 

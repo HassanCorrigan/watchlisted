@@ -23,8 +23,8 @@
   margin: 0.5em auto;
 }
 .footer nav a[active='true'] {
-  color: var(--primary-color);
-  fill: var(--primary-color);
+  color: var(--highlight-color);
+  fill: var(--highlight-color);
 }
 
 @media (display-mode: standalone) {

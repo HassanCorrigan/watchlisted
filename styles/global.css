@@ -3,9 +3,10 @@
 :root {
   --main-color: #222222;
   --main-background-color: #ececec;
+  --secondary-color: #ccc;
   --secondary-background-color: #ffffff;
   --transparent-background-color: rgba(255, 255, 255, 0.75);
-  --primary-color: #bd2887;
+  --highlight-color: #bd2887;
   --box-shadow-color: #dddbdb;
   --border-radius: 0.75em;
 }
@@ -57,7 +58,7 @@ button {
 }
 
 .page-title {
-  padding: 0.25em;
+  padding: 0.5em 0.25em;
 }
 .page-container {
   padding: 0.5em;
@@ -74,7 +75,7 @@ button {
 
 .tag {
   display: inline-block;
-  color: var(--primary-color);
+  color: var(--highlight-color);
   background: linear-gradient(to left, #743ad5, #d53a9d, #2c19d6);
   border-radius: var(--border-radius);
   border: 0.1em solid transparent;
@@ -86,13 +87,23 @@ button {
   margin: 0.2em;
 }
 
+@keyframes loader {
+  from {
+    margin-left: 0;
+  }
+  from {
+    margin-left: 0.5em;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --main-color: #cfcfcf;
     --main-background-color: #080808;
+    --secondary-color: #333;
     --secondary-background-color: #1d1d1d;
     --transparent-background-color: rgba(32, 32, 32, 0.75);
-    --primary-color: #f030a9;
+    --highlight-color: #f030a9;
     --box-shadow-color: #050505;
   }
 }

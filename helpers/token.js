@@ -1,9 +1,7 @@
-import Cookies from 'universal-cookie';
+import Cookies from 'js-cookie';
 
-const cookies = new Cookies();
+const getToken = () => Cookies.get('token') || null;
 
-const getToken = () => cookies.get('token') || null;
-
-const revokeToken = () => cookies.remove('token');
+const revokeToken = () => Cookies.remove('token');
 
 export { getToken, revokeToken };

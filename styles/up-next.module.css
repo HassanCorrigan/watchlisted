@@ -49,7 +49,7 @@
   display: table;
 }
 .title {
-  color: var(--primary-color);
+  color: var(--highlight-color);
 }
 .item p {
   color: var(--main-color);

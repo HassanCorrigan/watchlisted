@@ -16,11 +16,27 @@ const Loader = () => {
       fontSize: '2em',
       zIndex: '9',
     },
+    bar: {
+      height: '0.2em',
+      width: '2em',
+      backgroundColor: 'var(--secondary-color)',
+      margin: '0.1em 0',
+      borderRadius: 'var(--border-radius)',
+    },
+    barOdd: {
+      animation: 'loader 0.5s ease-in-out 0s infinite alternate',
+    },
+    barEven: {},
   };
 
   return (
     <div style={styles.background}>
-      <p style={styles.loader}>Loading...</p>
+      <div style={styles.loader}>
+        <div style={{ ...styles.bar, ...styles.barOdd }}></div>
+        <div style={{ ...styles.bar, ...styles.barEven }}></div>
+        <div style={{ ...styles.bar, ...styles.barOdd }}></div>
+        <div style={{ ...styles.bar, ...styles.barEven }}></div>
+      </div>
     </div>
   );
 };
