@@ -1,4 +1,4 @@
-import { createBannerPath } from 'helpers/createImagePath';
+import { createBannerPath } from 'helpers/image-path';
 import Poster from 'components/Poster';
 
 const MediaHeader = ({ title, banner, poster }) => {

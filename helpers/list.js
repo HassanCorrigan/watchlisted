@@ -1,4 +1,4 @@
-import { traktFetch, tmdbFetch } from 'helpers/apiFetch';
+import { traktFetch, tmdbFetch } from 'helpers/api';
 
 const createList = async (listType, token) => {
   const traktList = await traktFetch(

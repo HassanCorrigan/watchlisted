@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { tmdbFetch } from 'helpers/apiFetch';
+import { tmdbFetch } from 'helpers/api';
 import Layout from 'components/Layout';
 import Loader from 'components/Loader';
 import Card from 'components/Card';
@@ -47,7 +47,7 @@ const Search = () => {
       return;
     }
 
-    const { results } = await tmdbFetch('search/multi', searchText);
+    const { results } = await tmdbFetch('search/multi', `query=${searchText}`);
     const filteredResults = results.filter(
       item => item.media_type !== 'person'
     );
@@ -70,7 +70,7 @@ const Search = () => {
               className={styles.searchbox}
               type='text'
               value={inputValue}
-              onChange={e => {
+              onInput={e => {
                 setInputValue(e.target.value);
               }}
               aria-label='Search'

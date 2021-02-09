@@ -1,7 +1,7 @@
 const tmdbFetch = async (params, query) => {
   const apiURL = 'https://api.themoviedb.org/3';
   const apiKey = process.env.NEXT_PUBLIC_TMDB_API_KEY;
-  const queryString = query ? `&query=${query}` : '';
+  const queryString = query ? `&${query}` : '';
 
   try {
     const res = await fetch(

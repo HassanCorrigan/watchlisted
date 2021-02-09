@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useAppContext } from 'context/AppContext';
-import { tmdbFetch, traktFetch } from 'helpers/apiFetch';
+import { tmdbFetch, traktFetch } from 'helpers/api';
 import { formatDate } from 'helpers/date';
-import { createBannerPath } from 'helpers/createImagePath';
+import { createBannerPath } from 'helpers/image-path';
 import Layout from 'components/Layout';
 import Loader from 'components/Loader';
 import RefreshButton from 'components/RefreshButton';

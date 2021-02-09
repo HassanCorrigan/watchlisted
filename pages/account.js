@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAppContext } from 'context/AppContext';
-import { traktFetch } from 'helpers/apiFetch';
+import { traktFetch } from 'helpers/api';
 import { logOut } from 'helpers/auth';
 import Layout from 'components/Layout';
 import LoginButton from 'components/LoginButton';

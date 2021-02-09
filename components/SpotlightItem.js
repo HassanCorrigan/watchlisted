@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { createBannerPath } from 'helpers/createImagePath';
+import { createBannerPath } from 'helpers/image-path';
 
 const SpotlightItem = ({ item, slug }) => {
   const styles = {

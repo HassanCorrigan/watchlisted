@@ -17,8 +17,8 @@ const Loader = () => {
       zIndex: '9',
     },
     bar: {
-      height: '0.2em',
-      width: '2em',
+      height: '0.1em',
+      width: '1.5em',
       backgroundColor: 'var(--secondary-color)',
       margin: '0.1em 0',
       borderRadius: 'var(--border-radius)',

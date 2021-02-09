@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { tmdbFetch } from 'helpers/apiFetch';
+import { tmdbFetch } from 'helpers/api';
 import Layout from 'components/Layout';
 import SpotlightItem from 'components/SpotlightItem';
 import PosterList from 'components/PosterList';

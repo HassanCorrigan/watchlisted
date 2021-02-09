@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useAppContext } from 'context/AppContext';
-import { tmdbFetch } from 'helpers/apiFetch';
+import { tmdbFetch } from 'helpers/api';
 import { truncateString } from 'helpers/string';
-import { createBannerPath } from 'helpers/createImagePath';
+import { createBannerPath } from 'helpers/image-path';
 import Layout from 'components/Layout';
 import MediaHeader from 'components/MediaHeader';
 import MediaInfoCard from 'components/MediaInfoCard';

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useAppContext } from 'context/AppContext';
-import { tmdbFetch } from 'helpers/apiFetch';
-import { createBannerPath } from 'helpers/createImagePath';
+import { tmdbFetch } from 'helpers/api';
+import { createBannerPath } from 'helpers/image-path';
 import Layout from 'components/Layout';
 import MediaHeader from 'components/MediaHeader';
 import MediaInfoCard from 'components/MediaInfoCard';

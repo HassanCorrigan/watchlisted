@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAppContext } from 'context/AppContext';
-import { tmdbFetch } from 'helpers/apiFetch';
+import { tmdbFetch } from 'helpers/api';
 import Layout from 'components/Layout';
 import MediaHeader from 'components/MediaHeader';
 import MediaInfoCard from 'components/MediaInfoCard';

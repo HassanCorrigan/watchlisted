@@ -1,28 +1,41 @@
-import { tmdbFetch } from 'helpers/apiFetch';
+import Link from 'next/link';
+import { tmdbFetch } from 'helpers/api';
 import Layout from 'components/Layout';
 import Card from 'components/Card';
 
-const TrendingMovies = ({ movies }) => {
+const TrendingMovies = ({ trendingMovies }) => {
+  const { results, page } = trendingMovies;
+
   return (
     <Layout>
       <section>
         <h1 className='page-title'>Trending Movies</h1>
         <div className='page-container'>
-          {movies.map(movie => (
+          {results.map(movie => (
             <Card key={movie.id} media={movie} />
           ))}
+
+          <div>
+            {page !== 1 && (
+              <Link href={`/movies/trending?page=${page - 1}`}>
+                Previous Page
+              </Link>
+            )}
+            <Link href={`/movies/trending?page=${page + 1}`}>Next Page</Link>
+          </div>
         </div>
       </section>
     </Layout>
   );
 };
 
-export async function getServerSideProps() {
-  const movies = await tmdbFetch('trending/movie/day');
+export async function getServerSideProps({ query }) {
+  const page = query.page || 1;
+  const trendingMovies = await tmdbFetch('trending/movie/day', `page=${page}`);
 
   return {
     props: {
-      movies: movies.results,
+      trendingMovies,
     },
   };
 }
