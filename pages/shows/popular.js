@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { tmdbFetch } from 'helpers/api';
 import Layout from 'components/Layout';
 import Card from 'components/Card';
+import styles from 'styles/media-page.module.css';
 
 const PopularShows = ({ popularShows }) => {
   const { results, page } = popularShows;
@@ -15,7 +16,7 @@ const PopularShows = ({ popularShows }) => {
             <Card key={show.id} media={show} />
           ))}
 
-          <div>
+          <div className={styles.pageNavigation}>
             {page !== 1 && (
               <Link href={`/shows/popular?page=${page - 1}`}>
                 Previous Page

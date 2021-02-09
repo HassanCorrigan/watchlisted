@@ -48,3 +48,7 @@
   margin: auto;
   cursor: pointer;
 }
+
+.btn:hover {
+  color: var(--highlight-color);
+}

@@ -84,3 +84,24 @@
 .episodeOverview p {
   margin-bottom: 0.5em;
 }
+
+/* Trending/Popular pages only */
+.pageNavigation {
+  width: fit-content;
+  margin: 1em auto;
+  padding: 1em;
+  background-color: var(--secondary-background-color);
+  border-radius: var(--border-radius);
+  box-shadow: 0.1em 0.1em 0.8em var(--box-shadow-color);
+}
+.pageNavigation a {
+  color: var(--main-color);
+  padding: 0.5em;
+}
+.pageNavigation a:hover {
+  filter: brightness(1);
+  color: var(--highlight-color);
+}
+.pageNavigation a:nth-child(2) {
+  border-left: 1px solid var(--main-background-color);
+}
