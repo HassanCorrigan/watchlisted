@@ -8,7 +8,7 @@ import Loader from 'components/Loader';
 import RefreshButton from 'components/RefreshButton';
 import MediaTypeSelect from 'components/MediaTypeSelect';
 import Poster from 'components/Poster';
-import styles from 'styles/lists.module.css';
+import styles from 'styles/pages/lists.module.css';
 
 const Watchlist = () => {
   const { user } = useAppContext();

@@ -3,7 +3,7 @@ import { tmdbFetch } from 'helpers/api';
 import Layout from 'components/Layout';
 import SpotlightItem from 'components/SpotlightItem';
 import PosterList from 'components/PosterList';
-import styles from 'styles/index.module.css';
+import styles from 'styles/pages/index.module.css';
 
 const Home = ({
   trendingShows,

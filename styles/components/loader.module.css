@@ -1,0 +1,49 @@
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--transparent-background-color);
+}
+.loader {
+  padding: 0.5em;
+  font-size: 2em;
+  z-index: 9;
+}
+.bar {
+  height: 0.1em;
+  width: 1.5em;
+  background-color: var(--secondary-color);
+  margin: 0.1em 0;
+  border-radius: var(--border-radius);
+}
+.barOdd {
+  transform: translate(-0.2em);
+  animation: animateOdd 0.5s ease-in-out 0s infinite alternate;
+}
+.barEven {
+  transform: translate(0.2em);
+  animation: animateEven 0.5s ease-in-out 0s infinite alternate;
+}
+
+@keyframes animateOdd {
+  from {
+    transform: translate(-0.2em);
+  }
+  from {
+    transform: translate(0.2em);
+  }
+}
+
+@keyframes animateEven {
+  from {
+    transform: translate(0.2em);
+  }
+  from {
+    transform: translate(-0.2em);
+  }
+}

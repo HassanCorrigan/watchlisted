@@ -9,7 +9,7 @@ import RefreshButton from 'components/RefreshButton';
 import MediaSortSelect from 'components/MediaSortSelect';
 import MediaTypeSelect from 'components/MediaTypeSelect';
 import Poster from 'components/Poster';
-import styles from 'styles/lists.module.css';
+import styles from 'styles/pages/lists.module.css';
 
 const Collection = () => {
   const { user } = useAppContext();

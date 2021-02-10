@@ -87,15 +87,6 @@ button {
   margin: 0.2em;
 }
 
-@keyframes loader {
-  from {
-    margin-left: 0;
-  }
-  from {
-    margin-left: 0.5em;
-  }
-}
-
 @media (prefers-color-scheme: dark) {
   :root {
     --main-color: #cfcfcf;

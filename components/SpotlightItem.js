@@ -1,32 +1,17 @@
 import Link from 'next/link';
 import { createBannerPath } from 'helpers/image-path';
+import styles from 'styles/components/spotlight-item.module.css';
 
 const SpotlightItem = ({ item, slug }) => {
-  const styles = {
-    banner: {
-      width: '90vw',
-      margin: '0 0.25em',
-      borderRadius: 'var(--border-radius)',
-    },
-    link: {
-      margin: '0.25em',
-      position: 'relative',
-    },
-    title: {
-      color: 'var(--main-color)',
-      padding: '0 0.25em',
-    },
-  };
-
   return (
     <Link href={`/${slug}/${item.id}`}>
-      <a style={styles.link}>
+      <a className={styles.link}>
         <img
-          style={styles.banner}
+          className={styles.banner}
           src={createBannerPath(item.backdrop_path)}
           alt={item.title || item.name}
         />
-        <h2 style={styles.title}>{item.title || item.name}</h2>
+        <h2 className={styles.title}>{item.title || item.name}</h2>
       </a>
     </Link>
   );

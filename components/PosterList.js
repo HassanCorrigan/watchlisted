@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Poster from 'components/Poster';
-import styles from 'styles/poster-list.module.css';
+import styles from 'styles/components/poster-list.module.css';
 
 const PosterList = ({ items, slug }) => {
   return (

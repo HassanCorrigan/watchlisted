@@ -1,44 +1,21 @@
 import Link from 'next/link';
+import styles from 'styles/components/login-button.module.css';
 
 const LoginButton = () => {
-  const styles = {
-    wrapper: {
-      width: '100%',
-      minHeight: '50vh',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    link: {
-      display: 'flex',
-      alignItems: 'center',
-    },
-    h3: {
-      fontWeight: '500',
-      textAlign: 'center',
-      textTransform: 'uppercase',
-    },
-    img: {
-      width: '2.5em',
-      marginRight: '0.5em',
-      height: 'auto',
-    },
-  };
-
   const client_id = process.env.NEXT_PUBLIC_TRAKT_CLIENT_ID;
   const redirect_uri = `${process.env.NEXT_PUBLIC_SITE_URL}/api/auth/`;
 
   return (
-    <div style={styles.wrapper}>
+    <div className={styles.wrapper}>
       <Link
         href={`https://trakt.tv/oauth/authorize?response_type=code&client_id=${client_id}&redirect_uri=${redirect_uri}`}>
-        <a style={styles.link} className='card'>
+        <a className={`card ${styles.link}`}>
           <img
             src='/images/trakt-logo.png'
             alt='Trakt Logo'
-            style={styles.img}
+            className={styles.img}
           />
-          <h3 style={styles.h3}>Login with Trakt.tv</h3>
+          <h3 className={styles.h3}>Login with Trakt.tv</h3>
         </a>
       </Link>
     </div>

@@ -1,19 +1,12 @@
 import { createPosterPath } from 'helpers/image-path';
+import styles from 'styles/components/poster.module.css';
 
 const Poster = ({ media }) => {
-  const styles = {
-    poster: {
-      height: '12em',
-      borderRadius: 'var(--border-radius)',
-      margin: '0 0.25em',
-    },
-  };
-
   return (
     <img
       src={createPosterPath(media.poster_path)}
       alt={media.title || media.name}
-      style={styles.poster}
+      className={styles.poster}
     />
   );
 };

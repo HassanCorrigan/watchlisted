@@ -3,7 +3,7 @@ import { tmdbFetch } from 'helpers/api';
 import Layout from 'components/Layout';
 import Loader from 'components/Loader';
 import Card from 'components/Card';
-import styles from 'styles/search.module.css';
+import styles from 'styles/pages/search.module.css';
 
 const Search = () => {
   const [loading, setLoading] = useState(false);

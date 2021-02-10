@@ -4,7 +4,7 @@ import { useAppContext } from 'context/AppContext';
 import { truncateString } from 'helpers/string';
 import Poster from 'components/Poster';
 import TraktActions from 'components/TraktActions';
-import styles from 'styles/card.module.css';
+import styles from 'styles/components/card.module.css';
 
 const Card = ({ media }) => {
   const { user } = useAppContext();

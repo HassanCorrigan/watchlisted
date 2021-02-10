@@ -10,7 +10,7 @@ import MediaHeader from 'components/MediaHeader';
 import MediaInfoCard from 'components/MediaInfoCard';
 import TraktActions from 'components/TraktActions';
 import Poster from 'components/Poster';
-import styles from 'styles/media-page.module.css';
+import styles from 'styles/pages/media-page.module.css';
 
 const Show = ({ show }) => {
   const { user } = useAppContext();

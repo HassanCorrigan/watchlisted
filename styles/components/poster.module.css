@@ -1,0 +1,5 @@
+.poster {
+  height: 12em;
+  border-radius: var(--border-radius);
+  margin: 0 0.25em;
+}

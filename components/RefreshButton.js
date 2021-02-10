@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import styles from 'styles/refresh-button.module.css';
+import styles from 'styles/components/refresh-button.module.css';
 
 const RefreshButton = ({ updateList }) => {
   const [refreshText, setRefreshText] = useState('Refresh');

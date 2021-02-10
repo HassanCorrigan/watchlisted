@@ -6,7 +6,7 @@ import Layout from 'components/Layout';
 import MediaHeader from 'components/MediaHeader';
 import MediaInfoCard from 'components/MediaInfoCard';
 import TraktActions from 'components/TraktActions';
-import styles from 'styles/media-page.module.css';
+import styles from 'styles/pages/media-page.module.css';
 
 const Season = ({ show, episode }) => {
   const { user } = useAppContext();

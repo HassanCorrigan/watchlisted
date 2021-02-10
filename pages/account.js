@@ -6,7 +6,7 @@ import Layout from 'components/Layout';
 import LoginButton from 'components/LoginButton';
 import Loader from 'components/Loader';
 import packageJSON from 'package.json';
-import styles from 'styles/account.module.css';
+import styles from 'styles/pages/account.module.css';
 
 const Account = () => {
   const { user } = useAppContext();

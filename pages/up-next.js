@@ -8,7 +8,7 @@ import Layout from 'components/Layout';
 import Loader from 'components/Loader';
 import RefreshButton from 'components/RefreshButton';
 import LoginButton from 'components/LoginButton';
-import styles from 'styles/up-next.module.css';
+import styles from 'styles/pages/up-next.module.css';
 
 const UpNext = () => {
   const { user } = useAppContext();

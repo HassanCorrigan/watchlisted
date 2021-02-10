@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { tmdbFetch } from 'helpers/api';
 import Layout from 'components/Layout';
 import Card from 'components/Card';
-import styles from 'styles/media-page.module.css';
+import styles from 'styles/pages/media-page.module.css';
 
 const TrendingShows = ({ trendingShows }) => {
   const { results, page } = trendingShows;

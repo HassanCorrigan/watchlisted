@@ -1,4 +1,4 @@
-import styles from 'styles/media-select.module.css';
+import styles from 'styles/components/media-type-select.module.css';
 
 const MediaTypeSelect = ({ mediaType, setMediaType }) => {
   const handleChange = e => {

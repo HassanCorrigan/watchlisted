@@ -1,20 +1,12 @@
 import { formatDate } from 'helpers/date';
-
-const styles = {
-  info: {
-    margin: '0.5em',
-  },
-  infoItem: {
-    marginBottom: '0.5em',
-  },
-};
+import styles from 'styles/components/media-info-card.module.css';
 
 const MediaInfoCard = ({ runTime, date, voteAverage, voteCount, networks }) => {
   return (
-    <div style={styles.info} className='card'>
-      <p style={styles.infoItem}>Run Time: {runTime} mins</p>
-      <p style={styles.infoItem}>Air Date: {formatDate(date)}</p>
-      <p style={styles.infoItem}>
+    <div className={styles.info} className='card'>
+      <p className={styles.infoItem}>Run Time: {runTime} mins</p>
+      <p className={styles.infoItem}>Air Date: {formatDate(date)}</p>
+      <p className={styles.infoItem}>
         Average Rating: &#11088; <b>{voteAverage}</b> ({voteCount} votes)
       </p>
 
