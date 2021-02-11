@@ -38,4 +38,25 @@ const traktFetch = async (params, token, query) => {
   }
 };
 
-export { tmdbFetch, traktFetch };
+const traktPost = async (params, body, token) => {
+  const apiURL = 'https://api.trakt.tv';
+  const clientID = process.env.NEXT_PUBLIC_TRAKT_CLIENT_ID;
+
+  try {
+    const res = await fetch(`${apiURL}/${params}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+        'trakt-api-version': '2',
+        'trakt-api-key': `${clientID}`,
+      },
+      method: 'POST',
+      body: JSON.stringify(body),
+    });
+    return await res.json();
+  } catch (errors) {
+    console.error(errors);
+  }
+};
+
+export { tmdbFetch, traktFetch, traktPost };

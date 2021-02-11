@@ -1,3 +1,34 @@
-.info {
-  display: none;
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 0.5em;
+}
+
+.action {
+  font-weight: 300;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  text-align: center;
+
+  /* Remove default buttun styles */
+  color: var(--main-color);
+  background-color: var(--secondary-background-color);
+  border: none;
+  outline: none;
+}
+.action:hover {
+  color: var(--highlight-color);
+}
+
+.action span {
+  font-size: 0.8em;
+  text-transform: capitalize;
+  margin-top: 0.5em;
+}
+
+.action[active='true'] {
+  color: var(--highlight-color);
 }

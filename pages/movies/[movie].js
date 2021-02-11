@@ -32,7 +32,7 @@ const Movie = ({ movie }) => {
           networks={movie.production_companies}
         />
 
-        {authenticated && <TraktActions />}
+        {authenticated && <TraktActions media={movie} />}
 
         <p className={styles.overview}>{movie.overview}</p>
 
