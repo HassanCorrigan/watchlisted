@@ -35,7 +35,7 @@ const Season = ({ show, season }) => {
           networks={show.networks}
         />
 
-        {authenticated && <TraktActions />}
+        {authenticated && <TraktActions media={season} />}
 
         <p className={styles.overview}>{season.overview}</p>
 

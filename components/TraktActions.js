@@ -10,10 +10,12 @@ const TraktActions = ({ media }) => {
   const [collected, setCollected] = useState(false);
 
   useEffect(() => {
-    const collection = JSON.parse(localStorage.getItem('collection')) || [];
-    const watchlist = JSON.parse(localStorage.getItem('watchlist')) || [];
     const history = JSON.parse(localStorage.getItem('history')) || [];
+    const watchlist = JSON.parse(localStorage.getItem('watchlist')) || [];
+    const collection = JSON.parse(localStorage.getItem('collection')) || [];
 
+    setWatched(history.some(value => value.poster.id === media.id));
+    setWatchlisted(watchlist.some(value => value.poster.id === media.id));
     setCollected(collection.some(value => value.poster.id === media.id));
   }, []);
 
@@ -24,6 +26,7 @@ const TraktActions = ({ media }) => {
     console.log(media);
   };
   const updateCollection = async () => {
+    console.log(media);
     const params = collected ? 'sync/collection/remove' : 'sync/collection';
     const res = await traktPost(params, { movies: [media] }, user.token);
     setCollected(res.added ? true : false);
@@ -48,7 +51,7 @@ const TraktActions = ({ media }) => {
           <path d='M8 12.5l3 3 5-6' />
           <circle cx='12' cy='12' r='10' />
         </svg>
-        <span>Mark as watched</span>
+        <span>{watched ? 'Remove from watched' : 'Mark as watched'}</span>
       </button>
       <button
         className={styles.action}
@@ -67,7 +70,9 @@ const TraktActions = ({ media }) => {
           <path d='M12 8v4m0 0v4m0-4h4m-4 0H8' />
           <circle cx='12' cy='12' r='10' />
         </svg>
-        <span>Add to watchlist</span>
+        <span>
+          {watchlisted ? 'Remove from watchlist' : 'Add to watchlist'}
+        </span>
       </button>
       <button
         className={styles.action}

@@ -44,7 +44,7 @@ const Show = ({ show }) => {
           </p>
         )}
 
-        {authenticated && <TraktActions />}
+        {authenticated && <TraktActions media={show} />}
 
         <p className={styles.overview}>{show.overview}</p>
 

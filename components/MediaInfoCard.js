@@ -3,7 +3,7 @@ import styles from 'styles/components/media-info-card.module.css';
 
 const MediaInfoCard = ({ runTime, date, voteAverage, voteCount, networks }) => {
   return (
-    <div className={styles.info} className='card'>
+    <div className={`card ${styles.info}`}>
       <p className={styles.infoItem}>Run Time: {runTime} mins</p>
       <p className={styles.infoItem}>Air Date: {formatDate(date)}</p>
       <p className={styles.infoItem}>

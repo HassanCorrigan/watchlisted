@@ -3,6 +3,7 @@
   align-items: center;
   justify-content: space-evenly;
   margin: 0.5em;
+  display: none; /* Hide temporarily */
 }
 
 .action {
