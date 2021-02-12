@@ -3,7 +3,7 @@ import { getToken } from 'helpers/token';
 
 const AppContext = createContext();
 
-const AppWrapper = ({ children }) => {
+const AppProvider = ({ children }) => {
   const state = {
     user: {
       authenticated: getToken() !== null,
@@ -18,4 +18,4 @@ const useAppContext = () => {
   return useContext(AppContext);
 };
 
-export { AppWrapper, useAppContext };
+export { AppProvider, useAppContext };

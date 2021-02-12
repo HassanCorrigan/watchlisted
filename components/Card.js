@@ -37,7 +37,7 @@ const Card = ({ media }) => {
             </span>
             <span>Language: {media.original_language?.toUpperCase()}</span>
           </div>
-          {authenticated && <TraktActions media={media} />}
+          {/* {authenticated && <TraktActions media={media} />} */}
         </div>
       </a>
     </Link>

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useAppContext } from 'context/AppContext';
-import { createList, filterList } from 'helpers/list';
+import { getList, updateList, filterList } from 'helpers/list';
 import Layout from 'components/Layout';
 import LoginButton from 'components/LoginButton';
 import Loader from 'components/Loader';
@@ -25,36 +25,17 @@ const Watchlist = () => {
 
     user.authenticated &&
       (async () => {
-        const watchlist =
-          JSON.parse(localStorage.getItem('watchlist')) ||
-          (await fetchList('watchlist'));
-        const collection =
-          JSON.parse(localStorage.getItem('collection')) ||
-          (await fetchList('collection'));
-        const history =
-          JSON.parse(localStorage.getItem('history')) ||
-          (await fetchList('history'));
-
-        setWatchlist(watchlist);
-        setCollection(collection);
-        setHistory(history);
+        setWatchlist(await getList('watchlist'));
+        setCollection(await getList('collection'));
+        setHistory(await getList('history'));
         setLoading(false);
       })();
   }, []);
 
   const handleRefresh = async () => {
-    setWatchlist(await fetchList('watchlist'));
-    setCollection(await fetchList('collection'));
-    setHistory(await fetchList('history'));
-  };
-
-  const fetchList = async listType => {
-    const showList = await createList(`${listType}/shows`, user.token);
-    const movieList = await createList(`${listType}/movies`, user.token);
-    const list = showList.concat(movieList);
-
-    localStorage.setItem(`${listType}`, JSON.stringify(list));
-    return list;
+    setWatchlist(await updateList('watchlist'));
+    setCollection(await updateList('collection'));
+    setHistory(await updateList('history'));
   };
 
   return (

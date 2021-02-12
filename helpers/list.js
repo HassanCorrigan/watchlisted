@@ -1,6 +1,8 @@
 import { traktFetch, tmdbFetch } from 'helpers/api';
+import { getToken } from 'helpers/token';
 
-const createList = async (listType, token) => {
+const createList = async listType => {
+  const token = getToken();
   const traktList = await traktFetch(
     `users/me/${listType}`,
     token,
@@ -49,6 +51,25 @@ const createList = async (listType, token) => {
   );
 };
 
+const getList = async list => {
+  const localData = JSON.parse(localStorage.getItem(list));
+  if (localData) {
+    return localData;
+  }
+
+  const showList = await createList(`${list}/shows`);
+  const movieList = await createList(`${list}/movies`);
+  const fullList = showList.concat(movieList);
+
+  localStorage.setItem(list, JSON.stringify(fullList));
+  return fullList;
+};
+
+const updateList = async list => {
+  localStorage.removeItem(list);
+  return await getList(list);
+};
+
 const sortList = (key, order = 'asc') => {
   return (a, b) => {
     if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
@@ -68,4 +89,4 @@ const sortList = (key, order = 'asc') => {
 const filterList = (list, mediaType) =>
   list.filter(item => item.type === mediaType);
 
-export { createList, sortList, filterList };
+export { getList, updateList, sortList, filterList };

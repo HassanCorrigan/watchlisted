@@ -1,11 +1,11 @@
-import { AppWrapper } from 'context/AppContext';
+import { AppProvider } from 'context/AppContext';
 import 'styles/global.css';
 
 const Application = ({ Component, pageProps }) => {
   return (
-    <AppWrapper>
+    <AppProvider>
       <Component {...pageProps} />
-    </AppWrapper>
+    </AppProvider>
   );
 };
 

@@ -49,7 +49,7 @@ const Season = ({ show, episode }) => {
           <p className={styles.overview}>{episode.overview}</p>
         </div>
 
-        {authenticated && <TraktActions media={episode} />}
+        {/* {authenticated && <TraktActions media={episode} />} */}
 
         <div className={styles.meta}>
           {show.genres.map(genre => (

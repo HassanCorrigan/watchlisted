@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useAppContext } from 'context/AppContext';
-import { createList, sortList, filterList } from 'helpers/list';
+import { getList, updateList, sortList, filterList } from 'helpers/list';
 import Layout from 'components/Layout';
 import LoginButton from 'components/LoginButton';
 import Loader from 'components/Loader';
@@ -25,24 +25,13 @@ const Watchlist = () => {
 
     user.authenticated &&
       (async () => {
-        const list =
-          JSON.parse(localStorage.getItem('history')) || (await fetchList());
-        setHistory(list);
+        setHistory(await getList('history'));
         setLoading(false);
       })();
   }, []);
 
   const handleRefresh = async () => {
-    setHistory(await fetchList());
-  };
-
-  const fetchList = async () => {
-    const showHistory = await createList('history/shows', user.token);
-    const movieHistory = await createList('history/movies', user.token);
-    const history = showHistory.concat(movieHistory);
-
-    localStorage.setItem('history', JSON.stringify(history));
-    return history;
+    setHistory(await updateList('history'));
   };
 
   return (

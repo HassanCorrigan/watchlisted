@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useAppContext } from 'context/AppContext';
-import { createList, sortList, filterList } from 'helpers/list';
+import { getList, updateList, sortList, filterList } from 'helpers/list';
 import Layout from 'components/Layout';
 import LoginButton from 'components/LoginButton';
 import Loader from 'components/Loader';
@@ -25,24 +25,13 @@ const Collection = () => {
 
     user.authenticated &&
       (async () => {
-        const list =
-          JSON.parse(localStorage.getItem('collection')) || (await fetchList());
-        setCollection(list);
+        setCollection(await getList('collection'));
         setLoading(false);
       })();
   }, []);
 
   const handleRefresh = async () => {
-    setCollection(await fetchList());
-  };
-
-  const fetchList = async () => {
-    const showCollection = await createList('collection/shows', user.token);
-    const movieCollection = await createList('collection/movies', user.token);
-    const collection = showCollection.concat(movieCollection);
-
-    localStorage.setItem('collection', JSON.stringify(collection));
-    return collection;
+    setCollection(await updateList('collection'));
   };
 
   return (

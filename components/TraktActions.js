@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useAppContext } from 'context/AppContext';
 import { traktPost } from 'helpers/api';
+import { updateList } from 'helpers/list';
 import styles from 'styles/components/trakt-actions.module.css';
 
-const TraktActions = ({ media }) => {
+const TraktActions = ({ media, mediaType }) => {
   const { user } = useAppContext();
   const [watched, setWatched] = useState(false);
   const [watchlisted, setWatchlisted] = useState(false);
@@ -20,15 +21,40 @@ const TraktActions = ({ media }) => {
   }, []);
 
   const updateHistory = async () => {
-    console.log(media);
+    const params = watched ? 'sync/history/remove' : 'sync/history';
+    const body =
+      mediaType === 'movie'
+        ? { movies: [{ ids: { tmdb: media.id } }] }
+        : { shows: [{ ids: { tmdb: media.id } }] };
+
+    const res = await traktPost(params, body, user.token);
+    await updateList('history');
+    await updateList('watchlist');
+    setWatched(res.added ? true : false);
+    setWatchlisted(false);
   };
+
   const updateWatchlist = async () => {
-    console.log(media);
+    const params = watchlisted ? 'sync/watchlist/remove' : 'sync/watchlist';
+    const body =
+      mediaType === 'movie'
+        ? { movies: [{ ids: { tmdb: media.id } }] }
+        : { shows: [{ ids: { tmdb: media.id } }] };
+
+    const res = await traktPost(params, body, user.token);
+    await updateList('watchlist');
+    setWatchlisted(res.added ? true : false);
   };
+
   const updateCollection = async () => {
-    console.log(media);
     const params = collected ? 'sync/collection/remove' : 'sync/collection';
-    const res = await traktPost(params, { movies: [media] }, user.token);
+    const body =
+      mediaType === 'movie'
+        ? { movies: [{ ids: { tmdb: media.id } }] }
+        : { shows: [{ ids: { tmdb: media.id } }] };
+
+    const res = await traktPost(params, body, user.token);
+    await updateList('collection');
     setCollected(res.added ? true : false);
   };
 

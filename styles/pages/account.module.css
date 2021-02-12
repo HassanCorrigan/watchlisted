@@ -47,6 +47,7 @@
   display: block;
   margin: auto;
   cursor: pointer;
+  outline: none;
 }
 
 .btn:hover {
