@@ -15,7 +15,7 @@ const RefreshButton = ({ updateList }) => {
 
   return (
     <button className={styles.refreshBtn} onClick={handleClick}>
-      {refreshText}
+      <span className={styles.refreshTxt}>{refreshText}</span>
       <svg
         className={styles.refreshIcon}
         active={animateRefresh.toString()}

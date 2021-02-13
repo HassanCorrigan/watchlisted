@@ -10,6 +10,8 @@ const Search = () => {
   const [inputValue, setInputValue] = useState('');
   const [searchText, setSearchText] = useState('');
   const [searchResults, setSearchResults] = useState([]);
+  const [resultsPage, setResultsPage] = useState(1);
+  const [totalResultsPages, setTotalResultsPages] = useState(0);
   const [searchHistory, setSearchHistory] = useState([]);
 
   useEffect(() => {
@@ -26,6 +28,7 @@ const Search = () => {
   const handleSearchSubmit = async e => {
     e.preventDefault();
     setSearchText(inputValue);
+    setResultsPage(1);
   };
 
   const handleHistoryClick = e => {
@@ -38,20 +41,41 @@ const Search = () => {
     localStorage.removeItem('search-history');
   };
 
+  const handleLoadMore = async () => {
+    setLoading(true);
+
+    const { results, page } = await tmdbFetch(
+      'search/multi',
+      `query=${searchText}&page=${resultsPage + 1}`
+    );
+    const filteredResults = results.filter(
+      item => item.media_type !== 'person'
+    );
+    const newResults = searchResults.concat(filteredResults);
+    setSearchResults(newResults);
+    setResultsPage(page);
+    setLoading(false);
+  };
+
   const runSearch = async () => {
     setLoading(true);
 
     if (!searchText) {
       setSearchResults([]);
+      setTotalResultsPages(0);
       setLoading(false);
       return;
     }
 
-    const { results } = await tmdbFetch('search/multi', `query=${searchText}`);
+    const { results, total_pages } = await tmdbFetch(
+      'search/multi',
+      `query=${searchText}&page=${resultsPage}`
+    );
     const filteredResults = results.filter(
       item => item.media_type !== 'person'
     );
     setSearchResults(filteredResults);
+    setTotalResultsPages(total_pages);
 
     const history = [...searchHistory, searchText].slice(0, 10).reverse();
     setSearchHistory(history);
@@ -100,6 +124,13 @@ const Search = () => {
           {searchResults.map((item, index) => (
             <Card key={index} media={item} />
           ))}
+          {searchResults.length !== 0 && resultsPage !== totalResultsPages && (
+            <button
+              className={`card ${styles.loadMoreBtn}`}
+              onClick={handleLoadMore}>
+              Load More
+            </button>
+          )}
         </div>
       </section>
     </Layout>

@@ -43,3 +43,14 @@
 .clearBtn:hover {
   filter: brightness(0.75);
 }
+
+.loadMoreBtn {
+  display: block;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  margin: auto;
+}
+.loadMoreBtn:hover {
+  filter: brightness(0.75);
+}

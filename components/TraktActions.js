@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAppContext } from 'context/AppContext';
-import { traktPost } from 'helpers/api';
+import { traktFetch, traktPost } from 'helpers/api';
 import { updateList } from 'helpers/list';
 import styles from 'styles/components/trakt-actions.module.css';
 
@@ -11,11 +11,18 @@ const TraktActions = ({ media, mediaType }) => {
   const [collected, setCollected] = useState(false);
 
   useEffect(() => {
-    const history = JSON.parse(localStorage.getItem('history')) || [];
+    (async () => {
+      const movies = await traktFetch(`users/me/watched/movies`, user.token);
+      const shows = await traktFetch(`users/me/watched/shows`, user.token);
+      const watched = movies.concat(shows);
+      localStorage.setItem('watched', JSON.stringify(watched));
+    })();
+
+    const watchedlist = JSON.parse(localStorage.getItem('watched')) || [];
     const watchlist = JSON.parse(localStorage.getItem('watchlist')) || [];
     const collection = JSON.parse(localStorage.getItem('collection')) || [];
 
-    setWatched(history.some(value => value.poster.id === media.id));
+    setWatched(watchedlist.some(value => value.movie?.ids.tmdb === media.id));
     setWatchlisted(watchlist.some(value => value.poster.id === media.id));
     setCollected(collection.some(value => value.poster.id === media.id));
   }, []);

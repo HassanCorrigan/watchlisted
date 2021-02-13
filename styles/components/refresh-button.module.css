@@ -14,10 +14,13 @@
 .refreshBtn:hover {
   filter: brightness(0.9);
 }
+
+.refreshTxt {
+  margin-right: 0.5em;
+}
 .refreshIcon {
   width: 15px;
   height: 15px;
-  margin-left: 0.5em;
 }
 .refreshIcon[active='true'] {
   transform: rotate(0deg);
