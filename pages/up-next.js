@@ -33,13 +33,12 @@ const UpNext = () => {
   }, []);
 
   const createWatching = async () => {
-    const watched = await traktFetch('sync/watched/shows', user.token);
+    const watched = await traktFetch('sync/watched/shows');
 
     const progress = await Promise.all(
       watched.map(async ({ show }) => {
         const showProgress = await traktFetch(
-          `shows/${show.ids.trakt}/progress/watched`,
-          user.token
+          `shows/${show.ids.trakt}/progress/watched`
         );
         const media = await tmdbFetch(`tv/${show.ids.tmdb}`);
 
@@ -58,13 +57,9 @@ const UpNext = () => {
   const createCalendar = async () => {
     const today = new Date().toISOString().slice(0, 10);
 
-    const showCalendar = await traktFetch(
-      `calendars/my/shows/${today}/28`,
-      user.token
-    );
+    const showCalendar = await traktFetch(`calendars/my/shows/${today}/28`);
     const movieCalendar = await traktFetch(
       `calendars/my/movies/${today}/28`,
-      user.token,
       `extended=full`
     );
 

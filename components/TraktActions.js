@@ -12,8 +12,8 @@ const TraktActions = ({ media, mediaType }) => {
 
   useEffect(() => {
     (async () => {
-      const movies = await traktFetch(`users/me/watched/movies`, user.token);
-      const shows = await traktFetch(`users/me/watched/shows`, user.token);
+      const movies = await traktFetch(`users/me/watched/movies`);
+      const shows = await traktFetch(`users/me/watched/shows`);
       const watched = movies.concat(shows);
       localStorage.setItem('watched', JSON.stringify(watched));
     })();

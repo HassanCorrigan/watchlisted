@@ -1,13 +1,7 @@
 import { traktFetch, tmdbFetch } from 'helpers/api';
-import { getToken } from 'helpers/token';
 
 const createList = async listType => {
-  const token = getToken();
-  const traktList = await traktFetch(
-    `users/me/${listType}`,
-    token,
-    'extended=full'
-  );
+  const traktList = await traktFetch(`users/me/${listType}`, 'extended=full');
 
   return await Promise.all(
     traktList.map(async item => {

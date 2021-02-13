@@ -1,3 +1,5 @@
+import { getToken } from 'helpers/token';
+
 const tmdbFetch = async (params, query) => {
   const apiURL = 'https://api.themoviedb.org/3';
   const apiKey = process.env.NEXT_PUBLIC_TMDB_API_KEY;
@@ -18,10 +20,11 @@ const tmdbFetch = async (params, query) => {
   }
 };
 
-const traktFetch = async (params, token, query) => {
+const traktFetch = async (params, query) => {
   const apiURL = 'https://api.trakt.tv';
   const clientID = process.env.NEXT_PUBLIC_TRAKT_CLIENT_ID;
   const queryString = query ? `?${query}` : '';
+  const token = getToken();
 
   try {
     const res = await fetch(`${apiURL}/${params}${queryString}`, {
@@ -38,9 +41,10 @@ const traktFetch = async (params, token, query) => {
   }
 };
 
-const traktPost = async (params, body, token) => {
+const traktPost = async (params, body) => {
   const apiURL = 'https://api.trakt.tv';
   const clientID = process.env.NEXT_PUBLIC_TRAKT_CLIENT_ID;
+  const token = getToken();
 
   try {
     const res = await fetch(`${apiURL}/${params}`, {

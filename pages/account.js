@@ -21,13 +21,13 @@ const Account = () => {
   }, []);
 
   const setDetails = async () => {
-    const data = await traktFetch('users/me', user.token, 'extended=full');
+    const data = await traktFetch('users/me', 'extended=full');
     setUserDetails(await data);
     setLoading(false);
   };
 
   const setStats = async () => {
-    const stats = await traktFetch('users/me/stats', user.token);
+    const stats = await traktFetch('users/me/stats');
     delete stats.ratings;
     delete stats.seasons;
     delete stats.network;
