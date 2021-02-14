@@ -6,6 +6,11 @@ const createList = async listType => {
   return await Promise.all(
     traktList.map(async item => {
       const type = item.movie ? 'movie' : 'show';
+      const {
+        [type]: {
+          ids: { tmdb: id },
+        },
+      } = item;
       let title, slug, released;
       const added =
         item.listed_at ||
@@ -13,23 +18,21 @@ const createList = async listType => {
         item.collected_at ||
         item.watched_at;
 
-      const params = item.show
-        ? `tv/${item.show.ids.tmdb}`
-        : `movie/${item.movie.ids.tmdb}`;
+      const params = item.show ? `tv/${id}` : `movie/${id}`;
 
       const media = await tmdbFetch(params);
 
       if (item.episode) {
         title = item.episode.title;
-        slug = `shows/${item.show.ids.tmdb}/season/${item.episode.season}/episode/${item.episode.number}`;
+        slug = `shows/${id}/season/${item.episode.season}/episode/${item.episode.number}`;
         released = item.episode.first_aired;
       } else if (item.show) {
         title = media.name;
-        slug = `shows/${item.show.ids.tmdb}`;
+        slug = `shows/${id}`;
         released = item.show.first_aired;
       } else {
         title = media.title;
-        slug = `movies/${item.movie.ids.tmdb}`;
+        slug = `movies/${id}`;
         released = item.movie.released;
       }
 

@@ -45,11 +45,12 @@
 }
 
 .loadMoreBtn {
+  font-size: 1em;
   display: block;
   border: none;
   outline: none;
   cursor: pointer;
-  margin: auto;
+  margin: 0.5em auto;
 }
 .loadMoreBtn:hover {
   filter: brightness(0.75);
