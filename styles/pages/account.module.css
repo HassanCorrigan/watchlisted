@@ -53,3 +53,16 @@
 .btn:hover {
   color: var(--highlight-color);
 }
+
+.appSettings label {
+  display: block;
+  text-align: center;
+}
+.appSettings .themeSelect {
+  outline: none;
+  border: none;
+  border-radius: var(--border-radius);
+  display: block;
+  margin: 0.5rem auto;
+  padding: 0.5rem;
+}

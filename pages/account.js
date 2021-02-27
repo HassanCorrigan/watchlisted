@@ -9,7 +9,7 @@ import packageJSON from 'package.json';
 import styles from 'styles/pages/account.module.css';
 
 const Account = () => {
-  const { user } = useAppContext();
+  const { user, app, setTheme } = useAppContext();
   const [authenticated, setAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
   const [userDetails, setUserDetails] = useState({});
@@ -33,6 +33,11 @@ const Account = () => {
     delete stats.network;
     setUserStats(stats);
     setLoading(false);
+  };
+
+  const handleThemeUpdate = e => {
+    setTheme(e.target.value);
+    localStorage.setItem('theme', e.target.value);
   };
 
   return (
@@ -90,16 +95,34 @@ const Account = () => {
                   ))}
                 </div>
 
-                <div className={styles.appInfo}>
-                  <p>Watchlisted - v{packageJSON.version}</p>
-                </div>
-
                 <button className={styles.btn} onClick={() => logOut()}>
                   Log Out
                 </button>
               </div>
             </>
           )}
+        </div>
+      </section>
+
+      <section>
+        <h1 className='page-title'>App Settings</h1>
+
+        {/* <div className={styles.appSettings}>
+          <label htmlFor='themeSelect'>Choose App Theme:</label>
+          <select
+            name='themeSelect'
+            id='themeSelect'
+            className={styles.themeSelect}
+            value={app.theme}
+            onChange={handleThemeUpdate}>
+            <option value='system'>System Settings</option>
+            <option value='light'>Light</option>
+            <option value='dark'>Dark</option>
+          </select>
+        </div> */}
+
+        <div className={styles.appInfo}>
+          <p>Watchlisted - v{packageJSON.version}</p>
         </div>
       </section>
     </Layout>
