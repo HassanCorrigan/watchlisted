@@ -61,6 +61,8 @@
 .appSettings .themeSelect {
   outline: none;
   border: none;
+  color: var(--main-color);
+  background-color: var(--secondary-background-color);
   border-radius: var(--border-radius);
   display: block;
   margin: 0.5rem auto;

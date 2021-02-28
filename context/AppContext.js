@@ -17,16 +17,10 @@ const AppContext = createContext(initialState);
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
 
+  /** If theme exists in localstorage, set global app theme */
   useEffect(() => {
-    // Action firing too late, fix needed.
-    // const user = {
-    //   authenticated: getToken() !== null,
-    //   token: getToken(),
-    // };
-    // setUser(user);
-
-    const theme = localStorage.getItem('theme') || 'system';
-    setTheme(theme);
+    const theme = localStorage.getItem('theme');
+    theme && setTheme(theme);
   }, []);
 
   /**

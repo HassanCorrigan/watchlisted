@@ -107,7 +107,7 @@ const Account = () => {
       <section>
         <h1 className='page-title'>App Settings</h1>
 
-        {/* <div className={styles.appSettings}>
+        <div className={styles.appSettings}>
           <label htmlFor='themeSelect'>Choose App Theme:</label>
           <select
             name='themeSelect'
@@ -119,7 +119,7 @@ const Account = () => {
             <option value='light'>Light</option>
             <option value='dark'>Dark</option>
           </select>
-        </div> */}
+        </div>
 
         <div className={styles.appInfo}>
           <p>Watchlisted - v{packageJSON.version}</p>
