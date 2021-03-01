@@ -24,17 +24,6 @@ const AppProvider = ({ children }) => {
   }, []);
 
   /**
-   *
-   * @param {object} user - accepts a user object with authenticated state and token
-   */
-  const setUser = user => {
-    dispatch({
-      type: 'SET_USER',
-      payload: user,
-    });
-  };
-
-  /**
    * Set the app theme - accepts: light, dark or system.
    * @param {string} theme - accepts a string value
    */

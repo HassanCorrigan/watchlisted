@@ -31,12 +31,6 @@
 @media (display-mode: standalone) {
   /* Installed PWA */
   .header {
-    background-color: #fff;
-  }
-}
-@media (display-mode: standalone) and (prefers-color-scheme: dark) {
-  /* Installed PWA and dark mode ennabled */
-  .header {
-    background-color: #000;
+    background-color: var(--pwa-header-background-color);
   }
 }
