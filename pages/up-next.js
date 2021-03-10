@@ -22,9 +22,10 @@ const UpNext = () => {
 
     user.authenticated &&
       (async () => {
-        const watching =
-          JSON.parse(localStorage.getItem('watching')) ||
-          (await createWatching());
+        // const watching =
+        //   JSON.parse(localStorage.getItem('watching')) ||
+        //   (await createWatching());
+        const watching = await createWatching();
         const calendar = await createCalendar();
         setWatching(watching);
         setCalendar(calendar);
@@ -139,7 +140,11 @@ const UpNext = () => {
               <div className={styles.calendar}>
                 {Object.entries(calendar).map((entry, index) => (
                   <div className={styles.calendarGroup} key={index}>
-                    <h3 className={styles.date}>{formatDate(entry[0])}</h3>
+                    <h3 className={styles.date}>
+                      {formatDate(entry[0]) === formatDate(new Date())
+                        ? 'Today'
+                        : formatDate(entry[0])}
+                    </h3>
                     <div className={styles.items}>
                       {entry[1].map((item, index) => (
                         <div className={`card ${styles.item}`} key={index}>
