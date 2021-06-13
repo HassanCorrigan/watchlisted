@@ -22,10 +22,9 @@ const UpNext = () => {
 
     user.authenticated &&
       (async () => {
-        // const watching =
-        //   JSON.parse(localStorage.getItem('watching')) ||
-        //   (await createWatching());
-        const watching = await createWatching();
+        const watching =
+          JSON.parse(localStorage.getItem('watching')) ||
+          (await createWatching());
         const calendar = await createCalendar();
         setWatching(watching);
         setCalendar(calendar);
