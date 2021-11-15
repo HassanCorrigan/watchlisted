@@ -86,4 +86,147 @@ const sortList = (key, order = 'asc') => {
 const filterList = (list, mediaType) =>
   list.filter(item => item.type === mediaType);
 
-export { getList, updateList, sortList, filterList };
+// Testing new lists functionality
+//////////////////////////////////
+const getCollection = async () => {
+  const showList = await traktFetch(`users/me/collection/shows`);
+  const movieList = await traktFetch(`users/me/collection/movies`);
+  const traktList = showList.concat(movieList);
+
+  return await Promise.all(
+    traktList.map(async trakt => {
+      const type = trakt.movie ? 'movie' : 'show';
+      const {
+        [type]: {
+          ids: { tmdb: id },
+        },
+      } = trakt;
+      const params = type === 'movie' ? `movie/${id}` : `tv/${id}`;
+      const tmdb = await tmdbFetch(params);
+
+      return {
+        type,
+        trakt,
+        tmdb,
+      };
+    })
+  );
+};
+
+const getWatched = async () => {
+  const showList = await traktFetch(`users/me/watched/shows`);
+  const movieList = await traktFetch(`users/me/watched/movies`);
+  const traktList = showList.concat(movieList);
+
+  return await Promise.all(
+    traktList.map(async trakt => {
+      const type = trakt.movie ? 'movie' : 'show';
+      const {
+        [type]: {
+          ids: { tmdb: id },
+        },
+      } = trakt;
+      const params = type === 'movie' ? `movie/${id}` : `tv/${id}`;
+      const tmdb = await tmdbFetch(params);
+
+      return {
+        type,
+        trakt,
+        tmdb,
+      };
+    })
+  );
+};
+
+const getWatchlist = async () => {
+  const traktList = await traktFetch(`users/me/watchlist`);
+
+  return await Promise.all(
+    traktList.map(async trakt => {
+      const { type } = trakt;
+      const {
+        [type]: {
+          ids: { tmdb: id },
+        },
+      } = trakt;
+
+      let tmdb;
+      if (trakt.type === 'movie') {
+        tmdb = await tmdbFetch(`movie/${id}`);
+      } else if (trakt.type === 'show') {
+        tmdb = await tmdbFetch(`tv/${id}`);
+      } else if (trakt.type === 'season') {
+        const show = await tmdbFetch(`tv/${trakt.show.ids.tmdb}`);
+        const season = await tmdbFetch(
+          `tv/${trakt.show.ids.tmdb}/season/${trakt.season.number}`
+        );
+        tmdb = { season, show };
+      } else {
+        const show = await tmdbFetch(`tv/${trakt.show.ids.tmdb}`);
+        const episode = await tmdbFetch(
+          `tv/${trakt.show.ids.tmdb}/season/${trakt.episode.season}/episode/${trakt.episode.number}`
+        );
+        tmdb = { episode, show };
+      }
+
+      return {
+        type,
+        trakt,
+        tmdb,
+      };
+    })
+  );
+};
+
+const getHistory = async () => {
+  const traktList = await traktFetch(`users/me/history`);
+
+  return await Promise.all(
+    traktList.map(async trakt => {
+      const { type } = trakt;
+      const {
+        [type]: {
+          ids: { tmdb: id },
+        },
+      } = trakt;
+
+      let tmdb;
+      if (trakt.type === 'movie') {
+        tmdb = await tmdbFetch(`movie/${id}`);
+      } else if (trakt.type === 'show') {
+        tmdb = await tmdbFetch(`tv/${id}`);
+      } else if (trakt.type === 'season') {
+        const show = await tmdbFetch(`tv/${trakt.show.ids.tmdb}`);
+        const season = await tmdbFetch(
+          `tv/${trakt.show.ids.tmdb}/season/${trakt.season.number}`
+        );
+        tmdb = { season, show };
+      } else {
+        const show = await tmdbFetch(`tv/${trakt.show.ids.tmdb}`);
+        const episode = await tmdbFetch(
+          `tv/${trakt.show.ids.tmdb}/season/${trakt.episode.season}/episode/${trakt.episode.number}`
+        );
+        tmdb = { episode, show };
+      }
+
+      return {
+        type,
+        trakt,
+        tmdb,
+      };
+    })
+  );
+};
+// Testing new lists functionality
+//////////////////////////////////
+
+export {
+  getList,
+  updateList,
+  sortList,
+  filterList,
+  getWatchlist,
+  getHistory,
+  getCollection,
+  getWatched,
+};
