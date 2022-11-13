@@ -108,27 +108,26 @@ const UpNext = () => {
                 {watching.map(({ show, showProgress, media }, index) => (
                   <Link
                     href={`shows/${show.ids.tmdb}/season/${showProgress.next_episode.season}/episode/${showProgress.next_episode.number}`}
-                    key={index}>
-                    <a className={styles.watchItem}>
-                      <div
-                        className={styles.banner}
-                        style={{
-                          backgroundImage: `url("${createBannerPath(
-                            media.backdrop_path
-                          )}")`,
-                        }}>
-                        <div>
-                          <h3>{show.title}</h3>
-                          <p>
-                            {`${showProgress.next_episode.title} - S${showProgress.next_episode.season}xE${showProgress.next_episode.number}`}
-                          </p>
-                          <p>
-                            {showProgress.aired - showProgress.completed}{' '}
-                            Remaining
-                          </p>
-                        </div>
+                    key={index}
+                    className={styles.watchItem}>
+                    <div
+                      className={styles.banner}
+                      style={{
+                        backgroundImage: `url("${createBannerPath(
+                          media.backdrop_path
+                        )}")`,
+                      }}>
+                      <div>
+                        <h3>{show.title}</h3>
+                        <p>
+                          {`${showProgress.next_episode.title} - S${showProgress.next_episode.season}xE${showProgress.next_episode.number}`}
+                        </p>
+                        <p>
+                          {showProgress.aired - showProgress.completed}{' '}
+                          Remaining
+                        </p>
                       </div>
-                    </a>
+                    </div>
                   </Link>
                 ))}
               </div>
@@ -153,21 +152,17 @@ const UpNext = () => {
                                 ? `shows/${item.show.ids.tmdb}`
                                 : `movies/${item.movie.ids.tmdb}`
                             }>
-                            <a>
-                              <h4 className={styles.title}>
-                                {item.show?.title || item.movie?.title}
-                              </h4>
-                            </a>
+                            <h4 className={styles.title}>
+                              {item.show?.title || item.movie?.title}
+                            </h4>
                           </Link>
                           {item.episode && (
                             <Link
                               href={`shows/${item.show.ids.tmdb}/season/${item.episode.season}/episode/${item.episode.number}`}>
-                              <a>
-                                <p
-                                  className={
-                                    styles.episode
-                                  }>{`S${item.episode.season}xE${item.episode.number} - ${item.episode?.title}`}</p>
-                              </a>
+                              <p
+                                className={
+                                  styles.episode
+                                }>{`S${item.episode.season}xE${item.episode.number} - ${item.episode?.title}`}</p>
                             </Link>
                           )}
                           {item.movie && <p>{item.movie.tagline}</p>}

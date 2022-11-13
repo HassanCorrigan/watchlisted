@@ -17,29 +17,25 @@ const Card = ({ media }) => {
   });
 
   return (
-    <Link href={`/${slug}/${media.id}`}>
-      <a className={`card ${styles.card}`}>
-        <Poster media={media} />
-        <div className={styles.cardInfo}>
-          <h2 className={styles.title}>{media.title || media.name}</h2>
-          <p className={styles.overview}>
-            {truncateString(media.overview, 200)}
-          </p>
-          <div className={styles.meta}>
-            <span>
-              (
-              {media.first_air_date?.slice(0, 4) ||
-                media.release_date?.slice(0, 4)}
-              )
-            </span>
-            <span>
-              &#11088; <b>{media.vote_average}</b> ({media.vote_count})
-            </span>
-            <span>Language: {media.original_language?.toUpperCase()}</span>
-          </div>
-          {/* {authenticated && <TraktActions media={media} />} */}
+    <Link href={`/${slug}/${media.id}`} className={`card ${styles.card}`}>
+      <Poster media={media} />
+      <div className={styles.cardInfo}>
+        <h2 className={styles.title}>{media.title || media.name}</h2>
+        <p className={styles.overview}>{truncateString(media.overview, 200)}</p>
+        <div className={styles.meta}>
+          <span>
+            (
+            {media.first_air_date?.slice(0, 4) ||
+              media.release_date?.slice(0, 4)}
+            )
+          </span>
+          <span>
+            &#11088; <b>{media.vote_average}</b> ({media.vote_count})
+          </span>
+          <span>Language: {media.original_language?.toUpperCase()}</span>
         </div>
-      </a>
+        {/* {authenticated && <TraktActions media={media} />} */}
+      </div>
     </Link>
   );
 };

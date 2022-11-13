@@ -63,10 +63,8 @@ const Collection = () => {
                 .sort(sortList(sortOrder))
                 .map((item, index) => (
                   <Link href={item.slug} key={index}>
-                    <a>
-                      <Poster media={item.poster} />
-                      <p>{item.title}</p>
-                    </a>
+                    <Poster media={item.poster} />
+                    <p>{item.title}</p>
                   </Link>
                 ))}
             </div>

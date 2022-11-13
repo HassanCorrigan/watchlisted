@@ -67,10 +67,8 @@ const Watchlist = () => {
                   .slice(0, 10)
                   .map((item, index) => (
                     <Link href={item.slug} key={index}>
-                      <a>
-                        <Poster media={item.poster} />
-                        <p className={styles.posterTitle}>{item.title}</p>
-                      </a>
+                      <Poster media={item.poster} />
+                      <p className={styles.posterTitle}>{item.title}</p>
                     </Link>
                   ))}
               </div>
@@ -86,10 +84,8 @@ const Watchlist = () => {
                   .slice(0, 10)
                   .map((item, index) => (
                     <Link href={item.slug} key={index}>
-                      <a>
-                        <Poster media={item.poster} />
-                        <p className={styles.posterTitle}>{item.title}</p>
-                      </a>
+                      <Poster media={item.poster} />
+                      <p className={styles.posterTitle}>{item.title}</p>
                     </Link>
                   ))}
               </div>
@@ -105,10 +101,8 @@ const Watchlist = () => {
                   .slice(0, 10)
                   .map((item, index) => (
                     <Link href={item.slug} key={index}>
-                      <a>
-                        <Poster media={item.poster} />
-                        <p className={styles.posterTitle}>{item.title}</p>
-                      </a>
+                      <Poster media={item.poster} />
+                      <p className={styles.posterTitle}>{item.title}</p>
                     </Link>
                   ))}
               </div>

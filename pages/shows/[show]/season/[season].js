@@ -48,24 +48,23 @@ const Season = ({ show, season }) => {
           {season.episodes.map(episode => (
             <Link
               key={episode.id}
-              href={`/shows/${show.id}/season/${season.season_number}/episode/${episode.episode_number}`}>
-              <a className={styles.stillContainer}>
-                <img
-                  src={createBannerPath(episode.still_path)}
-                  alt={episode.name}
-                  className={styles.still}
-                />
-                <div className={styles.episodeDetails}>
-                  <h4 className={styles.title}>{episode.name}</h4>
-                  <p>
-                    Season {episode.season_number} - Episode{' '}
-                    {episode.episode_number}
-                  </p>
-                  <p className={styles.overview}>
-                    {truncateString(episode.overview, 140)}
-                  </p>
-                </div>
-              </a>
+              href={`/shows/${show.id}/season/${season.season_number}/episode/${episode.episode_number}`}
+              className={styles.stillContainer}>
+              <img
+                src={createBannerPath(episode.still_path)}
+                alt={episode.name}
+                className={styles.still}
+              />
+              <div className={styles.episodeDetails}>
+                <h4 className={styles.title}>{episode.name}</h4>
+                <p>
+                  Season {episode.season_number} - Episode{' '}
+                  {episode.episode_number}
+                </p>
+                <p className={styles.overview}>
+                  {truncateString(episode.overview, 140)}
+                </p>
+              </div>
             </Link>
           ))}
         </div>

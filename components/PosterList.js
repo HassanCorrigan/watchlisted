@@ -7,10 +7,8 @@ const PosterList = ({ items, slug }) => {
     <div className={styles.posterList}>
       {items.map((item, index) => (
         <Link href={`/${slug}/${item.season_number || item.id}`} key={index}>
-          <a>
-            <Poster media={item} />
-            <p className={styles.posterTitle}>{item.name || item.title}</p>
-          </a>
+          <Poster media={item} />
+          <p className={styles.posterTitle}>{item.name || item.title}</p>
         </Link>
       ))}
     </div>

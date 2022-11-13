@@ -60,10 +60,8 @@ const Show = ({ show }) => {
               <Link
                 href={`/shows/${show.id}/season/${season.season_number}`}
                 key={index}>
-                <a>
-                  <Poster media={show} />
-                  <p className={styles.posterTitle}>{season.name}</p>
-                </a>
+                <Poster media={show} />
+                <p className={styles.posterTitle}>{season.name}</p>
               </Link>
             ))}
           </div>
@@ -74,21 +72,19 @@ const Show = ({ show }) => {
             <h3>Latest Episode</h3>
             <Link
               href={`/shows/${show.id}/season/${latestEpisode.season_number}/episode/${latestEpisode.episode_number}`}>
-              <a>
-                <img
-                  src={createBannerPath(latestEpisode.still_path)}
-                  alt={latestEpisode.name}
-                  className={styles.still}
-                />
-                <div className={styles.episodeDetails}>
-                  <h4>{latestEpisode.name}</h4>
-                  <p>
-                    Season {latestEpisode.season_number} - Episode{' '}
-                    {latestEpisode.episode_number}
-                  </p>
-                  <p>{truncateString(latestEpisode.overview, 140)}</p>
-                </div>
-              </a>
+              <img
+                src={createBannerPath(latestEpisode.still_path)}
+                alt={latestEpisode.name}
+                className={styles.still}
+              />
+              <div className={styles.episodeDetails}>
+                <h4>{latestEpisode.name}</h4>
+                <p>
+                  Season {latestEpisode.season_number} - Episode{' '}
+                  {latestEpisode.episode_number}
+                </p>
+                <p>{truncateString(latestEpisode.overview, 140)}</p>
+              </div>
             </Link>
           </div>
         )}
