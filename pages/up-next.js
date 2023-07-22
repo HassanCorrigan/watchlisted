@@ -22,9 +22,7 @@ const UpNext = () => {
 
     user.authenticated &&
       (async () => {
-        const watching =
-          JSON.parse(localStorage.getItem('watching')) ||
-          (await createWatching());
+        const watching = JSON.parse(localStorage.getItem('watching')) || (await createWatching());
         const calendar = await createCalendar();
         setWatching(watching);
         setCalendar(calendar);
@@ -37,18 +35,14 @@ const UpNext = () => {
 
     const progress = await Promise.all(
       watched.map(async ({ show }) => {
-        const showProgress = await traktFetch(
-          `shows/${show.ids.trakt}/progress/watched`
-        );
+        const showProgress = await traktFetch(`shows/${show.ids.trakt}/progress/watched`);
         const media = await tmdbFetch(`tv/${show.ids.tmdb}`);
 
         return { show, showProgress, media };
       })
     );
 
-    const watching = progress.filter(
-      ({ showProgress }) => showProgress.aired - showProgress.completed > 0
-    );
+    const watching = progress.filter(({ showProgress }) => showProgress.aired - showProgress.completed > 0);
 
     localStorage.setItem('watching', JSON.stringify(watching));
     return watching;
@@ -58,10 +52,7 @@ const UpNext = () => {
     const today = new Date().toISOString().slice(0, 10);
 
     const showCalendar = await traktFetch(`calendars/my/shows/${today}/28`);
-    const movieCalendar = await traktFetch(
-      `calendars/my/movies/${today}/28`,
-      `extended=full`
-    );
+    const movieCalendar = await traktFetch(`calendars/my/movies/${today}/28`, `extended=full`);
 
     const combinedCalendars = showCalendar.concat(movieCalendar);
     const calendar = groupAndSortList(combinedCalendars, 'date');
@@ -77,9 +68,7 @@ const UpNext = () => {
         return { ...item, date };
       })
       .reduce((result, currentValue) => {
-        (result[currentValue[key]] = result[currentValue[key]] || []).push(
-          currentValue
-        );
+        (result[currentValue[key]] = result[currentValue[key]] || []).push(currentValue);
         return result;
       }, [])
       .sort((a, b) => a.date.localeCompare(b.date));
@@ -113,19 +102,14 @@ const UpNext = () => {
                     <div
                       className={styles.banner}
                       style={{
-                        backgroundImage: `url("${createBannerPath(
-                          media.backdrop_path
-                        )}")`,
+                        backgroundImage: `url("${createBannerPath(media?.backdrop_path)}")`,
                       }}>
                       <div>
                         <h3>{show.title}</h3>
                         <p>
                           {`${showProgress.next_episode.title} - S${showProgress.next_episode.season}xE${showProgress.next_episode.number}`}
                         </p>
-                        <p>
-                          {showProgress.aired - showProgress.completed}{' '}
-                          Remaining
-                        </p>
+                        <p>{showProgress.aired - showProgress.completed} Remaining</p>
                       </div>
                     </div>
                   </Link>
@@ -139,22 +123,13 @@ const UpNext = () => {
                 {Object.entries(calendar).map((entry, index) => (
                   <div className={styles.calendarGroup} key={index}>
                     <h3 className={styles.date}>
-                      {formatDate(entry[0]) === formatDate(new Date())
-                        ? 'Today'
-                        : formatDate(entry[0])}
+                      {formatDate(entry[0]) === formatDate(new Date()) ? 'Today' : formatDate(entry[0])}
                     </h3>
                     <div className={styles.items}>
                       {entry[1].map((item, index) => (
                         <div className={`card ${styles.item}`} key={index}>
-                          <Link
-                            href={
-                              item.show
-                                ? `shows/${item.show.ids.tmdb}`
-                                : `movies/${item.movie.ids.tmdb}`
-                            }>
-                            <h4 className={styles.title}>
-                              {item.show?.title || item.movie?.title}
-                            </h4>
+                          <Link href={item.show ? `shows/${item.show.ids.tmdb}` : `movies/${item.movie.ids.tmdb}`}>
+                            <h4 className={styles.title}>{item.show?.title || item.movie?.title}</h4>
                           </Link>
                           {item.episode && (
                             <Link
